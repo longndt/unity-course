@@ -1,10 +1,39 @@
-# Unity 2D Game Development Course - Beginner Level
+# Unity Development Course
 
 ## Course Information
 
 - **Target Audience**: Final year students with basic C# programming knowledge
 - **Primary Focus**: 2D game development with Unity Engine
 - **Objective**: Master 2D game development fundamentals and create complete playable games
+
+## Getting Started
+
+### 🛠️ Step 1: Environment Setup
+Before starting the course, complete the environment setup:
+- Follow the detailed guide: [`setup/environment-setup.md`](setup/environment-setup.md)
+- Install Unity Hub and Unity 6.0 LTS
+- Setup Visual Studio or VS Code for C# development
+- Configure Git for version control
+
+### 📚 Step 2: Learning Flow
+Follow lessons in sequential order for best results:
+
+1. **Lesson 1**: [`lesson1-unity-basics/`](lesson1-unity-basics/) - Start with Unity fundamentals
+2. **Lesson 2**: [`lesson2-sprites-animation/`](lesson2-sprites-animation/) - Learn 2D sprites and animation
+3. **Lesson 3**: [`lesson3-physics-collision/`](lesson3-physics-collision/) - Master 2D physics system
+4. **Lesson 4**: [`lesson4-input-player-controller/`](lesson4-input-player-controller/) - Implement player controls
+5. **Lesson 5**: [`lesson5-ui-complete-game/`](lesson5-ui-complete-game/) - Build complete game with UI
+
+### 📖 Each Lesson Contains:
+- **Theory**: Comprehensive explanations and concepts
+- **Lab**: Hands-on practical exercises
+- **Code**: Working examples and reference scripts
+
+### 🚀 Advanced Resources
+After completing the core lessons, explore advanced topics:
+- **Design Patterns**: [`extras/design-patterns-in-unity.md`](extras/design-patterns-in-unity.md)
+- **Performance Optimization**: [`extras/performance-optimization-guide.md`](extras/performance-optimization-guide.md)
+- **Additional Resources**: [`extras/readme.md`](extras/readme.md)
 
 ## Course Structure
 
@@ -79,44 +108,84 @@
 
 ```
 unity-course/
-├── Lesson-01-Unity-2D-Basics/
-│   ├── Slides/
-│   ├── Lab/
-│   ├── Sample-Code/
-│   └── Guide/
-├── Lesson-02-2D-Sprites-Animation/
-│   ├── Slides/
-│   ├── Lab/
-│   ├── Sample-Code/
-│   └── Guide/
-├── Lesson-03-2D-Physics-Collision/
-│   ├── Slides/
-│   ├── Lab/
-│   ├── Sample-Code/
-│   └── Guide/
-├── Lesson-04-2D-Input-Player-Controller/
-│   ├── Slides/
-│   ├── Lab/
-│   ├── Sample-Code/
-│   └── Guide/
-├── Lesson-05-2D-UI-Complete-Game/
-│   ├── Slides/
-│   ├── Lab/
-│   ├── Sample-Code/
-│   └── Guide/
-├── Extra-3D-Content/
-│   ├── 3D-Basics-Lesson/
-│   └── Advanced-3D-Lesson/
-├── Assets-Resources/
-│   ├── 2D-Sprites/
-│   ├── Audio/
-│   ├── UI-Elements/
-│   ├── Scripts/
-│   └── 3D-Assets/ (for extra content)
-├── Guide/
-│   └── Study-Guide.md
-└── Setup/
-    └── Environment-Setup-Guide.md
+├── lesson1-unity-basics/
+│   ├── lab/
+│   │   └── lab1-instructions.md
+│   ├── theory/
+│   │   └── theory1.md
+│   └── code/
+│       ├── TransformBasics.cs
+│       ├── CameraControl.cs
+│       ├── SceneManagement.cs
+│       ├── NamingConventions.cs
+│       └── DebugTools.cs
+├── lesson2-sprites-animation/
+│   ├── lab/
+│   │   └── lab2-instructions.md
+│   ├── theory/
+│   │   └── theory2.md
+│   └── code/
+│       ├── ComponentLifecycle.cs
+│       ├── AnimatorControl.cs
+│       ├── SpriteControl.cs
+│       ├── Character2D.cs
+│       ├── CollisionHandler.cs
+│       └── AnimationDebugger.cs
+├── lesson3-physics-collision/
+│   ├── lab/
+│   │   └── lab3-instructions.md
+│   ├── theory/
+│   │   └── theory3.md
+│   └── code/
+│       ├── RigidbodyControl.cs
+│       ├── ColliderSetup.cs
+│       ├── PhysicsMaterialSetup.cs
+│       ├── TriggerDetection.cs
+│       ├── ForceControl.cs
+│       ├── PlayerJump.cs
+│       └── AdvancedJump.cs
+├── lesson4-input-player-controller/
+│   ├── lab/
+│   │   └── lab4-instructions.md
+│   ├── theory/
+│   │   └── theory4.md
+│   └── code/
+│       ├── InputSystemComparison.cs
+│       ├── PlayerInputController.cs
+│       ├── AutoInputEvents.cs
+│       └── Player2DController.cs
+├── lesson5-ui-complete-game/
+│   ├── lab/
+│   │   └── lab5-instructions.md
+│   ├── theory/
+│   │   └── theory5.md
+│   └── code/
+│       ├── UIButton.cs
+│       ├── SpecializedButtons.cs
+│       ├── UIText.cs
+│       ├── HealthBar.cs
+│       ├── UISlider.cs
+│       ├── UIPanel.cs
+│       ├── MainMenuPanel.cs
+│       ├── MenuManager.cs
+│       └── HUDManager.cs
+├── assets-resources/
+│   └── common-scripts-library.md
+├── guide/
+│   ├── study-guide.md
+│   └── final-project-guide.md
+├── setup/
+│   └── environment-setup.md
+├── labs/
+│   ├── lab1-unity-basics/
+│   ├── lab2-sprites-animation/
+│   ├── lab3-physics-collision/
+│   ├── lab4-input-controller/
+│   └── lab5-complete-game/
+└── extras/
+    ├── readme.md
+    ├── performance-optimization-guide.md
+    └── design-patterns-in-unity.md
 ```
 
 ```
@@ -158,6 +227,34 @@ After completing this course, students will be able to:
 4. Build user interfaces and game menus
 5. Publish games to multiple platforms
 6. Apply game development best practices
+
+## Next Steps & Advanced Learning
+
+### 🎯 After Course Completion
+Once you've mastered the core lessons, enhance your skills with:
+
+**Advanced Topics** (Located in `extras/` folder):
+- **Design Patterns in Unity**: [`design-patterns-in-unity.md`](extras/design-patterns-in-unity.md)
+  - Singleton, Observer, Command patterns
+  - Architecture patterns for larger projects
+  - Best practices for maintainable code
+
+- **Performance Optimization**: [`performance-optimization-guide.md`](extras/performance-optimization-guide.md)
+  - Memory management and garbage collection
+  - Rendering optimization techniques
+  - Profiler usage and bottleneck identification
+
+- **Additional Resources**: [`extras/readme.md`](extras/readme.md)
+  - Extended learning materials
+  - Community resources and tutorials
+  - Project ideas for portfolio development
+
+### 📈 Recommended Learning Path
+1. ✅ Complete all 5 core lessons
+2. 🔄 Build your own 2D game project
+3. 📚 Study advanced topics in `extras/`
+4. 🚀 Explore 3D development (Bonus lessons)
+5. 🌟 Contribute to open-source Unity projects
 
 ## References
 
