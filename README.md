@@ -4,7 +4,7 @@
 
 This course teaches 2D game development with Unity from the ground up. Perfect for beginners with web/mobile development experience who want to learn game development.
 
-**Format**: Light theory, hands-on practice, and project-based learning (no quizzes)
+**Format**: Light theory, hands-on practice, and project-based learning
 
 ---
 
@@ -83,7 +83,7 @@ Note: All lesson folders now use the standardized `example/` structure.
 
 ---
 
-## 🗺️ Visual Diagrams (to be added)
+## 🗺️ Visual Diagrams
 
 - Game Loop & Execution Order
 - Animator Flow & State Machine
@@ -138,16 +138,6 @@ Note: All lesson folders now use the standardized `example/` structure.
 - Use `reference/` for API patterns; keep theory light
 - Prefer `FixedUpdate` for physics, `Update` for input sampling
 - Profile builds on the target device before shipping
-
----
-
-## System Requirements
-
-- Windows 10/11 or macOS 10.15+
-- Unity 6.0 LTS
-- 8GB RAM (16GB recommended)
-- DX11/Metal compatible GPU
-- 25GB free disk space
 
 ---
 
