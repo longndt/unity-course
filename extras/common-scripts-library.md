@@ -2,7 +2,7 @@
 
 ## Essential Unity Scripts for Beginners
 
-Đây là collection các scripts thường dùng trong Unity development, được tổ chức theo chức năng.
+> **📁 Code Files**: All scripts are available in the `common-scripts-library/` folder with full implementation.
 
 ---
 
@@ -70,7 +70,7 @@
 
 **File**: `SceneTransitionManager.cs`
 
-- Load scenes với loading screen
+- Load scenes with loading screen
 - Fade transitions
 - Progress tracking
 
@@ -141,7 +141,7 @@
 
 ---
 
-## Physics và Movement
+## Physics and Movement
 
 ### 1. Physics-Based Movement
 
@@ -197,7 +197,7 @@
 
 ---
 
-## Effects và Animation
+## Effects and Animation
 
 ### 1. Simple Animator Controller
 
@@ -285,17 +285,17 @@
 
 ### Script Integration
 
-1. Copy script vào Assets/Scripts folder
+1. Copy script to Assets/Scripts folder
 2. Attach to appropriate GameObject
-3. Configure public variables trong Inspector
-4. Test functionality trong Play mode
+3. Configure public variables in Inspector
+4. Test functionality in Play mode
 
 ### Customization Tips
 
-- Modify public variables để adjust behavior
-- Add Debug.Log statements để understand flow
-- Extend classes để add more features
-- Use inheritance để create variations
+- Modify public variables to adjust behavior
+- Add Debug.Log statements to understand flow
+- Extend classes to add more features
+- Use inheritance to create variations
 
 ### Best Practices
 
@@ -307,26 +307,26 @@
 
 ---
 
-## Common Issues và Solutions
+## Common Issues and Solutions
 
 ### NullReferenceException
 
-**Cause**: Missing component hoặc GameObject reference
+**Cause**: Missing component or GameObject reference
 **Solution**: Check Inspector assignments, add null checks
 
 ### Performance Issues
 
-**Cause**: Expensive operations trong Update()
-**Solution**: Use FixedUpdate, coroutines, hoặc event systems
+**Cause**: Expensive operations in Update()
+**Solution**: Use FixedUpdate, coroutines, or event systems
 
 ### Physics Problems
 
-**Cause**: Incorrect Rigidbody settings hoặc collision setup
+**Cause**: Incorrect Rigidbody settings or collision setup
 **Solution**: Review physics components, check collision layers
 
 ### UI Not Responding
 
-**Cause**: Missing EventSystem hoặc incorrect Canvas settings
+**Cause**: Missing EventSystem or incorrect Canvas settings
 **Solution**: Add EventSystem, check Canvas setup
 
 ---

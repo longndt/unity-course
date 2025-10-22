@@ -3,7 +3,7 @@
 ## Overview
 
 **Difficulty**: Intermediate
-**Prerequisites**: Lesson 2 completed
+**Prerequisites**: Lesson 2 completed, Basic C# programming
 
 Master Rigidbody2D, colliders, physics materials, layers, and callbacks. Implement platformer jumping with coyote time and variable jump height.
 
@@ -23,17 +23,15 @@ Master Rigidbody2D, colliders, physics materials, layers, and callbacks. Impleme
 
 1. Create a scene `Lesson3-Physics`
 2. Add player with `Rigidbody2D` + collider; add ground colliders
-3. Add scripts from `code/`: `RigidbodyControl.cs`, `ColliderSetup.cs`, `PhysicsMaterialSetup.cs`, `PlayerJump.cs`, `AdvancedJump.cs`, `TriggerDetection.cs`, `ForceControl.cs`
+3. Add scripts from `example/`: `RigidbodyControl.cs`, `ColliderSetup.cs`, `PhysicsMaterialSetup.cs`, `PlayerJump.cs`, `AdvancedJump.cs`, `TriggerDetection.cs`, `ForceControl.cs`
 4. Tune gravity, drag, material bounciness; test jump behavior
-
-> Note: `code/` will be migrated to `example/` later.
 
 ---
 
 ## 📚 Learning Path
 
-- Reference → `reference/` (physics checklist) [to be added]
-- Example → `code/` (playtest and tune values)
+- Reference → `reference/` (physics checklist)
+- Example → `example/` (playtest and tune values)
 - Theory → `theory/theory3.md`
 - Lab → `lab/lab3-instructions.md`
 

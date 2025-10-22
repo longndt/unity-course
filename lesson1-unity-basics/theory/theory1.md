@@ -30,16 +30,18 @@ class WebComponent {
 ```
 
 #### **Mobile Development Pattern**
-```swift
-// iOS: App lifecycle, touch events
-class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
+```java
+// Android: App lifecycle, touch events
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setupUI();
     }
 
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        performAction()
+    public void onButtonClick(View view) {
+        performAction();
     }
 }
 ```
@@ -276,7 +278,7 @@ void OnDrawGizmos()
 
 ---
 
-## 🎯 What's Next
+## ✅ What's Next
 
 Proceed to [Lesson 2: Sprites & Animation](../lesson2-sprites-animation/) to learn about visual game elements and animation systems.
 

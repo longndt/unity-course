@@ -1,6 +1,6 @@
 # Theory 04: Input System & 2D Player Controller
 
-## Learning Objectives
+## 🎯 Learning Objectives
 
 After completing this lesson, students will be able to:
 - Understand and use Unity's New Input System
@@ -345,7 +345,7 @@ public class Player2DController : MonoBehaviour
             // Just landed
             OnLanded();
         }
-        
+
         if (wasGroundedLastFrame && !isGrounded)
         {
             // Just left ground
@@ -356,19 +356,19 @@ public class Player2DController : MonoBehaviour
     void ApplyMovement()
     {
         float currentAcceleration = isGrounded ? acceleration : acceleration * airControl;
-        
+
         if (moveInput.x != 0)
         {
             // Accelerate towards target velocity
-            rb.velocity = Vector2.MoveTowards(rb.velocity, 
-                new Vector2(moveInput.x * moveSpeed, rb.velocity.y), 
+            rb.velocity = Vector2.MoveTowards(rb.velocity,
+                new Vector2(moveInput.x * moveSpeed, rb.velocity.y),
                 currentAcceleration * Time.fixedDeltaTime);
         }
         else
         {
             // Decelerate when no input
-            rb.velocity = Vector2.MoveTowards(rb.velocity, 
-                new Vector2(0, rb.velocity.y), 
+            rb.velocity = Vector2.MoveTowards(rb.velocity,
+                new Vector2(0, rb.velocity.y),
                 deceleration * Time.fixedDeltaTime);
         }
 
@@ -415,7 +415,7 @@ void HandleJumpBuffer()
     if (jumpBufferCounter > 0)
     {
         jumpBufferCounter -= Time.deltaTime;
-        
+
         if (CanJump())
         {
             Jump();
@@ -427,7 +427,7 @@ void HandleJumpBuffer()
 void OnJumpInput(InputAction.CallbackContext context)
 {
     jumpBufferCounter = jumpBufferTime;
-    
+
     if (CanJump())
     {
         Jump();
@@ -442,7 +442,7 @@ void Jump()
 {
     rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
     isGrounded = false;
-    
+
     // Play jump animation/sound
     animator.SetTrigger("Jump");
 }
@@ -597,7 +597,7 @@ public class CameraSetup : MonoBehaviour
     {
         var vcam = GetComponent<CinemachineVirtualCamera>();
         var player = FindObjectOfType<Player2DController>();
-        
+
         vcam.Follow = player.transform;
     }
 }
@@ -637,7 +637,7 @@ public class CameraZone : MonoBehaviour
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
-    
+
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachineTransposer transposer;
 
@@ -683,7 +683,7 @@ public class CameraLookAhead : MonoBehaviour
     [Header("Look Ahead")]
     public float lookAheadDistance = 3f;
     public float lookAheadSpeed = 2f;
-    
+
     private CinemachineVirtualCamera vcam;
     private CinemachineTransposer transposer;
     private Player2DController player;
@@ -704,7 +704,7 @@ public class CameraLookAhead : MonoBehaviour
             // Calculate look ahead offset based on movement direction
             float moveDirection = Mathf.Sign(player.rb.velocity.x);
             Vector3 targetOffset = baseOffset + Vector3.right * (moveDirection * lookAheadDistance);
-            
+
             // Smoothly move camera offset
             transposer.m_FollowOffset = Vector3.Lerp(
                 transposer.m_FollowOffset,
@@ -729,7 +729,7 @@ public class MovementTrail : MonoBehaviour
     [Header("Trail Settings")]
     public TrailRenderer trailRenderer;
     public float minSpeedForTrail = 5f;
-    
+
     private Player2DController controller;
 
     void Start()
@@ -754,7 +754,7 @@ public class DustEffects : MonoBehaviour
     [Header("Dust Particles")]
     public ParticleSystem landingDust;
     public ParticleSystem runningDust;
-    
+
     private Player2DController controller;
 
     void Start()
@@ -767,7 +767,7 @@ public class DustEffects : MonoBehaviour
     {
         // Play running dust when moving on ground
         bool isRunning = controller.isGrounded && Mathf.Abs(controller.rb.velocity.x) > 0.1f;
-        
+
         if (isRunning && !runningDust.isPlaying)
             runningDust.Play();
         else if (!isRunning && runningDust.isPlaying)
@@ -791,7 +791,7 @@ public class FootstepAudio : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] footstepClips;
     public float stepInterval = 0.5f;
-    
+
     private Player2DController controller;
     private float stepTimer;
 
@@ -805,7 +805,7 @@ public class FootstepAudio : MonoBehaviour
         if (controller.isGrounded && Mathf.Abs(controller.rb.velocity.x) > 0.1f)
         {
             stepTimer += Time.deltaTime;
-            
+
             if (stepTimer >= stepInterval)
             {
                 PlayFootstep();
@@ -854,9 +854,9 @@ public class CameraShake : MonoBehaviour
     IEnumerator ShakeRoutine(float intensity, float duration)
     {
         noise.m_AmplitudeGain = intensity;
-        
+
         yield return new WaitForSeconds(duration);
-        
+
         noise.m_AmplitudeGain = 0f;
     }
 }
@@ -892,11 +892,11 @@ public class OptimizedPlayerController : MonoBehaviour
     // Cache input actions for performance
     private InputAction moveAction;
     private InputAction jumpAction;
-    
+
     // Cache input values
     private Vector2 cachedMoveInput;
     private bool jumpPressed;
-    
+
     void Awake()
     {
         var playerInput = GetComponent<PlayerInput>();
@@ -935,15 +935,15 @@ public class OptimizedPlayerController : MonoBehaviour
 public class InputEventPool : MonoBehaviour
 {
     private Queue<InputEvent> eventPool = new Queue<InputEvent>();
-    
+
     public InputEvent GetEvent()
     {
         if (eventPool.Count > 0)
             return eventPool.Dequeue();
-        
+
         return new InputEvent();
     }
-    
+
     public void ReturnEvent(InputEvent inputEvent)
     {
         inputEvent.Reset();
@@ -1005,7 +1005,7 @@ public class InputDebugUI : MonoBehaviour
     public Text moveInputText;
     public Text jumpInputText;
     public Text groundedText;
-    
+
     private Player2DController controller;
 
     void Start()
@@ -1035,11 +1035,11 @@ void OnDrawGizmos()
         Gizmos.color = isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
-    
+
     // Draw movement direction
     Gizmos.color = Color.blue;
     Gizmos.DrawRay(transform.position, rb.velocity.normalized * 2f);
-    
+
     // Draw coyote time window
     if (!isGrounded && Time.time - lastGroundedTime <= coyoteTime)
     {
@@ -1077,11 +1077,11 @@ public class PlayerControllerTests
     {
         // Arrange
         Vector2 testInput = Vector2.right;
-        
+
         // Act
         controller.SetMoveInput(testInput);
         controller.ApplyMovement();
-        
+
         // Assert
         Assert.Greater(controller.rb.velocity.x, 0);
     }
@@ -1092,11 +1092,11 @@ public class PlayerControllerTests
         // Arrange
         controller.SetGrounded(true);
         float initialY = controller.rb.velocity.y;
-        
+
         // Act
         controller.Jump();
         yield return new WaitForFixedUpdate();
-        
+
         // Assert
         Assert.Greater(controller.rb.velocity.y, initialY);
     }
@@ -1145,20 +1145,20 @@ public class InputBuffer : MonoBehaviour
         for (int i = bufferedInputs.Count - 1; i >= 0; i--)
         {
             var input = bufferedInputs[i];
-            
+
             if (Time.time - input.timePressed > bufferTime || input.consumed)
             {
                 bufferedInputs.RemoveAt(i);
                 continue;
             }
-            
+
             if (input.actionName == actionName && !input.consumed)
             {
                 input.consumed = true;
                 return true;
             }
         }
-        
+
         return false;
     }
 }
@@ -1215,7 +1215,7 @@ public class ComboSystem : MonoBehaviour
             return false;
 
         int startIndex = currentSequence.Count - combo.inputSequence.Length;
-        
+
         for (int i = 0; i < combo.inputSequence.Length; i++)
         {
             if (currentSequence[startIndex + i] != combo.inputSequence[i])

@@ -42,30 +42,33 @@ class WebComponent {
 - **UI-centric**: Interface is the primary concern
 
 ### **Mobile Development Mindset**
-```swift
-// iOS: App Lifecycle Pattern
-class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
+```java
+// Android: App Lifecycle Pattern
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setupUI();
     }
 
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        loadData()
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 
-    @IBAction func buttonTapped(_ sender: UIButton) {
+    public void onButtonClick(View view) {
         // Handle user interaction
-        performAction()
+        performAction();
     }
 }
 ```
 
 **Key Characteristics:**
-- **App lifecycle**: View controllers manage screens
+- **App lifecycle**: Activities manage screens
 - **Touch events**: Gesture-based interactions
-- **Platform-specific**: iOS/Android differences
+- **Platform-specific**: Android/Unity differences
 - **Resource management**: Memory and battery optimization
 
 ### **Game Development Mindset**
@@ -253,7 +256,7 @@ public class BouncingBall : MonoBehaviour
 
 ---
 
-## 🎯 What's Next
+## ✅ What's Next
 
 Proceed to [Lesson 1: Unity Fundamentals & Setup](../lesson1-unity-basics/) to dive deeper into Unity's technical aspects.
 

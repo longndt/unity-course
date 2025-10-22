@@ -3,7 +3,7 @@
 ## Overview
 
 **Difficulty**: Beginner
-**Prerequisites**: Lesson 0 completed, Basic C#, Unity Hub + Unity 6 LTS installed
+**Prerequisites**: Lesson 0 completed, Basic C# programming, Unity Hub + Unity 6 LTS installed
 
 This lesson introduces Unity's technical fundamentals: Editor, scenes, prefabs, and MonoBehaviour lifecycle. You'll understand how game development differs from web/mobile development and build a small playable scene.
 
@@ -45,7 +45,7 @@ This lesson introduces Unity's technical fundamentals: Editor, scenes, prefabs, 
 
 ## 📚 Learning Path
 
-- Reference → `reference/` (APIs, checklists) [to be added]
+- Reference → `reference/` (APIs, checklists)
 - Example → `example/` (run and playtest first)
 - Theory → `theory/theory1.md` (read targeted sections)
 - Lab → `lab/lab1-instructions.md` (complete playtest tasks)

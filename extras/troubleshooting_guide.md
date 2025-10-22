@@ -273,5 +273,3 @@ Before asking for help, check these common issues:
 - Use tags and layers appropriately
 
 ---
-
-**Remember**: Most Unity issues have simple solutions. Take a deep breath, check this guide, and try the solutions step by step. You've got this! 🚀

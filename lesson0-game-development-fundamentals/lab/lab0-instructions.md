@@ -126,7 +126,7 @@
 - [ ] **Game Pipeline**: Understood development process
 - [ ] **Core Gameplay Loop**: Identified in your game
 
-## 🎯 What's Next
+## ✅ What's Next
 
 Proceed to [Lesson 1: Unity Fundamentals & Setup](../lesson1-unity-basics/) to dive deeper into Unity's technical aspects.
 

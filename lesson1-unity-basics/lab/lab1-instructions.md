@@ -96,7 +96,7 @@
 - [ ] **Debug Tools**: Gizmos and logs working correctly
 - [ ] **No Errors**: Console shows no compilation or runtime errors
 
-## 🎯 What's Next
+## ✅ What's Next
 
 Proceed to [Lesson 2: Sprites & Animation](../lesson2-sprites-animation/) to learn about animation systems and sprite management.
 

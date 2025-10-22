@@ -496,18 +496,9 @@ Debug.DrawLine(startPos, endPos, Color.red, 1f);
 **Remember:**
 
 - **Progress over Perfection**: Small daily improvements lead to big results
-- **Consistency over Intensity**: 30 minutes daily beats 5 hours once a week
+- **Consistency over Intensity**: Regular practice beats intensive sessions
 - **Understanding over Memorization**: Focus on concepts, not just syntax
 - **Practice over Theory**: Build things, break things, fix things
 - **Community over Isolation**: Learn from and with others
 
-**You've Got This!** 🚀
-
-Every expert was once a beginner. Every professional game developer started exactly where you are now. With consistent practice, patience, and the right approach, you'll build amazing games and gain valuable skills.
-
-Good luck with your Unity journey!
-
 ---
-
-_Last Updated: September 2025_
-_Version: 1.0_

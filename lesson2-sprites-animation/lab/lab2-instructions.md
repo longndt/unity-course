@@ -497,4 +497,4 @@ In Lab 3, we will:
 
 ---
 
-**🎉 Excellent Work!** You've created a complete 2D character controller with animations, physics, and responsive movement. This is the foundation for any 2D platformer or adventure game.
+You've created a complete 2D character controller with animations, physics, and responsive movement. This is the foundation for any 2D platformer or adventure game.

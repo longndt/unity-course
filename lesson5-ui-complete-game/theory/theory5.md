@@ -1,6 +1,6 @@
 # Theory 05: UI System & Complete 2D Game
 
-## Learning Objectives
+## 🎯 Learning Objectives
 
 After completing this lesson, students will be able to:
 - Design and implement complete UI system for 2D games
@@ -209,7 +209,7 @@ public class UIText : MonoBehaviour
     IEnumerator TypewriterEffect(string fullText)
     {
         textComponent.text = "";
-        
+
         for (int i = 0; i < fullText.Length; i++)
         {
             textComponent.text += fullText[i];
@@ -256,13 +256,13 @@ public class HealthBar : MonoBehaviour
     void UpdateHealthBar()
     {
         float healthPercentage = currentHealth / maxHealth;
-        
+
         // Update fill amount
         healthFillImage.fillAmount = healthPercentage;
-        
+
         // Update color based on health percentage
         healthFillImage.color = healthGradient.Evaluate(healthPercentage);
-        
+
         // Update text
         healthText.text = $"{currentHealth:F0} / {maxHealth:F0}";
     }
@@ -282,10 +282,10 @@ public class HealthBar : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float progress = elapsed / duration;
-            
+
             currentHealth = Mathf.Lerp(startHealth, targetHealth, progress);
             UpdateHealthBar();
-            
+
             yield return null;
         }
 
@@ -302,7 +302,7 @@ public class HealthBar : MonoBehaviour
 public class UISlider : MonoBehaviour
 {
     private Slider slider;
-    
+
     [Header("Slider Settings")]
     public float minValue = 0f;
     public float maxValue = 100f;
@@ -311,12 +311,12 @@ public class UISlider : MonoBehaviour
     void Start()
     {
         slider = GetComponent<Slider>();
-        
+
         // Configure slider
         slider.minValue = minValue;
         slider.maxValue = maxValue;
         slider.value = defaultValue;
-        
+
         // Add value change listener
         slider.onValueChanged.AddListener(OnSliderValueChanged);
     }
@@ -396,7 +396,7 @@ public class UIPanel : MonoBehaviour
     {
         isVisible = true;
         canvasGroup.interactable = false;
-        
+
         float elapsed = 0f;
         while (elapsed < animationDuration)
         {
@@ -405,7 +405,7 @@ public class UIPanel : MonoBehaviour
             canvasGroup.alpha = alpha;
             yield return null;
         }
-        
+
         canvasGroup.alpha = 1f;
         canvasGroup.interactable = true;
     }
@@ -414,7 +414,7 @@ public class UIPanel : MonoBehaviour
     {
         isVisible = false;
         canvasGroup.interactable = false;
-        
+
         float elapsed = 0f;
         while (elapsed < animationDuration)
         {
@@ -423,7 +423,7 @@ public class UIPanel : MonoBehaviour
             canvasGroup.alpha = alpha;
             yield return null;
         }
-        
+
         canvasGroup.alpha = 0f;
         gameObject.SetActive(false);
     }
@@ -516,7 +516,7 @@ public class MainMenuPanel : UIPanel
     override void Awake()
     {
         base.Awake();
-        
+
         // Setup button listeners
         playButton.onClick.AddListener(OnPlayClicked);
         settingsButton.onClick.AddListener(OnSettingsClicked);
@@ -538,7 +538,7 @@ public class MainMenuPanel : UIPanel
     void OnQuitClicked()
     {
         AudioManager.Instance.PlaySFX("ButtonClick");
-        
+
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
@@ -573,7 +573,7 @@ public class PauseMenuPanel : UIPanel
     override void Awake()
     {
         base.Awake();
-        
+
         resumeButton.onClick.AddListener(OnResumeClicked);
         mainMenuButton.onClick.AddListener(OnMainMenuClicked);
         quitButton.onClick.AddListener(OnQuitClicked);
@@ -652,7 +652,7 @@ public class HUDManager : MonoBehaviour
         // Initialize HUD
         ShowGameHUD();
         UpdatePlayerStats();
-        
+
         // Setup pause button
         pauseButton.onClick.AddListener(OnPauseClicked);
     }
@@ -670,7 +670,7 @@ public class HUDManager : MonoBehaviour
     public void UpdateScore(int newScore)
     {
         scoreText.text = $"Score: {newScore:N0}";
-        
+
         // Animate score change
         StartCoroutine(AnimateScoreText());
     }
@@ -678,7 +678,7 @@ public class HUDManager : MonoBehaviour
     public void UpdateLives(int newLives)
     {
         livesText.text = $"Lives: {newLives}";
-        
+
         if (newLives <= 0)
         {
             // Game over
@@ -695,11 +695,11 @@ public class HUDManager : MonoBehaviour
     {
         Vector3 originalScale = scoreText.transform.localScale;
         Vector3 targetScale = originalScale * 1.2f;
-        
+
         // Scale up
         float duration = 0.1f;
         float elapsed = 0f;
-        
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -707,7 +707,7 @@ public class HUDManager : MonoBehaviour
             scoreText.transform.localScale = Vector3.Lerp(originalScale, targetScale, progress);
             yield return null;
         }
-        
+
         // Scale down
         elapsed = 0f;
         while (elapsed < duration)
@@ -717,7 +717,7 @@ public class HUDManager : MonoBehaviour
             scoreText.transform.localScale = Vector3.Lerp(targetScale, originalScale, progress);
             yield return null;
         }
-        
+
         scoreText.transform.localScale = originalScale;
     }
 
@@ -941,7 +941,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         // Load new scene
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        
+
         while (!asyncLoad.isDone)
         {
             yield return null;
@@ -960,7 +960,7 @@ public class SceneTransitionManager : MonoBehaviour
         yield return StartCoroutine(FadeOut());
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
-        
+
         while (!asyncLoad.isDone)
         {
             yield return null;
@@ -974,10 +974,10 @@ public class SceneTransitionManager : MonoBehaviour
     IEnumerator FadeOut()
     {
         transitionPanel.SetActive(true);
-        
+
         float elapsed = 0f;
         Color fadeColor = fadeImage.color;
-        
+
         while (elapsed < transitionDuration)
         {
             elapsed += Time.deltaTime;
@@ -986,7 +986,7 @@ public class SceneTransitionManager : MonoBehaviour
             fadeImage.color = fadeColor;
             yield return null;
         }
-        
+
         fadeColor.a = 1f;
         fadeImage.color = fadeColor;
     }
@@ -995,7 +995,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         float elapsed = 0f;
         Color fadeColor = fadeImage.color;
-        
+
         while (elapsed < transitionDuration)
         {
             elapsed += Time.deltaTime;
@@ -1004,7 +1004,7 @@ public class SceneTransitionManager : MonoBehaviour
             fadeImage.color = fadeColor;
             yield return null;
         }
-        
+
         fadeColor.a = 0f;
         fadeImage.color = fadeColor;
         transitionPanel.SetActive(false);
@@ -1080,7 +1080,7 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
 
         SetGameState(GameState.Playing);
-        
+
         // Notify UI
         OnScoreChanged?.Invoke(playerScore);
         OnLivesChanged?.Invoke(playerLives);
@@ -1108,10 +1108,10 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         SetGameState(GameState.GameOver);
-        
+
         // Save high score
         SaveSystem.Instance.SaveHighScore(playerScore);
-        
+
         // Show game over screen
         MenuManager.Instance.ShowPanel(MenuManager.Instance.gameOverPanel);
     }
@@ -1120,11 +1120,11 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         SetGameState(GameState.Victory);
-        
+
         // Bonus points for remaining time
         int timeBonus = Mathf.RoundToInt(gameTimer * 10);
         AddScore(timeBonus);
-        
+
         SaveSystem.Instance.SaveHighScore(playerScore);
     }
 
@@ -1132,7 +1132,7 @@ public class GameManager : MonoBehaviour
     {
         playerScore += points;
         OnScoreChanged?.Invoke(playerScore);
-        
+
         HUDManager.Instance.UpdateScore(playerScore);
     }
 
@@ -1140,9 +1140,9 @@ public class GameManager : MonoBehaviour
     {
         playerLives--;
         OnLivesChanged?.Invoke(playerLives);
-        
+
         HUDManager.Instance.UpdateLives(playerLives);
-        
+
         if (playerLives <= 0)
         {
             GameOver();
@@ -1155,7 +1155,7 @@ public class GameManager : MonoBehaviour
         {
             gameTimer -= Time.deltaTime;
             OnTimeChanged?.Invoke(gameTimer);
-            
+
             if (gameTimer <= 0)
             {
                 gameTimer = 0;
@@ -1168,7 +1168,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = newState;
         OnGameStateChanged?.Invoke(currentState);
-        
+
         Debug.Log($"Game state changed to: {currentState}");
     }
 
@@ -1248,10 +1248,10 @@ public class AudioManager : MonoBehaviour
         // Populate dictionaries
         foreach (var clip in musicClips)
             musicDatabase[clip.name] = clip;
-        
+
         foreach (var clip in sfxClips)
             sfxDatabase[clip.name] = clip;
-            
+
         foreach (var clip in ambientClips)
             ambientDatabase[clip.name] = clip;
     }
@@ -1262,13 +1262,13 @@ public class AudioManager : MonoBehaviour
         if (musicDatabase.ContainsKey(trackName))
         {
             var clipData = musicDatabase[trackName];
-            
+
             musicSource.clip = clipData.clip;
             musicSource.volume = clipData.volume * musicVolume * masterVolume;
             musicSource.pitch = clipData.pitch;
             musicSource.loop = clipData.loop;
             musicSource.Play();
-            
+
             currentMusicTrack = trackName;
             musicPaused = false;
         }
@@ -1308,7 +1308,7 @@ public class AudioManager : MonoBehaviour
         if (sfxDatabase.ContainsKey(sfxName))
         {
             var clipData = sfxDatabase[sfxName];
-            
+
             sfxSource.pitch = clipData.pitch;
             sfxSource.PlayOneShot(clipData.clip, clipData.volume * sfxVolume * masterVolume);
         }
@@ -1363,7 +1363,7 @@ public class AudioManager : MonoBehaviour
     IEnumerator CrossfadeRoutine(string newTrackName, float duration)
     {
         float startVolume = musicSource.volume;
-        
+
         // Fade out current music
         float elapsed = 0f;
         while (elapsed < duration / 2f)
@@ -1372,15 +1372,15 @@ public class AudioManager : MonoBehaviour
             musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / (duration / 2f));
             yield return null;
         }
-        
+
         // Switch to new track
         PlayMusic(newTrackName);
         musicSource.volume = 0f;
-        
+
         // Fade in new music
         var clipData = musicDatabase[newTrackName];
         float targetVolume = clipData.volume * musicVolume * masterVolume;
-        
+
         elapsed = 0f;
         while (elapsed < duration / 2f)
         {
@@ -1388,7 +1388,7 @@ public class AudioManager : MonoBehaviour
             musicSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / (duration / 2f));
             yield return null;
         }
-        
+
         musicSource.volume = targetVolume;
     }
 }
@@ -1405,7 +1405,7 @@ public class PlayerAudioIntegration : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<Player2DController>();
-        
+
         // Subscribe to player events
         playerController.OnJump += PlayJumpSound;
         playerController.OnLand += PlayLandSound;
@@ -1458,7 +1458,7 @@ public class PlayerData
     public float sfxVolume = 1f;
     public bool fullscreen = true;
     public int resolutionIndex = 0;
-    
+
     // Settings
     public string playerName = "Player";
     public KeyCode[] customKeyBindings;
@@ -1477,7 +1477,7 @@ public class SaveSystem : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
+
             savePath = Path.Combine(Application.persistentDataPath, "playerdata.json");
             LoadPlayerData();
         }
@@ -1592,15 +1592,15 @@ public class BuildManager : MonoBehaviour
         PlayerSettings.productName = productName;
         PlayerSettings.companyName = companyName;
         PlayerSettings.bundleVersion = version;
-        
+
         // Graphics settings for 2D
         PlayerSettings.colorSpace = ColorSpace.Linear;
         PlayerSettings.gpuSkinning = false;
-        
+
         // Optimization settings
         PlayerSettings.stripEngineCode = true;
         PlayerSettings.managed.strippingLevel = ManagedStrippingLevel.Medium;
-        
+
         Debug.Log("Build settings configured!");
     }
 
@@ -1618,7 +1618,7 @@ public class BuildManager : MonoBehaviour
         };
 
         var report = BuildPipeline.BuildPlayer(buildOptions);
-        
+
         if (report.summary.result == BuildResult.Succeeded)
         {
             Debug.Log("Build completed successfully!");
@@ -1632,7 +1632,7 @@ public class BuildManager : MonoBehaviour
     string[] GetScenesInBuild()
     {
         List<string> sceneNames = new List<string>();
-        
+
         foreach (var scene in EditorBuildSettings.scenes)
         {
             if (scene.enabled)
@@ -1640,7 +1640,7 @@ public class BuildManager : MonoBehaviour
                 sceneNames.Add(scene.path);
             }
         }
-        
+
         return sceneNames.ToArray();
     }
 }
@@ -1667,7 +1667,7 @@ public class PerformanceMonitor : MonoBehaviour
         style = new GUIStyle();
         style.fontSize = 20;
         style.normal.textColor = Color.white;
-        
+
         InvokeRepeating(nameof(UpdatePerformanceStats), 0f, 0.5f);
     }
 
@@ -1691,7 +1691,7 @@ public class PerformanceMonitor : MonoBehaviour
         {
             string fpsText = $"FPS: {fps:F1}";
             GUI.Label(new Rect(10, 10, 200, 30), fpsText, style);
-            
+
             if (showMemoryUsage)
             {
                 string memoryText = $"Memory: {memoryUsage:F1} MB";
@@ -1707,11 +1707,11 @@ public class PerformanceMonitor : MonoBehaviour
         #if UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = 60;
         #endif
-        
+
         // Optimize quality settings
         QualitySettings.vSyncCount = 0;
         QualitySettings.antiAliasing = 0;
-        
+
         // Disable unnecessary rendering
         if (Camera.main != null)
         {

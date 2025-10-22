@@ -4,7 +4,6 @@
 
 **Difficulty**: Beginner
 **Prerequisites**: Basic C# programming, web/mobile development experience helpful
-**Duration**: 2-3 hours
 
 This lesson bridges the gap between web/mobile development and game development. You'll understand the fundamental differences in mindset, workflow, and technical approaches, then create your first simple game.
 

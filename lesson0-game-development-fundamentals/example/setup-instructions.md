@@ -164,4 +164,3 @@ This guide will help you set up the simple bouncing ball game from scratch. Perf
 3. **Modify** the game rules (scoring, time limits)
 4. **Move to** Lesson 1 for deeper Unity concepts
 
-**Congratulations! You've created your first Unity game! 🎉**

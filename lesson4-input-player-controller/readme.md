@@ -3,7 +3,7 @@
 ## Overview
 
 **Difficulty**: Intermediate
-**Prerequisites**: Lesson 3 completed
+**Prerequisites**: Lesson 3 completed, Basic C# programming
 
 Use the new Input System to build a responsive 2D controller with keyboard and gamepad support, and integrate a basic follow camera.
 
@@ -23,17 +23,15 @@ Use the new Input System to build a responsive 2D controller with keyboard and g
 
 1. Create a scene `Lesson4-Input`
 2. Create an `Input Actions` asset and generate C# class
-3. Add scripts from `code/`: `PlayerInputController.cs`, `Player2DController.cs`, `AutoInputEvents.cs`, `InputSystemComparison.cs`
+3. Add scripts from `example/`: `PlayerInputController.cs`, `Player2DController.cs`, `AutoInputEvents.cs`, `InputSystemComparison.cs`
 4. Wire `PlayerInput` to your character; press Play and test with keyboard/gamepad
-
-> Note: `code/` will be migrated to `example/` later.
 
 ---
 
 ## 📚 Learning Path
 
-- Reference → `reference/` (Input System setup) [to be added]
-- Example → `code/` (validate bindings and actions)
+- Reference → `reference/` (Input System setup)
+- Example → `example/` (validate bindings and actions)
 - Theory → `theory/theory4.md`
 - Lab → `lab/lab4-instructions.md`
 

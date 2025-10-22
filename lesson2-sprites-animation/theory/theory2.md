@@ -1,6 +1,6 @@
 # Theory 02: 2D Sprites, Animation & Components
 
-## Learning Objectives
+## 🎯 Learning Objectives
 
 After completing this lesson, students will be able to:
 - Manage and configure 2D sprite sheets

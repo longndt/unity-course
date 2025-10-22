@@ -3,7 +3,7 @@
 ## Overview
 
 **Difficulty**: Beginner → Intermediate
-**Prerequisites**: Lesson 1 completed
+**Prerequisites**: Lesson 1 completed, Basic C# programming
 
 Learn the 2D asset pipeline, sprite rendering, sorting layers, and build an Animator Controller with parameters, transitions, and animation events.
 
@@ -31,7 +31,7 @@ Learn the 2D asset pipeline, sprite rendering, sorting layers, and build an Anim
 
 ## 📚 Learning Path
 
-- Reference → `reference/` (Animator, SpriteRenderer) [to be added]
+- Reference → `reference/` (Animator, SpriteRenderer)
 - Example → `example/` (run and inspect state machine)
 - Theory → `theory/theory2.md`
 - Lab → `lab/lab2-instructions.md`

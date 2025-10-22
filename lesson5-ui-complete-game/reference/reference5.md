@@ -215,11 +215,14 @@ public class BuildManager : MonoBehaviour {
 
 ### Platform-Specific Settings
 ```csharp
-// Android
+// Android (Primary mobile platform)
 PlayerSettings.Android.bundleVersionCode = 1;
 PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel21;
+PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel33;
+PlayerSettings.Android.keystoreName = "user.keystore";
+PlayerSettings.Android.keyaliasName = "mykey";
 
-// iOS
+// iOS (Secondary mobile platform)
 PlayerSettings.iOS.buildNumber = "1";
 PlayerSettings.iOS.targetOSVersionString = "12.0";
 

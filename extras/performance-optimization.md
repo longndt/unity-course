@@ -1000,5 +1000,3 @@ public class PerformanceTester : MonoBehaviour
 ```
 
 ---
-
-This performance optimization guide provides practical techniques for achieving smooth, efficient Unity 2D games across various platforms. Remember to always profile before optimizing and focus on the actual bottlenecks in your specific game.

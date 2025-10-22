@@ -1,6 +1,6 @@
 # Theory 03: 2D Physics & Collision Detection
 
-## Learning Objectives
+## 🎯 Learning Objectives
 
 After completing this lesson, students will be able to:
 - Understand Unity 2D Physics System and how it works
@@ -22,7 +22,7 @@ Unity 2D uses **Box2D physics engine** - one of the most popular physics engines
 - ✅ **Realistic physics simulation**: Gravity, friction, collision response
 - ✅ **High performance**: Optimized cho real-time games
 - ✅ **Stable simulation**: Consistent behavior across different framerates
-- ✅ **Flexible**: Support nhiều loại physics objects
+- ✅ **Flexible**: Support many types of physics objects
 
 #### Physics Simulation Loop:
 ```
@@ -32,13 +32,13 @@ Unity 2D uses **Box2D physics engine** - one of the most popular physics engines
 ### 1.2 Physics vs Kinematic vs Static
 
 #### **Dynamic Physics Objects** (Rigidbody2D):
-- 📦 **Affected by gravity** và forces
+- 📦 **Affected by gravity** and forces
 - 💥 **Realistic collision response**
 - 🎯 **Use for**: Player characters, enemies, projectiles, physics props
 
 #### **Kinematic Objects** (Rigidbody2D.isKinematic = true):
 - 🎮 **Controlled by scripts**, not physics
-- 💪 **Can push other objects** nhưng không bị đẩy lại
+- 💪 **Can push other objects** but not pushed back
 - 🎯 **Use for**: Moving platforms, doors, scripted movers
 
 #### **Static Objects** (No Rigidbody2D, only Collider):
@@ -55,13 +55,13 @@ Unity 2D uses **Box2D physics engine** - one of the most popular physics engines
 #### **Body Type**:
 - **Dynamic**: Full physics simulation
 - **Kinematic**: Script-controlled movement
-- **Static**: No movement (automatically set khi không có Rigidbody2D)
+- **Static**: No movement (automatically set when no Rigidbody2D)
 
 #### **Material**: Physics Material 2D reference
 
 #### **Simulated**: Enable/disable physics simulation
 
-#### **Use Auto Mass**: Tự động calculate mass từ collider size
+#### **Use Auto Mass**: Automatically calculate mass from collider size
 
 ### 2.2 Mass và Density
 
@@ -123,7 +123,7 @@ rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
 ---
 
-## 3. 2D Collider Types và Usage
+## 3. 2D Collider Types and Usage
 
 ### 3.1 Box Collider 2D
 
@@ -133,7 +133,7 @@ rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 - 🎯 **UI elements**: Buttons, clickable areas
 
 #### **Properties**:
-- **Size**: Width và height của collision box
+- **Size**: Width and height of collision box
 - **Offset**: Position relative to GameObject center
 - **Is Trigger**: Toggle collision/trigger mode
 
@@ -151,7 +151,7 @@ boxCol.offset = new Vector2(0f, 0.5f);   // Offset up by 0.5 units
 - 📍 **Range detection**: Attack ranges, sensor areas
 
 #### **Properties**:
-- **Radius**: Size của collision circle
+- **Radius**: Size of collision circle
 - **Offset**: Center position relative to GameObject
 
 ```csharp
@@ -164,12 +164,12 @@ circleCol.offset = new Vector2(0f, 1f);  // Offset center up
 
 #### **Best Use Cases**:
 - 🎨 **Complex shapes**: Irregular terrain, detailed character bounds
-- 🗺️ **Sprite-based collision**: Auto-generated từ sprite outline
-- 🎯 **Precise collision**: Khi cần exact shape matching
+- 🗺️ **Sprite-based collision**: Auto-generated from sprite outline
+- 🎯 **Precise collision**: When exact shape matching is needed
 
 #### **Properties**:
-- **Points**: Array của vertices defining shape
-- **Auto-generation**: Can create từ sprite transparency
+- **Points**: Array of vertices defining shape
+- **Auto-generation**: Can create from sprite transparency
 
 ```csharp
 PolygonCollider2D polyCol = GetComponent<PolygonCollider2D>();
@@ -192,7 +192,7 @@ edgeCol.points = points; // Define edge shape
 
 ### 3.5 Composite Collider 2D
 
-#### **Purpose**: Combine multiple colliders thành single efficient collider
+#### **Purpose**: Combine multiple colliders into single efficient collider
 
 #### **Benefits**:
 - ✅ **Performance**: Reduced collision checks
@@ -312,7 +312,7 @@ void OnCollisionExit2D(Collision2D collision)
 
 #### **Characteristics**:
 - 👻 **No physical response**: Objects pass through
-- 📡 **Detection only**: Events fire nhưng no collision
+- 📡 **Detection only**: Events fire but no collision
 - 🎯 **Logic-based**: Custom scripted responses
 
 #### **Event Methods**:
@@ -345,7 +345,7 @@ void OnTriggerExit2D(Collider2D other)
 
 ---
 
-## 6. Forces và Movement
+## 6. Forces and Movement
 
 ### 6.1 AddForce Methods
 
@@ -411,7 +411,7 @@ public class PlayerJump : MonoBehaviour
 
     void Jump()
     {
-        // Reset vertical velocity trước khi jump
+        // Reset vertical velocity before jump
         rb.velocity = new Vector2(rb.velocity.x, 0f);
 
         // Apply jump force
@@ -553,16 +553,16 @@ Configure which layers can collide:
 ### 8.3 Performance Best Practices
 
 #### **Collider Optimization**:
-- ✅ **Use simple shapes**: Box/Circle over Polygon khi có thể
+- ✅ **Use simple shapes**: Box/Circle over Polygon when possible
 - ✅ **Composite Colliders**: Combine multiple static colliders
-- ✅ **Appropriate triggers**: Use triggers cho detection, not physics
-- ✅ **Collision layers**: Limit collision checks với layer matrix
+- ✅ **Appropriate triggers**: Use triggers for detection, not physics
+- ✅ **Collision layers**: Limit collision checks with layer matrix
 
 #### **Rigidbody Optimization**:
 - ✅ **Sleep inactive objects**: Let physics system sleep idle objects
-- ✅ **Kinematic when appropriate**: Use kinematic cho scripted movement
+- ✅ **Kinematic when appropriate**: Use kinematic for scripted movement
 - ✅ **Appropriate mass**: Avoid extreme mass differences
-- ✅ **Continuous collision**: Only khi cần thiết cho fast objects
+- ✅ **Continuous collision**: Only when necessary for fast objects
 
 ---
 
@@ -720,36 +720,36 @@ void OnCollisionEnter2D(Collision2D collision)
 #### **Unity Profiler** (Window → Analysis → Profiler):
 - ⚡ **Physics.Processing**: Time spent in physics simulation
 - 💥 **Physics.Contacts**: Number of collision contacts
-- 🔄 **Physics.Queries**: Raycast và overlap queries
+- 🔄 **Physics.Queries**: Raycast and overlap queries
 
 ---
 
-## Tóm Tắt Chương
+## Chapter Summary
 
-### Kiến Thức Cốt Lõi:
-1. ✅ **Physics System**: Unity 2D physics foundation và Box2D engine
-2. ✅ **Rigidbody2D**: Mass, gravity, constraints, và physics properties
-3. ✅ **Collider Types**: Box, Circle, Polygon, Edge colliders và use cases
-4. ✅ **Physics Materials**: Friction, bounciness, và material interactions
+### Core Knowledge:
+1. ✅ **Physics System**: Unity 2D physics foundation and Box2D engine
+2. ✅ **Rigidbody2D**: Mass, gravity, constraints, and physics properties
+3. ✅ **Collider Types**: Box, Circle, Polygon, Edge colliders and use cases
+4. ✅ **Physics Materials**: Friction, bounciness, and material interactions
 5. ✅ **Collision vs Triggers**: Physical response vs detection events
-6. ✅ **Forces và Movement**: AddForce, velocity control, jump mechanics
+6. ✅ **Forces and Movement**: AddForce, velocity control, jump mechanics
 
 ### Advanced Techniques:
-- 🎮 **Variable Jump Height**: Enhanced jump feel với gravity modulation
+- 🎮 **Variable Jump Height**: Enhanced jump feel with gravity modulation
 - ⏰ **Coyote Time**: Grace period for jump input after leaving ground
 - 🔄 **Jump Buffering**: Input buffering for responsive controls
-- 🏗️ **Moving Platforms**: Kinematic movement với player interaction
+- 🏗️ **Moving Platforms**: Kinematic movement with player interaction
 
 ### Performance Optimization:
-- ⚡ **Physics Settings**: Optimal configuration cho 2D games
+- ⚡ **Physics Settings**: Optimal configuration for 2D games
 - 🎯 **Collision Matrix**: Efficient layer-based collision filtering
-- 🔧 **Best Practices**: Collider optimization và appropriate physics usage
+- 🔧 **Best Practices**: Collider optimization and appropriate physics usage
 
-### Chuẩn Bị Cho Lesson Tiếp Theo:
-- 🎮 **Input System**: Unity's new Input System cho responsive controls
-- 🎬 **Advanced Movement**: Character controllers với state management
-- 📹 **Camera Systems**: Follow cameras và Cinemachine integration
-- 🎯 **Game Feel**: Polish và juice cho better player experience
+### Preparing for Next Lesson:
+- 🎮 **Input System**: Unity's new Input System for responsive controls
+- 🎬 **Advanced Movement**: Character controllers with state management
+- 📹 **Camera Systems**: Follow cameras and Cinemachine integration
+- 🎯 **Game Feel**: Polish and juice for better player experience
 
-### Thực Hành:
-Hoàn thành **Lab 03** để build 2D platformer với realistic physics, jump mechanics, và collision detection system.
+### Practice:
+Complete **Lab 03** to build 2D platformer with realistic physics, jump mechanics, and collision detection system.

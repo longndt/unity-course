@@ -70,7 +70,7 @@ UI system and menu navigation flow:
 Complete build process and deployment flow:
 - **Build Settings** - Platform configuration and scene management
 - **Asset Processing** - How assets are prepared for different platforms
-- **Platform-Specific Settings** - iOS, Android, Windows, macOS configurations
+- **Platform-Specific Settings** - Android, iOS, Windows, macOS configurations
 - **Build Optimization** - Size reduction and performance optimization
 - **Deployment Process** - From build to distribution
 
