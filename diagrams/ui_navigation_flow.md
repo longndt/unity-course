@@ -78,7 +78,7 @@ public class MenuNavigation : MonoBehaviour
 {
     public Button[] menuButtons;
     private int currentIndex = 0;
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -96,7 +96,7 @@ public class ControllerNavigation : MonoBehaviour
 {
     public Button[] buttons;
     private int selectedIndex = 0;
-    
+
     void Update()
     {
         float vertical = Input.GetAxis("Vertical");
@@ -108,7 +108,7 @@ public class ControllerNavigation : MonoBehaviour
         {
             selectedIndex = Mathf.Min(buttons.Length - 1, selectedIndex + 1);
         }
-        
+
         buttons[selectedIndex].Select();
     }
 }

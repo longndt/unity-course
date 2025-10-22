@@ -8,26 +8,26 @@
 
 ## Player Controllers
 
-### 1. Basic 3D Player Controller
+### 1. Simple 2D Player Controller
 
-**File**: `Basic3DPlayerController.cs`
+**File**: [Simple2DPlayerController.cs](./common-scripts-library/Simple2DPlayerController.cs)
+
+- Left/Right movement
+- Jump physics
+- Animation triggers
+
+### 2. Basic 3D Player Controller
+
+**File**: [Basic3DPlayerController.cs](./common-scripts-library/Basic3DPlayerController.cs)
 
 - WASD movement
 - Mouse look
 - Jump mechanics
 - Ground checking
 
-### 2. Simple 2D Player Controller
-
-**File**: `Simple2DPlayerController.cs`
-
-- Left/Right movement
-- Jump physics
-- Animation triggers
-
 ### 3. Top-Down Player Controller
 
-**File**: `TopDownPlayerController.cs`
+**File**: [TopDownPlayerController.cs](./common-scripts-library/TopDownPlayerController.cs)
 
 - 4-directional movement
 - Rotation towards movement
@@ -39,7 +39,7 @@
 
 ### 1. Third Person Camera
 
-**File**: `ThirdPersonCamera.cs`
+**File**: [ThirdPersonCamera.cs](./common-scripts-library/ThirdPersonCamera.cs)
 
 - Follow player smoothly
 - Mouse orbit controls
@@ -48,7 +48,7 @@
 
 ### 2. 2D Camera Follow
 
-**File**: `Camera2DFollow.cs`
+**File**: [Camera2DFollow.cs](./common-scripts-library/Camera2DFollow.cs)
 
 - Smooth following
 - Boundary constraints
@@ -56,7 +56,7 @@
 
 ### 3. Simple Camera Shake
 
-**File**: `CameraShake.cs`
+**File**: [CameraShake.cs](./common-scripts-library/CameraShake.cs)
 
 - Impact shake effects
 - Configurable intensity
@@ -68,7 +68,7 @@
 
 ### 1. Scene Manager
 
-**File**: `SceneTransitionManager.cs`
+**File**: [SceneTransitionManager.cs](./common-scripts-library/SceneTransitionManager.cs)
 
 - Load scenes with loading screen
 - Fade transitions
@@ -76,7 +76,7 @@
 
 ### 2. Game State Manager
 
-**File**: `GameStateManager.cs`
+**File**: [GameStateManager.cs](./common-scripts-library/GameStateManager.cs)
 
 - Play/Pause/GameOver states
 - State transition logic
@@ -84,7 +84,7 @@
 
 ### 3. Save/Load System
 
-**File**: `SaveLoadManager.cs`
+**File**: [SaveLoadManager.cs](./common-scripts-library/SaveLoadManager.cs)
 
 - PlayerPrefs implementation
 - JSON save data
@@ -96,7 +96,7 @@
 
 ### 1. Main Menu Controller
 
-**File**: `MainMenuController.cs`
+**File**: [MainMenuController.cs](./common-scripts-library/MainMenuController.cs)
 
 - Button event handling
 - Panel transitions
@@ -104,7 +104,7 @@
 
 ### 2. HUD Manager
 
-**File**: `HUDManager.cs`
+**File**: [HUDManager.cs](./common-scripts-library/HUDManager.cs)
 
 - Health bars
 - Score display
@@ -112,7 +112,7 @@
 
 ### 3. Pause Menu
 
-**File**: `PauseMenuController.cs`
+**File**: [PauseMenuController.cs](./common-scripts-library/PauseMenuController.cs)
 
 - Game pause/resume
 - Settings access
@@ -124,7 +124,7 @@
 
 ### 1. Audio Manager
 
-**File**: `AudioManager.cs`
+**File**: [AudioManager.cs](./common-scripts-library/AudioManager.cs)
 
 - Sound effect playing
 - Background music
@@ -133,7 +133,7 @@
 
 ### 2. 3D Spatial Audio
 
-**File**: `SpatialAudioSource.cs`
+**File**: [SpatialAudioSource.cs](./common-scripts-library/SpatialAudioSource.cs)
 
 - Distance-based volume
 - 3D positioning
@@ -145,7 +145,7 @@
 
 ### 1. Physics-Based Movement
 
-**File**: `PhysicsMovement.cs`
+**File**: [PhysicsMovement.cs](./common-scripts-library/PhysicsMovement.cs)
 
 - Rigidbody movement
 - Force-based controls
@@ -153,7 +153,7 @@
 
 ### 2. Platform Movement
 
-**File**: `MovingPlatform.cs`
+**File**: [MovingPlatform.cs](./common-scripts-library/MovingPlatform.cs)
 
 - Waypoint movement
 - Player attachment
@@ -161,7 +161,7 @@
 
 ### 3. Object Launcher
 
-**File**: `ObjectLauncher.cs`
+**File**: [ObjectLauncher.cs](./common-scripts-library/ObjectLauncher.cs)
 
 - Projectile physics
 - Trajectory calculation
@@ -173,7 +173,7 @@
 
 ### 1. Collectible System
 
-**File**: `CollectibleItem.cs`
+**File**: [CollectibleItem.cs](./common-scripts-library/CollectibleItem.cs)
 
 - Trigger-based collection
 - Score integration
@@ -181,7 +181,7 @@
 
 ### 2. Interactable Objects
 
-**File**: `InteractableObject.cs`
+**File**: [InteractableObject.cs](./common-scripts-library/InteractableObject.cs)
 
 - Player proximity detection
 - Action prompts
@@ -189,7 +189,7 @@
 
 ### 3. Inventory System
 
-**File**: `SimpleInventory.cs`
+**File**: [SimpleInventory.cs](./common-scripts-library/SimpleInventory.cs)
 
 - Item management
 - UI integration
@@ -201,7 +201,7 @@
 
 ### 1. Simple Animator Controller
 
-**File**: `SimpleAnimationController.cs`
+**File**: [SimpleAnimationController.cs](./common-scripts-library/SimpleAnimationController.cs)
 
 - Parameter management
 - State transitions
@@ -209,7 +209,7 @@
 
 ### 2. Particle Effect Trigger
 
-**File**: `ParticleEffectTrigger.cs`
+**File**: [ParticleEffectTrigger.cs](./common-scripts-library/ParticleEffectTrigger.cs)
 
 - Effect spawning
 - Timing control
@@ -217,7 +217,7 @@
 
 ### 3. Object Rotator
 
-**File**: `ObjectRotator.cs`
+**File**: [ObjectRotator.cs](./common-scripts-library/ObjectRotator.cs)
 
 - Continuous rotation
 - Configurable axes
@@ -229,7 +229,7 @@
 
 ### 1. Object Pool Manager
 
-**File**: `ObjectPoolManager.cs`
+**File**: [ObjectPoolManager.cs](./common-scripts-library/ObjectPoolManager.cs)
 
 - Performance optimization
 - Reusable objects
@@ -237,7 +237,7 @@
 
 ### 2. Timer System
 
-**File**: `TimerSystem.cs`
+**File**: [TimerSystem.cs](./common-scripts-library/TimerSystem.cs)
 
 - Countdown timers
 - Event triggering
@@ -245,7 +245,7 @@
 
 ### 3. Debug Helper
 
-**File**: `DebugHelper.cs`
+**File**: [DebugHelper.cs](./common-scripts-library/DebugHelper.cs)
 
 - Visual debugging
 - Performance monitoring
@@ -257,7 +257,7 @@
 
 ### 1. Simple AI Follow
 
-**File**: `SimpleAIFollow.cs`
+**File**: [SimpleAIFollow.cs](./common-scripts-library/SimpleAIFollow.cs)
 
 - Player following
 - Obstacle avoidance
@@ -265,7 +265,7 @@
 
 ### 2. Patrol AI
 
-**File**: `PatrolAI.cs`
+**File**: [PatrolAI.cs](./common-scripts-library/PatrolAI.cs)
 
 - Waypoint patrol
 - Player detection
@@ -273,7 +273,7 @@
 
 ### 3. Simple Enemy AI
 
-**File**: `SimpleEnemyAI.cs`
+**File**: [SimpleEnemyAI.cs](./common-scripts-library/SimpleEnemyAI.cs)
 
 - Chase behavior
 - Attack patterns

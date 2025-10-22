@@ -150,6 +150,7 @@ Note: All lesson folders now use the standardized `example/` structure.
 
 ### **Code & Examples**
 - **Common Scripts Library**: `extras/common-scripts-library.md` - Reusable code library
+- **Free Assets Resources**: `extras/free-assets-resources.md` - Free asset sources and integration guide
 
 ### **Advanced Topics**
 - **Design Patterns**: `extras/design-patterns.md` - Common design patterns for game development

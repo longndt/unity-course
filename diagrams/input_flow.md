@@ -95,13 +95,13 @@ void Update()
     {
         jumpBufferCounter = jumpBufferTime;
     }
-    
+
     if (jumpBufferCounter > 0 && isGrounded)
     {
         Jump();
         jumpBufferCounter = 0;
     }
-    
+
     jumpBufferCounter -= Time.deltaTime;
 }
 ```

@@ -63,7 +63,7 @@ Unity 2D uses **Box2D physics engine** - one of the most popular physics engines
 
 #### **Use Auto Mass**: Automatically calculate mass from collider size
 
-### 2.2 Mass và Density
+### 2.2 Mass and Density
 
 #### Mass Calculation:
 ```csharp
@@ -107,7 +107,7 @@ rb.angularDrag = 0.05f; // Rotational damping
 
 ### 2.4 Constraints
 
-#### **Freeze Position**: Lock movement trên specific axes
+#### **Freeze Position**: Lock movement on specific axes
 - **X**: Prevent horizontal movement
 - **Y**: Prevent vertical movement
 

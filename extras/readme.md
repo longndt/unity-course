@@ -13,6 +13,7 @@ This directory contains supplementary guides and advanced topics that extend bey
 
 ### **Code Examples and Resources**
 - `common-scripts-library.md` - Common Unity scripts for 2D game development
+- `free-assets-resources.md` - Free asset sources and integration guide
 
 ### **Advanced Programming Patterns**
 - `design-patterns.md` - Common design patterns for game development
