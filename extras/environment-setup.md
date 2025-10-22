@@ -2,14 +2,30 @@
 
 Complete setup instructions for Unity game development on Windows and Mac systems.
 
+**⚠️ IMPORTANT: You MUST install Unity Hub FIRST before installing Unity Editor!**
+
+## 🚀 Quick Start (5 Minutes)
+
+**For experienced users who just need the essentials:**
+
+1. **Download Unity Hub**: https://unity.com/download
+2. **Install Unity Hub** (Windows: .exe, Mac: .dmg)
+3. **Open Unity Hub** → Sign in → Choose Personal license
+4. **Install Unity Editor**: Installs tab → Install Editor → Unity 6.0 LTS
+5. **Select modules**: 2D Sprite, Input System, Documentation, Visual Studio
+6. **Create test project**: Projects tab → New → 2D (URP)
+7. **Verify**: Create a 2D sprite, add a script, test Play mode
+
+**Total time: ~15-20 minutes (depending on internet speed)**
+
 ---
 
 ## Table of Contents
 
 1. [System Requirements](#system-requirements)
-2. [Windows Setup Guide](#windows-setup-guide)
-3. [Mac Setup Guide](#mac-setup-guide)
-4. [Unity Hub Installation](#unity-hub-installation)
+2. [Unity Hub Installation (REQUIRED FIRST)](#unity-hub-installation-required-first)
+3. [Windows Setup Guide](#windows-setup-guide)
+4. [Mac Setup Guide](#mac-setup-guide)
 5. [Unity Editor Installation](#unity-editor-installation)
 6. [Visual Studio Setup](#visual-studio-setup)
 7. [Project Creation & Testing](#project-creation--testing)
@@ -28,16 +44,16 @@ Complete setup instructions for Unity game development on Windows and Mac system
 - **CPU**: Intel Core i5 / AMD equivalent
 - **RAM**: 8 GB minimum (16 GB recommended)
 - **GPU**: DirectX 11 compatible graphics card
-- **Storage**: 20 GB free space minimum
+- **Storage**: 25 GB free space minimum
 - **Internet**: Required for Unity Hub and downloads
 
 #### Mac
 
-- **OS**: macOS 10.15 (Catalina) or newer
+- **OS**: macOS 12 (Monterey) or newer
 - **CPU**: Intel Core i5 / Apple M1 or newer
 - **RAM**: 8 GB minimum (16 GB recommended)
 - **GPU**: Metal-capable graphics card
-- **Storage**: 20 GB free space minimum
+- **Storage**: 25 GB free space minimum
 - **Internet**: Required for Unity Hub and downloads
 
 ### Recommended Specifications
@@ -52,10 +68,79 @@ Complete setup instructions for Unity game development on Windows and Mac system
 
 #### Mac
 
-- **OS**: macOS 12 (Monterey) or newer
-- **CPU**: Apple M1 Pro/Max or Intel Core i7
+- **OS**: macOS 14 (Sonoma) or newer
+- **CPU**: Apple M1 Pro/Max/M2 or Intel Core i7
 - **RAM**: 16 GB or more
 - **Storage**: SSD with 50 GB+ free space
+
+---
+
+## Unity Hub Installation (REQUIRED FIRST)
+
+**🚨 CRITICAL: Unity Hub MUST be installed before Unity Editor!**
+
+Unity Hub is the central management tool for all Unity installations and projects. It's required to install, manage, and launch Unity Editor versions.
+
+### Why Unity Hub is Required
+
+- **Version Management**: Install and switch between different Unity versions
+- **Project Management**: Create, open, and organize Unity projects
+- **Module Management**: Install additional tools and platform support
+- **License Management**: Handle Unity licenses (Personal, Pro, Enterprise)
+- **Template Management**: Access project templates and samples
+
+### Download Unity Hub
+
+1. **Visit** https://unity.com/download
+2. **Click** "Download Unity Hub" (NOT "Download Unity Editor")
+3. **Choose** your operating system (Windows/Mac)
+4. **File size**: ~200MB
+
+### Windows Installation
+
+1. **Run** the downloaded `UnityHubSetup.exe` file
+2. **Click** "Yes" when prompted by User Account Control
+3. **Follow** installation wizard:
+   - Accept license agreement
+   - Choose installation location (default: `C:\Program Files\Unity Hub\`)
+   - Click "Install"
+4. **Wait** for installation to complete (2-3 minutes)
+5. **Click** "Finish"
+6. **Unity Hub** will launch automatically
+
+### Mac Installation
+
+1. **Open** the downloaded `.dmg` file
+2. **Drag** Unity Hub to Applications folder
+3. **Open** Applications folder
+4. **Right-click** Unity Hub → Open
+5. **Click** "Open" when security prompt appears
+6. **Unity Hub** will launch
+
+### Unity Hub First-Time Setup
+
+1. **Accept** Unity Hub license agreement
+2. **Sign in** to Unity account (create one if needed):
+   - Click "Sign in"
+   - Enter email and password
+   - OR create new account at https://id.unity.com/
+3. **Choose** license type:
+   - Select "Unity Personal" (free for individuals)
+   - Click "Done"
+4. **Verify** Unity Hub is working:
+   - You should see "Installs" and "Projects" tabs
+   - No Unity Editor installed yet (this is normal)
+
+### Troubleshooting Unity Hub
+
+#### Windows Issues:
+- **"Unity Hub won't install"**: Run as Administrator
+- **"Access denied"**: Check antivirus settings
+- **"Installation failed"**: Free up disk space (need 25GB+)
+
+#### Mac Issues:
+- **"App can't be opened"**: Right-click → Open
+- **"Security error"**: System Preferences → Security & Privacy → Allow
 
 ---
 
@@ -219,13 +304,18 @@ Unity Hub is the central tool for managing Unity installations and projects.
 
 ## Unity Editor Installation
 
-### Install Unity 6.0 LTS
+### Install Unity 6.0 LTS (Latest)
+
+**Prerequisites**: Unity Hub must be installed and running
 
 1. **Open** Unity Hub
 2. **Click** "Installs" tab on the left
-3. **Click** "Install Editor"
+3. **Click** "Install Editor" button
 4. **Select** "Unity 6000.0.X LTS" (Latest Long Term Support version)
-5. **Click** "Install"
+   - **Version**: Unity 6.0 LTS (6000.0.X)
+   - **Release Date**: 2024
+   - **Support**: Long Term Support (3+ years)
+5. **Click** "Install" button
 
 ### Choose Installation Modules
 
@@ -235,6 +325,7 @@ Unity Hub is the central tool for managing Unity installations and projects.
 - ✅ **2D Sprite Package** (for 2D game development)
 - ✅ **Android Build Support** (for mobile publishing)
 - ✅ **Documentation** (offline help)
+- ✅ **Unity Input System** (new input system)
 
 **Optional Modules:**
 
@@ -242,6 +333,8 @@ Unity Hub is the central tool for managing Unity installations and projects.
 - 🌐 **WebGL Build Support** (for browser games)
 - 🎮 **Windows Build Support** (Mac only, for cross-platform)
 - 🎮 **Mac Build Support** (Windows only, for cross-platform)
+- 🎮 **Linux Build Support** (for Linux games)
+- 🎮 **Universal Windows Platform** (for Windows Store games)
 
 ### Start Installation
 
@@ -341,7 +434,9 @@ public class Test2DScript : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log("Unity 6.0 2D setup is working correctly!");
+        Debug.Log("Unity 6.0 LTS 2D setup is working correctly!");
+        Debug.Log($"Unity Version: {Application.unityVersion}");
+        Debug.Log($"Platform: {Application.platform}");
     }
 
     void Update()
@@ -357,12 +452,13 @@ public class Test2DScript : MonoBehaviour
 4. **Drag** script onto the Sprite in Hierarchy
 5. **Click** Play button
 6. **Check** Console panel (Window → General → Console)
-7. **Verify** message "Unity 6.0 2D setup is working correctly!" appears
+7. **Verify** messages appear:
+   - "Unity 6.0 LTS 2D setup is working correctly!"
+   - "Unity Version: 6000.0.X"
+   - "Platform: [Your Platform]"
 8. **Observe** the sprite rotating smoothly
-9. **Drag** script onto the Cube in Hierarchy
-10. **Click** Play button
-11. **Check** Console panel (Window → General → Console)
-12. **Verify** message "Unity setup is working correctly!" appears
+9. **Stop** the play mode (click Play button again)
+10. **Verify** no errors in Console panel
 
 ---
 
@@ -504,20 +600,22 @@ Before starting the Unity course, ensure you can complete all these tasks:
 ### ✅ Software Installation:
 
 - [ ] Unity Hub installed and running
-- [ ] Unity 6.0 LTS installed
+- [ ] Unity 6.0 LTS installed via Unity Hub
 - [ ] Code editor installed (Visual Studio/VS Code)
 - [ ] Unity license activated (Personal/Student)
+- [ ] Required modules installed (2D Sprite, Input System, Documentation)
 
 ### ✅ Functionality Test:
 
-- [ ] Can create new Unity project
+- [ ] Can create new Unity project via Unity Hub
 - [ ] Unity Editor opens without errors
-- [ ] Can create and move 3D objects
+- [ ] Can create and move 2D objects
 - [ ] Play mode works correctly
 - [ ] Can create and edit C# scripts
 - [ ] Scripts compile without errors
 - [ ] Code editor opens from Unity
 - [ ] Console shows debug messages
+- [ ] Test script shows Unity version and platform info
 
 ### ✅ Performance Check:
 
@@ -525,6 +623,46 @@ Before starting the Unity course, ensure you can complete all these tasks:
 - [ ] Play mode runs smoothly
 - [ ] No memory warnings in Console
 - [ ] Can build simple project to executable
+
+---
+
+## ⚠️ Common Mistakes to Avoid
+
+### ❌ Don't Do These:
+
+1. **Installing Unity Editor directly** (without Unity Hub)
+   - Unity Editor requires Unity Hub to manage versions
+   - You'll get errors and won't be able to create projects
+
+2. **Skipping Unity account creation**
+   - Unity requires an account for licensing
+   - Create account at https://id.unity.com/ before installing
+
+3. **Installing wrong Unity version**
+   - Use Unity 6.0 LTS (not beta or alpha versions)
+   - LTS = Long Term Support (stable for 3+ years)
+
+4. **Not installing required modules**
+   - 2D Sprite Package (for 2D games)
+   - Unity Input System (new input system)
+   - Documentation (offline help)
+
+5. **Installing on unsupported OS**
+   - Windows: Must be 64-bit Windows 10/11
+   - Mac: Must be macOS 12+ (Monterey or newer)
+
+6. **Not enough disk space**
+   - Unity needs 25GB+ free space
+   - Check available space before installing
+
+### ✅ Do These Instead:
+
+1. **Install Unity Hub first** (always!)
+2. **Create Unity account** before installation
+3. **Use Unity 6.0 LTS** (latest stable version)
+4. **Install all required modules** for 2D development
+5. **Check system requirements** before starting
+6. **Free up disk space** if needed
 
 ---
 

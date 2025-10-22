@@ -1,329 +1,126 @@
-# Lab 1: Create Your First 2D Scene with Sprites
+# Lab 1: Unity Fundamentals & Project Setup
 
-## Objectives
+## 🎯 Learning Objectives
 
-- Get familiar with Unity 2D interface
-- Create and manipulate 2D sprites
-- Understand 2D Transform component and coordinate system
-- Learn about Sprite Renderer and Sorting Layers
-- Save 2D scene and project
+- Set up a 2D project and navigate the Unity Editor efficiently
+- Understand GameObject/Component model and MonoBehaviour lifecycle
+- Compare game development patterns with web/mobile development
+- Create and use prefabs; manage scenes and scene loading
+- Use simple debug tools (Gizmos, Logs) to inspect behavior
 
----
+## 🎮 Playtest Criteria
 
-## Step 1: Create New 2D Project
-
-### Instructions:
-
-1. Open Unity Hub
-2. Click "New Project"
-3. Select **"2D (URP)"** template (Universal Render Pipeline optimized for 2D)
-4. Set project name: `My First 2D Game`
-5. Choose location to save project
-6. Click "Create project"
-
-**✅ Checkpoint**: Unity Editor opened with 2D layout and empty scene
-
-**📝 Note**: The 2D template automatically configures:
-
-- Scene view in 2D mode
-- Camera set to Orthographic projection
-- Proper lighting for 2D games
-- Physics 2D enabled
+**Complete when you can:**
+- [ ] Create a 2D project and navigate Unity Editor confidently
+- [ ] Build a scene with 3+ GameObjects using different components
+- [ ] Create a prefab and instantiate it in the scene
+- [ ] Switch between 2 scenes using SceneManager
+- [ ] Use Debug.Log() to track MonoBehaviour lifecycle order
+- [ ] Scene runs without errors and displays correctly in Game view
 
 ---
 
-## Step 2: Understanding 2D Workspace
+## 🚀 Quick Start
 
-### Explore 2D Interface:
+### Step 1: Create New 2D Project
 
-1. **Scene View**: Notice the 2D toggle is enabled (top toolbar)
-2. **Game View**: Set to "Free Aspect" or "16:9" for mobile games
-3. **Hierarchy**: Contains "Main Camera" and "Global Volume"
-4. **Project**: Contains 2D-specific folders and settings
+1. Open Unity Hub → New Project → **2D (URP)** template
+2. Project name: `Lesson1-Fundamentals`
+3. Create project and wait for Unity to load
 
-### Configure Scene View for 2D:
+### Step 2: Explore the Example
 
-1. In Scene view, ensure **2D button** is pressed (top left)
-2. **Gizmos** → Uncheck "3D Icons" for cleaner 2D view
-3. Set Scene view to **Orthographic** if not already set
-4. Use **middle mouse/trackpad** to pan around 2D space
-
-**✅ Checkpoint**: Scene view properly configured for 2D development
+1. Open the `example/` folder in your lesson
+2. Import the provided scripts into your project
+3. Create a new scene: `File → New Scene → 2D`
+4. Add the example scripts to GameObjects and test them
 
 ---
 
-## Step 3: Create Background Sprite
+## 🎯 Lab Tasks
 
-### 3.1 Create Background GameObject
+### Task 1: Web/Mobile vs Game Development Analysis
 
-1. Right-click in Hierarchy
-2. Select **2D Object → Sprites → Square**
-3. Rename to `Background`
-4. In Inspector, check Transform component:
-   - Position: (0, 0, 0)
-   - Rotation: (0, 0, 0)
-   - Scale: (10, 6, 1) - This creates a 10x6 unit background
+1. **Compare Development Patterns**
+   - Think about a web app you've built (e.g., todo list, blog)
+   - Think about a mobile app you've used (e.g., social media, productivity)
+   - Compare with the Unity game development pattern
 
-### 3.2 Configure Background Sprite
+2. **Document Key Differences**
+   - **Web**: Event-driven, state management, request/response
+   - **Mobile**: App lifecycle, touch events, platform-specific
+   - **Game**: Real-time simulation, physics, player agency
 
-1. Select Background in Hierarchy
-2. In **Sprite Renderer** component:
-   - **Color**: Choose a sky blue color (RGB: 135, 206, 235)
-   - **Sorting Layer**: Default
-   - **Order in Layer**: -10 (behind other objects)
+3. **Create a simple comparison chart**
+   - Use a text file or draw on paper
+   - Note how each platform handles user interaction
+   - Identify which concepts transfer between platforms
 
-### 3.3 Test Background
+### Task 2: MonoBehaviour Lifecycle Demo
 
-1. In Scene view, frame the background (double-click Background in Hierarchy)
-2. Switch to Game view to see how it looks
-3. Background should fill the entire camera view
+1. Create an empty GameObject named "LifecycleDemo"
+2. Add the `TransformBasics.cs` script from `example/`
+3. Press Play and observe the Console logs
+4. **Verify**: You see Awake → Start → Update messages in order
+5. **Compare**: How does this differ from web/mobile lifecycle?
 
-**✅ Checkpoint**: Blue background sprite fills the screen
+### Task 3: Scene Management
 
----
+1. Create a second scene: `File → New Scene → 2D`
+2. Save it as "Scene2"
+3. Add the `SceneManagement.cs` script to a GameObject
+4. Create a UI Button that switches between scenes
+5. **Verify**: Button successfully loads the other scene
 
-## Step 4: Create Player Character Sprite
+### Task 4: Prefab Creation
 
-### 4.1 Create Player GameObject
+1. Create a simple GameObject with a Sprite Renderer
+2. Drag it to the Project window to create a prefab
+3. Use `Instantiate()` in a script to spawn the prefab
+4. **Verify**: Prefab spawns when you press a key or click
 
-1. Right-click in Hierarchy
-2. Select **2D Object → Sprites → Square**
-3. Rename to `Player`
-4. Set Transform:
-   - Position: (-3, -2, 0)
-   - Scale: (0.8, 1.2, 1) - Makes it slightly rectangular like a character
+### Task 5: Debug Tools
 
-### 4.2 Configure Player Sprite
+1. Add the `DebugTools.cs` script to a GameObject
+2. Use the Gizmos to visualize object positions
+3. Add Debug.Log statements to track object behavior
+4. **Verify**: Gizmos appear in Scene view, logs appear in Console
 
-1. Select Player in Hierarchy
-2. In **Sprite Renderer** component:
-   - **Color**: Choose bright green (RGB: 0, 255, 0)
-   - **Sorting Layer**: Default
-   - **Order in Layer**: 0 (above background)
+## ✅ Completion Checklist
 
-### 4.3 Add Player Tag
+- [ ] **Web/Mobile Analysis**: Documented key differences between platforms
+- [ ] **Project Setup**: 2D project created and configured
+- [ ] **Lifecycle Demo**: Console shows proper execution order
+- [ ] **Scene Switching**: Can navigate between 2 scenes
+- [ ] **Prefab System**: Created and instantiated prefabs
+- [ ] **Debug Tools**: Gizmos and logs working correctly
+- [ ] **No Errors**: Console shows no compilation or runtime errors
 
-1. With Player selected, in Inspector
-2. **Tag** dropdown → Add Tag...
-3. Click **+** → Type "Player" → Save
-4. Select Player object again
-5. Set **Tag** to "Player"
+## 🎯 What's Next
 
-**✅ Checkpoint**: Green rectangular player sprite visible on screen
-
----
-
-## Step 5: Create Platform Sprites
-
-### 5.1 Create Ground Platform
-
-1. Right-click in Hierarchy
-2. Select **2D Object → Sprites → Square**
-3. Rename to `Ground Platform`
-4. Set Transform:
-   - Position: (0, -3, 0)
-   - Scale: (8, 0.5, 1)
-
-### 5.2 Configure Ground Platform
-
-1. **Sprite Renderer**:
-   - **Color**: Brown (RGB: 139, 69, 19)
-   - **Order in Layer**: -1
-
-### 5.3 Create Floating Platform
-
-1. Duplicate Ground Platform (Ctrl+D / Cmd+D)
-2. Rename to `Floating Platform`
-3. Set Transform:
-   - Position: (2, 0, 0)
-   - Scale: (3, 0.5, 1)
-
-### 5.4 Create Another Platform
-
-1. Duplicate Floating Platform
-2. Rename to `High Platform`
-3. Set Transform:
-   - Position: (-2, 2, 0)
-   - Scale: (2.5, 0.5, 1)
-
-**✅ Checkpoint**: Three brown platforms at different heights
+Proceed to [Lesson 2: Sprites & Animation](../lesson2-sprites-animation/) to learn about animation systems and sprite management.
 
 ---
 
-## Step 6: Create Collectible Items
+## 📚 Reference
 
-### 6.1 Create Collectible
-
-1. Right-click in Hierarchy
-2. Select **2D Object → Sprites → Circle**
-3. Rename to `Coin`
-4. Set Transform:
-   - Position: (2, 0.8, 0)
-   - Scale: (0.3, 0.3, 1)
-
-### 6.2 Configure Coin
-
-1. **Sprite Renderer**:
-   - **Color**: Gold (RGB: 255, 215, 0)
-   - **Order in Layer**: 1 (above platforms)
-
-### 6.3 Create More Coins
-
-1. Duplicate Coin (Ctrl+D)
-2. Position at (-2, 2.8, 0) - above high platform
-3. Duplicate again
-4. Position at (0, -1.5, 0) - floating in air
-
-### 6.4 Organize Coins
-
-1. Create empty GameObject (Ctrl+Shift+N)
-2. Rename to "Collectibles"
-3. Drag all coin objects under Collectibles parent
-4. This keeps Hierarchy organized
-
-**✅ Checkpoint**: Three gold coins positioned around the scene
+- **MonoBehaviour Lifecycle**: See `reference/reference1.md`
+- **Scene Management**: Unity's SceneManager API
+- **Prefab Workflow**: Creating and using prefabs
+- **Debug Tools**: Gizmos and Console logging
 
 ---
 
-## Step 7: Camera Setup and Scene Composition
+## 🔧 Troubleshooting
 
-### 7.1 Adjust Camera
+**Issue**: Scripts not compiling
+**Fix**: Check that scripts are in the correct folder and have proper C# syntax
 
-1. Select **Main Camera** in Hierarchy
-2. In Inspector, **Camera** component:
-   - **Projection**: Orthographic (already set)
-   - **Size**: 4 (adjust if needed to fit all objects)
-   - Position: (0, 0, -10) - Z position must be negative
+**Issue**: Scene switching not working
+**Fix**: Ensure both scenes are added to Build Settings (File → Build Settings)
 
-### 7.2 Test Camera View
+**Issue**: Prefabs not instantiating
+**Fix**: Check that the prefab reference is assigned in the script
 
-1. In Scene view, select Main Camera
-2. **GameObject** menu → **Align View to Selected**
-3. Switch between Scene and Game view
-4. Adjust camera size if needed to frame all objects nicely
-
-**✅ Checkpoint**: All objects visible and well-framed in Game view
-
----
-
-## Step 8: Add Simple Animation (Bonus)
-
-### 8.1 Animate Coins
-
-1. Select one Coin object
-2. **Window** → **Animation** → **Animation**
-3. Click **Create** button
-4. Save as "CoinSpin"
-5. Click **Add Property** → Transform → Rotation
-6. Set keyframes:
-   - 0:00 - Rotation Z: 0
-   - 1:00 - Rotation Z: 360
-7. Test by playing the scene
-
-**✅ Checkpoint**: Coin rotates smoothly when playing
-
----
-
-## Step 9: Save and Test
-
-### 9.1 Save Everything
-
-1. **File** → **Save** (Ctrl+S / Cmd+S)
-2. Save scene as "Level01"
-3. **File** → **Save Project**
-
-### 9.2 Final Test
-
-1. Click **Play** button
-2. Observe the scene in Game view:
-   - Background fills screen
-   - Player and platforms visible
-   - Coins rotating (if animated)
-   - No error messages in Console
-
-### 9.3 Scene Statistics
-
-1. **Window** → **Analysis** → **Frame Debugger**
-2. Note how many draw calls the scene uses
-3. For 2D games, keep draw calls low for better performance
-
-**✅ Final Checkpoint**: Complete 2D scene with background, player, platforms, and collectibles
-
----
-
-## Expected Results
-
-After completing this lab, your scene should contain:
-
-### GameObjects Created:
-
-- ✅ **Background**: Large blue sprite filling the screen
-- ✅ **Player**: Green rectangular sprite representing the character
-- ✅ **3 Platforms**: Brown rectangular sprites at different heights
-- ✅ **3 Coins**: Gold circular sprites as collectible items
-- ✅ **Organized Hierarchy**: Clean structure with parent objects
-
-### 2D Concepts Learned:
-
-- ✅ **Sprite Renderer**: How 2D images are displayed
-- ✅ **Sorting Layers**: Z-depth control for 2D objects
-- ✅ **2D Transform**: Position, rotation, scale in 2D space
-- ✅ **Orthographic Camera**: Proper camera setup for 2D games
-- ✅ **Scene Organization**: Best practices for hierarchy management
-
-### Visual Composition:
-
-- ✅ **Layered Depth**: Background behind, objects in front
-- ✅ **Color Contrast**: Clear visual distinction between elements
-- ✅ **Proper Scale**: Objects sized appropriately for 2D gameplay
-- ✅ **Platformer Layout**: Basic level design with jumping opportunities
-
----
-
-## Troubleshooting
-
-### Common Issues:
-
-**Issue**: Objects not visible in Game view
-**Fix**:
-
-- Check object positions (Z should be 0 for 2D sprites)
-- Verify camera position (Z should be negative, like -10)
-- Check Sorting Order in Sprite Renderer
-
-**Issue**: Sprites look blurry or pixelated
-**Fix**:
-
-- Select sprite in Project panel
-- In Inspector: Filter Mode → "Point (no filter)" for pixel art
-- Or "Bilinear" for smooth sprites
-
-**Issue**: Scene view not showing 2D properly
-**Fix**:
-
-- Click "2D" button in Scene view toolbar
-- Check Camera is set to Orthographic
-- Reset Scene view: Scene tab → Right-click → "Reset"
-
-**Issue**: Colors not appearing correctly
-**Fix**:
-
-- Check if URP is properly configured
-- Verify Sprite Renderer Color is white (255, 255, 255)
-- Check lighting settings in Global Volume
-
----
-
-## Next Steps
-
-In Lab 2, we will:
-
-- Add sprite animations to the player character
-- Implement sprite sheet workflows
-- Learn about Animation Controllers
-- Create animated characters and objects
-- Explore Timeline system for cutscenes
-
----
-
-**🎉 Congratulations!** You've created your first 2D Unity scene with proper layering, composition, and organization. This foundation will be essential for building complete 2D games.
+**Issue**: Gizmos not visible
+**Fix**: Enable Gizmos in Scene view toolbar and check the script's OnDrawGizmos method

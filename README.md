@@ -1,264 +1,179 @@
-# Unity Development Course
+# Unity Course - LongNDT
 
-## Course Information
+## Course Overview
 
-- **Target Audience**: Final year students with basic C# programming knowledge
-- **Primary Focus**: 2D game development with Unity Engine
-- **Objective**: Master 2D game development fundamentals and create complete playable games
+This course teaches 2D game development with Unity from the ground up. Perfect for beginners with web/mobile development experience who want to learn game development.
 
-## Getting Started
+**Format**: Light theory, hands-on practice, and project-based learning (no quizzes)
 
-### 🛠️ Step 1: Environment Setup
-Before starting the course, complete the environment setup:
-- Follow the detailed guide: [`setup/environment-setup.md`](setup/environment-setup.md)
-- Install Unity Hub and Unity 6.0 LTS
-- Setup Visual Studio or VS Code for C# development
-- Configure Git for version control
+---
 
-### 📚 Step 2: Learning Flow
-Follow lessons in sequential order for best results:
+## Prerequisites
 
-1. **Lesson 1**: [`lesson1-unity-basics/`](lesson1-unity-basics/) - Start with Unity fundamentals
-2. **Lesson 2**: [`lesson2-sprites-animation/`](lesson2-sprites-animation/) - Learn 2D sprites and animation
-3. **Lesson 3**: [`lesson3-physics-collision/`](lesson3-physics-collision/) - Master 2D physics system
-4. **Lesson 4**: [`lesson4-input-player-controller/`](lesson4-input-player-controller/) - Implement player controls
-5. **Lesson 5**: [`lesson5-ui-complete-game/`](lesson5-ui-complete-game/) - Build complete game with UI
+- **C# Programming**: Classes, methods, events, properties
+- **Unity Hub**: Latest version for project management
+- **Unity 6 LTS**: Latest Long Term Support version
+- **IDE**: Visual Studio 2022, VS Code, or JetBrains Rider
+- **Git**: Version control (optional but recommended)
+- **Helpful but not required**: Web/mobile development experience
+- **Optional**: Basic understanding of physics and animation concepts
 
-### 📖 Each Lesson Contains:
-- **Theory**: Comprehensive explanations and concepts
-- **Lab**: Hands-on practical exercises
-- **Code**: Working examples and reference scripts
+### **System Requirements**
+- **Windows**: Windows 10/11 (64-bit), 8GB RAM, DX11 compatible GPU
+- **macOS**: macOS 12+ (Monterey/Sonoma), 8GB RAM, Metal compatible GPU
+- **Storage**: 25GB free space for Unity and projects
 
-### 🚀 Advanced Resources
-After completing the core lessons, explore advanced topics:
-- **Design Patterns**: [`extras/design-patterns-in-unity.md`](extras/design-patterns-in-unity.md)
-- **Performance Optimization**: [`extras/performance-optimization-guide.md`](extras/performance-optimization-guide.md)
-- **Additional Resources**: [`extras/readme.md`](extras/readme.md)
+---
+
+## What You Will Learn
+
+- Build complete 2D game slices with Unity
+- Understand GameObject/Component architecture and MonoBehaviour lifecycle
+- Create 2D sprite workflows and animation state machines
+- Implement physics-based mechanics and robust collisions
+- Use the new Input System for responsive player control
+- Build UI/HUD, menus, and gameplay state management
+- Profile and optimize builds for target platforms
+
+---
 
 ## Course Structure
 
-### Lesson 1: Unity Basics & 2D Game Development Fundamentals
+### Lesson 0: Game Development Fundamentals & Mindset
+- Bridge from web/mobile to game development
+- Game design basics and player experience
+- Unity Editor overview and game development workflow
+- Simple "Hello World" game example
 
-- **Main Content**:
-  - Introduction to Unity Engine and 2D Game Development
-  - Unity Hub and Unity Editor installation
-  - Getting familiar with Unity Interface
-  - 2D Project setup and Scene management
-  - Understanding 2D GameObjects and Sprites
-- **Lab**: Create first 2D scene with sprites and basic objects
+### Lesson 1: Unity Fundamentals & Project Setup
+- Editor, scenes, prefabs, MonoBehaviour lifecycle
+- Small playable scene; scene switching and debugging tools
 
-### Lesson 2: 2D Sprites, Animation & Components
+### Lesson 2: Sprites & Animation
+- Import pipeline, sorting layers, Animator Controller, animation events
+- Character idle/walk/run with direction flip
 
-- **Main Content**:
-  - Unity Component System for 2D
-  - Sprite Renderer and Sprite management
-  - 2D Animation System (Animator Controller)
-  - Transform Component in 2D space
-  - Sorting Layers and Order in Layer
-- **Lab**: Create animated 2D character with multiple sprites
+### Lesson 3: Physics & Collisions
+- Rigidbody2D, colliders, materials, layers, FixedUpdate, raycast
+- Platformer jump with coyote time and variable jump
 
-### Lesson 3: 2D Physics & Collision Detection
+### Lesson 4: Input & Player Controller
+- Input System actions, PlayerInput, rebinding, camera follow
+- Move/jump/dash with gamepad and keyboard support
 
-- **Main Content**:
-  - Rigidbody2D Component
-  - 2D Colliders (Box, Circle, Polygon)
-  - Physics Materials 2D
-  - Collision Detection vs Trigger in 2D
-  - Unity 2D Physics System
-- **Lab**: Create 2D platformer physics with jumping mechanics
+### Lesson 5: UI, Gameplay Loop & Build
+- UGUI/UIToolkit, HUD, menus, pause, save/load, build pipeline
+- Vertical slice from main menu → gameplay → results
 
-### Lesson 4: Input System & 2D Player Controller
+---
 
-- **Main Content**:
-  - Unity Input System (New Input System)
-  - Writing C# scripts for 2D player control
-  - 2D Character Controller
-  - 2D Camera Follow and Cinemachine
-  - 2D Animation Integration
-- **Lab**: Create complete 2D player controller with animations
+## 📁 Lesson Structure
 
-### Lesson 5: UI System & Complete 2D Game
-
-- **Main Content**:
-  - Unity UI System (Canvas, UI Elements)
-  - Button, Text, Image, and Slider components
-  - Event System and UI interactions
-  - Scene Management and Game States
-  - Audio Integration and Sound Effects
-  - Build Settings and publishing 2D games
-- **Lab**: Complete 2D platformer game with UI, audio, and build to executable
-
-## Extra Content: 3D Game Development
-
-### Bonus Lesson A: 3D Basics (Optional)
-
-- 3D GameObjects and Mesh components
-- 3D Physics and Colliders
-- 3D Character Controllers
-- Basic 3D scene creation
-
-### Bonus Lesson B: Advanced 3D (Optional)
-
-- 3D Animation and Rigging
-- Advanced 3D Physics
-- 3D Camera systems
-- 3D Lighting and Materials
-
-## Folder Structure
+Each lesson follows a standardized structure designed for effective learning:
 
 ```
-unity-course/
-├── lesson1-unity-basics/
-│   ├── lab/
-│   │   └── lab1-instructions.md
-│   ├── theory/
-│   │   └── theory1.md
-│   └── code/
-│       ├── TransformBasics.cs
-│       ├── CameraControl.cs
-│       ├── SceneManagement.cs
-│       ├── NamingConventions.cs
-│       └── DebugTools.cs
-├── lesson2-sprites-animation/
-│   ├── lab/
-│   │   └── lab2-instructions.md
-│   ├── theory/
-│   │   └── theory2.md
-│   └── code/
-│       ├── ComponentLifecycle.cs
-│       ├── AnimatorControl.cs
-│       ├── SpriteControl.cs
-│       ├── Character2D.cs
-│       ├── CollisionHandler.cs
-│       └── AnimationDebugger.cs
-├── lesson3-physics-collision/
-│   ├── lab/
-│   │   └── lab3-instructions.md
-│   ├── theory/
-│   │   └── theory3.md
-│   └── code/
-│       ├── RigidbodyControl.cs
-│       ├── ColliderSetup.cs
-│       ├── PhysicsMaterialSetup.cs
-│       ├── TriggerDetection.cs
-│       ├── ForceControl.cs
-│       ├── PlayerJump.cs
-│       └── AdvancedJump.cs
-├── lesson4-input-player-controller/
-│   ├── lab/
-│   │   └── lab4-instructions.md
-│   ├── theory/
-│   │   └── theory4.md
-│   └── code/
-│       ├── InputSystemComparison.cs
-│       ├── PlayerInputController.cs
-│       ├── AutoInputEvents.cs
-│       └── Player2DController.cs
-├── lesson5-ui-complete-game/
-│   ├── lab/
-│   │   └── lab5-instructions.md
-│   ├── theory/
-│   │   └── theory5.md
-│   └── code/
-│       ├── UIButton.cs
-│       ├── SpecializedButtons.cs
-│       ├── UIText.cs
-│       ├── HealthBar.cs
-│       ├── UISlider.cs
-│       ├── UIPanel.cs
-│       ├── MainMenuPanel.cs
-│       ├── MenuManager.cs
-│       └── HUDManager.cs
-├── assets-resources/
-│   └── common-scripts-library.md
-├── guide/
-│   ├── study-guide.md
-│   └── final-project-guide.md
-├── setup/
-│   └── environment-setup.md
-├── labs/
-│   ├── lab1-unity-basics/
-│   ├── lab2-sprites-animation/
-│   ├── lab3-physics-collision/
-│   ├── lab4-input-controller/
-│   └── lab5-complete-game/
-└── extras/
-    ├── readme.md
-    ├── performance-optimization-guide.md
-    └── design-patterns-in-unity.md
+lesson-topic/
+├──  reference/          # Quick reference codes & checklists
+├──  example/            # Working code examples (currently code/ in repo)
+├──  theory/             # Light documentation (single theoryX.md)
+└──  lab/                # Hands-on playtest tasks
 ```
 
-```
+Note: All lesson folders now use the standardized `example/` structure.
+
+---
+
+## 🗺️ Visual Diagrams (to be added)
+
+- Game Loop & Execution Order
+- Animator Flow & State Machine
+- Physics Update & Collision Matrix
+- Input Flow (devices → actions → gameplay/UI)
+- UI Navigation & Gameplay States
+- Build Pipeline (targets, profiles, compression)
+
+---
+
+## 📚 How to Study This Course Effectively
+
+### Step 1: Start with Reference
+- Skim `reference/` to see APIs and checklists used in the lesson
+
+### Step 2: Explore Working Example
+- Open the lesson `example/` and run the sample scene
+- Playtest first, then peek into scripts structure
+
+### Step 3: Read Theory as Reference
+- Read only the sections related to what you're implementing
+- Jump between theory ↔ example ↔ reference
+
+### Step 4: Code Along
+- Recreate the example features in your own scene
+- Test frequently and iterate in small steps
+
+### Step 5: Complete Lab
+- Follow playtest criteria to validate features (measurable outcomes)
+
+### Step 6: Review & Reflect
+- Compare with example, note pitfalls, create personal cheat sheets
+
+---
+
+## 🚀 Getting Started
+
+### Step 1: Check and Install Development Environment
+- Read `extras/environment-setup.md` for Unity Hub, Unity 6 LTS, IDE, Git
+
+### Step 2: Open the Project
+- Open this folder in Unity Hub and launch with Unity 6 LTS
+
+### Step 3: Recommended Learning Path
+- Lesson 0 → Lesson 1 → Lesson 2 → Lesson 3 → Lesson 4 → Lesson 5
+
+---
+
+## 💡 Learning Tips
+
+- Playtest early and often; optimize later
+- Use `reference/` for API patterns; keep theory light
+- Prefer `FixedUpdate` for physics, `Update` for input sampling
+- Profile builds on the target device before shipping
+
+---
 
 ## System Requirements
 
 - Windows 10/11 or macOS 10.15+
-- Unity 6.0 LTS (Unity 6000.0.x) - Latest stable version
-- Visual Studio 2022 or Visual Studio Code with C# extension
-- Minimum 8GB RAM (16GB recommended)
-- DirectX 11/Metal compatible graphics card
+- Unity 6.0 LTS
+- 8GB RAM (16GB recommended)
+- DX11/Metal compatible GPU
 - 25GB free disk space
 
-## Key Features of This Course
+---
 
-### 2D Game Development Focus
+## 📚 Course Resources
 
-- ✅ **2D Sprites and Animation**: Complete 2D character animation workflow
-- ✅ **2D Physics**: Platformer mechanics with Rigidbody2D and 2D Colliders
-- ✅ **Input System**: New Unity Input System for responsive controls
-- ✅ **UI/UX Design**: Modern UI patterns for 2D games
-- ✅ **Complete Game**: From concept to published executable
+### **Learning Materials**
+- **Learning Path**: `extras/learning-path.md` - Visual course journey
+- **Environment Setup**: `extras/environment-setup.md` - Complete setup guide
+- **Study Guide**: `extras/study-guide.md` - How to study effectively
 
-### Modern Unity Practices
+### **Code & Examples**
+- **Common Scripts Library**: `extras/common-scripts-library.md` - Reusable code library
 
-- ✅ **Unity 6.0**: Latest LTS version with performance improvements
-- ✅ **Component-Based Architecture**: Modular, maintainable code
-- ✅ **ScriptableObjects**: Data-driven game design
-- ✅ **Cinemachine**: Professional camera control
-- ✅ **Audio Mixer**: Dynamic audio management
+### **Advanced Topics**
+- **Design Patterns**: `extras/design-patterns.md` - Common design patterns for game development
+- **Performance Optimization**: `extras/performance-optimization.md` - Advanced optimization techniques
+- **Troubleshooting Guide**: `extras/troubleshooting_guide.md` - Common issues and solutions
 
-### Learning Outcomes
+### **Additional Resources**
+- **All Extras**: `extras/readme.md` - Complete resource overview
 
-After completing this course, students will be able to:
+---
 
-1. Create complete 2D games from scratch
-2. Implement player controls and game mechanics
-3. Design and animate 2D characters
-4. Build user interfaces and game menus
-5. Publish games to multiple platforms
-6. Apply game development best practices
+## Next Steps
 
-## Next Steps & Advanced Learning
+- Start with `lesson0-game-development-fundamentals/` to understand game development mindset
+- Proceed to `lesson1-unity-basics/` for technical Unity fundamentals
+- Continue through all lessons in sequence
 
-### 🎯 After Course Completion
-Once you've mastered the core lessons, enhance your skills with:
-
-**Advanced Topics** (Located in `extras/` folder):
-- **Design Patterns in Unity**: [`design-patterns-in-unity.md`](extras/design-patterns-in-unity.md)
-  - Singleton, Observer, Command patterns
-  - Architecture patterns for larger projects
-  - Best practices for maintainable code
-
-- **Performance Optimization**: [`performance-optimization-guide.md`](extras/performance-optimization-guide.md)
-  - Memory management and garbage collection
-  - Rendering optimization techniques
-  - Profiler usage and bottleneck identification
-
-- **Additional Resources**: [`extras/readme.md`](extras/readme.md)
-  - Extended learning materials
-  - Community resources and tutorials
-  - Project ideas for portfolio development
-
-### 📈 Recommended Learning Path
-1. ✅ Complete all 5 core lessons
-2. 🔄 Build your own 2D game project
-3. 📚 Study advanced topics in `extras/`
-4. 🚀 Explore 3D development (Bonus lessons)
-5. 🌟 Contribute to open-source Unity projects
-
-## References
-
-- Unity Official Documentation
-- Unity Learn Platform
-- C# Programming Guide
-```

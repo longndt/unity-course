@@ -4,39 +4,42 @@ This directory contains supplementary guides and advanced topics that extend bey
 
 ---
 
-## 📚 **Available Advanced Guides**
+## 📚 **Available Guides**
 
-### **Performance Optimization**
-- `performance-optimization-guide.md` - Advanced techniques for optimizing Unity 2D games
-- `memory-management-best-practices.md` - Efficient memory usage and garbage collection
-- `profiler-usage-guide.md` - Using Unity Profiler for performance analysis
+### **Setup and Getting Started**
+- `learning-path.md` - Visual course journey and learning methodology
+- `environment-setup.md` - Unity Hub, Unity 6 LTS, IDE, Git setup guide
+- `study-guide.md` - How to study this course effectively
+
+### **Code Examples and Resources**
+- `common-scripts-library.md` - Common Unity scripts for 2D game development
 
 ### **Advanced Programming Patterns**
-- `design-patterns-in-unity.md` - Common design patterns for game development
+- `design-patterns.md` - Common design patterns for game development
+
+### **Performance and Optimization**
+- `performance-optimization.md` - Advanced techniques for optimizing Unity 2D games
+
+### **Troubleshooting and Support**
+- `troubleshooting_guide.md` - Common issues and solutions
+
+### **Future Advanced Guides** (To be added)
+- `memory-management-best-practices.md` - Efficient memory usage and garbage collection
+- `profiler-usage-guide.md` - Using Unity Profiler for performance analysis
 - `event-system-architecture.md` - Creating flexible event-driven systems
 - `modular-code-structure.md` - Building maintainable and scalable code
-
-### **Advanced 2D Techniques**
 - `advanced-animation-systems.md` - Complex animation workflows and state machines
 - `custom-shader-basics.md` - Introduction to 2D shader programming
 - `advanced-physics-systems.md` - Complex physics interactions and custom behaviors
-
-### **Tools and Workflow**
 - `custom-editor-tools.md` - Creating custom Unity editor extensions
 - `build-pipeline-automation.md` - Advanced build processes and CI/CD
 - `version-control-best-practices.md` - Git workflows for Unity projects
-
-### **Game Design and Polish**
 - `juice-and-game-feel.md` - Adding polish and satisfying feedback to games
 - `audio-integration-advanced.md` - Advanced audio systems and dynamic music
 - `ui-ux-best-practices.md` - Advanced UI design principles for games
-
-### **Platform-Specific Development**
 - `mobile-optimization-guide.md` - Optimizing 2D games for mobile devices
 - `webgl-deployment-guide.md` - Best practices for web deployment
 - `console-porting-considerations.md` - Adapting games for console platforms
-
-### **External Integration**
 - `analytics-integration.md` - Adding game analytics and telemetry
 - `social-features-implementation.md` - Leaderboards, achievements, and sharing
 - `monetization-strategies.md` - In-app purchases and advertising integration
@@ -53,13 +56,13 @@ This directory contains supplementary guides and advanced topics that extend bey
 ### **Learning Path Suggestions**
 
 #### **For Performance-Focused Learning:**
-1. performance-optimization-guide.md
+1. performance-optimization.md
 2. memory-management-best-practices.md
 3. profiler-usage-guide.md
 4. mobile-optimization-guide.md
 
 #### **For Advanced Programming:**
-1. design-patterns-in-unity.md
+1. design-patterns.md
 2. event-system-architecture.md
 3. modular-code-structure.md
 4. custom-editor-tools.md
