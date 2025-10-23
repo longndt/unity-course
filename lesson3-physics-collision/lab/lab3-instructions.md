@@ -1,412 +1,923 @@
-# Lab 3: 2D Physics & Collision Detection
+# Lab 3: Physics & Collision - Enhanced Instructions
 
-## Objectives
-- Understand and apply Unity 2D Physics System
-- Work with Rigidbody2D and Collider2D components
-- Create Physics Materials 2D
-- Build simple 2D physics game with collision detection
-- Learn difference between Collision and Trigger events
+## 🎯 Learning Objectives
 
----
+- Master Unity's 2D Physics System and Box2D integration
+- Understand Rigidbody2D properties and physics materials
+- Learn collision detection vs trigger events
+- Implement advanced jump mechanics with coyote time and jump buffering
+- Optimize physics performance for 2D games
 
-## Part 1: Setup 2D Physics Environment
+## 🎮 Playtest Criteria
 
-### Step 1: Create New 2D Project
-1. Unity Hub → New Project
-2. Template: **2D (URP)**
-3. Name: `2D Physics Game`
-4. Create Project
-
-### Step 2: Create 2D Ground and Boundaries
-
-1. **Create Ground Platform**:
-   - GameObject → 2D Object → **Sprites** → **Square**
-   - Name: `Ground`
-   - Position: (0, -4, 0)
-   - Scale: (20, 2, 1)
-   - Color: Brown (#8B4513)
-   - Add Component: **Box Collider 2D**
-
-2. **Create Side Boundaries**:
-   - GameObject → 2D Object → **Sprites** → **Square**
-   - Name: `LeftWall`
-   - Position: (-9, 0, 0)
-   - Scale: (1, 12, 1)
-   - Color: Gray (#808080)
-   - Add Component: **Box Collider 2D**
-
-   - Duplicate (Ctrl+D) → Name: `RightWall`
-   - Position: (9, 0, 0)
-
-   - Duplicate LeftWall → Name: `TopWall`
-   - Position: (0, 5, 0)
-   - Scale: (20, 1, 1)
-
-### Step 3: Setup Camera for 2D View
-
-1. Select **Main Camera**
-2. In Inspector:
-   - Position: (0, 0, -10)
-   - Projection: **Orthographic** (should be set automatically in 2D template)
-   - Size: 6
-
-**✅ Checkpoint**: Have 2D arena with ground and boundary walls visible in Scene view
+**Complete when you can:**
+- [ ] Configure physics settings for optimal 2D gameplay
+- [ ] Create responsive character movement with physics
+- [ ] Implement advanced jump mechanics
+- [ ] Use collision and trigger events effectively
+- [ ] Optimize physics performance
 
 ---
 
-## Part 2: Create 2D Bouncing Ball
+## 🚀 Quick Start
 
-### Step 4: Create Ball GameObject
+### Step 1: Prepare Your Project
 
-1. **GameObject** → 2D Object → **Sprites** → **Circle**
-2. Name: `BouncingBall2D`
-3. Position: (0, 3, 0) - above ground to test gravity
-4. Scale: (1, 1, 1)
-5. Color: Red (#FF4444)
+1. **Open your Unity project** from previous lessons
+2. **Create new scene**: `File → New Scene → 2D`
+3. **Save scene** as "PhysicsLab"
+4. **Create folder structure**:
+   - `Assets/Physics/`
+   - `Assets/Materials/`
+   - `Assets/Scripts/Physics/`
 
-### Step 5: Add Physics Components
+### Step 2: Configure Physics 2D Settings
 
-1. **Add Rigidbody2D**:
-   - Component → Physics 2D → **Rigidbody 2D**
-   - Mass: 1
-   - Linear Drag: 0.1
-   - Angular Drag: 0.1
-   - Gravity Scale: 1
-
-2. **Add Circle Collider 2D**:
-   - Component → Physics 2D → **Circle Collider 2D**
-   - Radius: 0.5 (should auto-fit the sprite)
-   - Material: (we'll create this next)
-
-### Step 6: Create 2D Physics Materials
-
-1. **Create Folder**: Assets → Create → Folder → `PhysicsMaterials2D`
-
-2. **Create Bouncy Material**:
-   - Create → Physics Material 2D → `BouncyBall`
-   - Friction: 0.3
-   - Bounciness: 0.9
-
-3. **Create Ground Material**:
-   - Create → Physics Material 2D → `GroundSurface`
-   - Friction: 0.8
-   - Bounciness: 0.2
-
-4. **Apply Materials**:
-   - Ball → Circle Collider 2D → Material → BouncyBall
-   - Ground → Box Collider 2D → Material → GroundSurface
-   - Walls → Leave default (no bouncing on walls)
-
-**✅ Checkpoint**: Ball should fall and bounce when you press Play
+1. **Edit → Project Settings → Physics 2D**
+2. **Configure settings**:
+   - **Gravity**: X = 0, Y = -9.81
+   - **Default Material**: None
+   - **Velocity Iterations**: 8
+   - **Position Iterations**: 3
+   - **Velocity Threshold**: 1
+   - **Max Linear Speed**: 1000
+   - **Max Angular Speed**: 1000
 
 ---
 
-## Part 3: Add Interactive Elements
+## 🎯 Lab Tasks
 
-### Step 7: Create Moving Platform
+### Task 1: Physics 2D System Setup
 
-1. **Create Moving Platform**:
-   - GameObject → 2D Object → **Sprites** → **Square**
-   - Name: `MovingPlatform`
-   - Position: (3, -1, 0)
-   - Scale: (3, 0.5, 1)
-   - Color: Blue (#4444FF)
-   - Add Component: **Box Collider 2D**
-   - Add Component: **Rigidbody2D**
-   - Set Rigidbody2D → Body Type: **Kinematic**
+#### **1.1 Configure Physics Settings**
 
-2. **Add Platform Movement Script**:
-   - Create → C# Script → `MovingPlatform2D`
-   - Attach to MovingPlatform
+**Open Physics 2D Settings:**
+1. **Edit → Project Settings → Physics 2D**
+2. **Examine all settings** and understand their purpose
+3. **Configure for 2D platformer**:
+   - **Gravity**: X = 0, Y = -9.81
+   - **Default Material**: None (for now)
+   - **Velocity Iterations**: 8
+   - **Position Iterations**: 3
+   - **Velocity Threshold**: 1
+   - **Max Linear Speed**: 1000
+   - **Max Angular Speed**: 1000
+
+**Create Physics Materials:**
+1. **Right-click in Project** → **Create** → **Physics Material 2D**
+2. **Name it** "BouncyMaterial"
+3. **Configure properties**:
+   - **Friction**: 0.1
+   - **Bounciness**: 0.8
+4. **Create more materials**:
+   - **IceMaterial**: Friction = 0.05, Bounciness = 0.1
+   - **StickyMaterial**: Friction = 0.9, Bounciness = 0.1
+
+#### **1.2 Create Physics Objects**
+
+**Create Player with Physics:**
+1. **Right-click in Hierarchy** → **2D Object** → **Sprite** → **Square**
+2. **Rename** to "Player"
+3. **Add components**:
+   - **Rigidbody2D**: Body Type = Dynamic
+   - **BoxCollider2D**: Size = (1, 1, 1)
+   - **Sprite Renderer**: Color = Blue
+4. **Configure Rigidbody2D**:
+   - **Mass**: 1
+   - **Linear Drag**: 0
+   - **Angular Drag**: 0.05
+   - **Gravity Scale**: 1
+   - **Freeze Rotation**: Z = true
+
+**Create Ground Platform:**
+1. **Right-click in Hierarchy** → **2D Object** → **Sprite** → **Square**
+2. **Rename** to "Ground"
+3. **Add components**:
+   - **BoxCollider2D**: Size = (20, 1, 1)
+   - **Sprite Renderer**: Color = Green
+4. **Configure Transform**:
+   - **Position**: (0, -4, 0)
+   - **Scale**: (20, 1, 1)
+
+**Create Moving Platform:**
+1. **Right-click in Hierarchy** → **2D Object** → **Sprite** → **Square**
+2. **Rename** to "MovingPlatform"
+3. **Add components**:
+   - **Rigidbody2D**: Body Type = Kinematic
+   - **BoxCollider2D**: Size = (5, 1, 1)
+   - **Sprite Renderer**: Color = Yellow
+4. **Configure Transform**:
+   - **Position**: (0, 0, 0)
+   - **Scale**: (5, 1, 1)
+
+### Task 2: Basic Physics Movement
+
+#### **2.1 Create Physics-Based Player Controller**
+
+**Create Player Controller Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "PhysicsPlayerController"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
 
-public class MovingPlatform2D : MonoBehaviour
+public class PhysicsPlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 2f;
-    public float moveRange = 4f;
-    
-    private Vector3 startPosition;
-    private bool movingRight = true;
-    
-    void Start()
-    {
-        startPosition = transform.position;
-    }
-    
-    void Update()
-    {
-        // Calculate movement
-        float movement = moveSpeed * Time.deltaTime;
-        
-        if (movingRight)
-        {
-            transform.Translate(Vector2.right * movement);
-            
-            // Check if reached right boundary
-            if (transform.position.x >= startPosition.x + moveRange)
-            {
-                movingRight = false;
-            }
-        }
-        else
-        {
-            transform.Translate(Vector2.left * movement);
-            
-            // Check if reached left boundary
-            if (transform.position.x <= startPosition.x - moveRange)
-            {
-                movingRight = true;
-            }
-        }
-    }
-}
-```
-
-### Step 8: Create Collectible Item
-
-1. **Create Collectible**:
-   - GameObject → 2D Object → **Sprites** → **Circle**
-   - Name: `Collectible`
-   - Position: (0, 1, 0)
-   - Scale: (0.5, 0.5, 1)
-   - Color: Yellow (#FFFF44)
-
-2. **Setup Trigger Collider**:
-   - Add Component: **Circle Collider 2D**
-   - Check **Is Trigger** ✓
-   - Radius: 0.25
-
-3. **Add Collectible Script**:
-   - Create → C# Script → `Collectible2D`
-   - Attach to Collectible
-
-```csharp
-using UnityEngine;
-
-public class Collectible2D : MonoBehaviour
-{
-    [Header("Effects")]
-    public float rotationSpeed = 90f;
-    
-    void Update()
-    {
-        // Rotate the collectible
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-    }
-    
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name == "BouncingBall2D")
-        {
-            Debug.Log("Collectible picked up!");
-            
-            // Add force to ball on collection
-            Rigidbody2D ballRb = other.GetComponent<Rigidbody2D>();
-            if (ballRb != null)
-            {
-                ballRb.AddForce(Vector2.up * 300f);
-            }
-            
-            // Destroy collectible
-            Destroy(gameObject);
-        }
-    }
-}
-```
-
-**✅ Checkpoint**: Moving platform should move horizontally, collectible should spin and disappear when touched by ball
-
----
-
-## Part 4: Add Player Control and Advanced Physics
-
-### Step 9: Add Player Control to Ball
-
-1. **Create Ball Controller Script**:
-   - Create → C# Script → `BallController2D`
-   - Attach to BouncingBall2D
-
-```csharp
-using UnityEngine;
-
-public class BallController2D : MonoBehaviour
-{
-    [Header("Movement")]
-    public float moveForce = 10f;
-    public float jumpForce = 300f;
+    public float moveSpeed = 10f;
+    public float jumpForce = 15f;
     public float maxSpeed = 8f;
     
-    [Header("Ground Check")]
-    public LayerMask groundLayerMask = 1;
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
+    [Header("Physics Settings")]
+    public float groundCheckDistance = 0.1f;
+    public LayerMask groundLayer = 1;
     
-    private Rigidbody2D rb2D;
-    private bool isGrounded = false;
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private float horizontalInput;
     
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+    
+    void Update()
+    {
+        // Get input
+        horizontalInput = Input.GetAxis("Horizontal");
         
-        // Create ground check point
-        if (groundCheck == null)
+        // Jump input
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            GameObject groundCheckObj = new GameObject("GroundCheck");
-            groundCheckObj.transform.SetParent(transform);
-            groundCheckObj.transform.localPosition = Vector3.down * 0.5f;
-            groundCheck = groundCheckObj.transform;
+            Jump();
         }
+        
+        // Check if grounded
+        CheckGrounded();
+    }
+    
+    void FixedUpdate()
+    {
+        // Apply horizontal movement
+        if (horizontalInput != 0)
+        {
+            rb.AddForce(Vector2.right * horizontalInput * moveSpeed);
+        }
+        
+        // Limit horizontal speed
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+        {
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+        }
+    }
+    
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        Debug.Log("Jump!");
+    }
+    
+    void CheckGrounded()
+    {
+        // Raycast to check for ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
+        isGrounded = hit.collider != null;
+        
+        // Visual debug
+        Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
+    }
+}
+```
+
+**Test Basic Movement:**
+1. **Attach script** to Player GameObject
+2. **Click Play** and test movement
+3. **Use A/D keys** for horizontal movement
+4. **Use Space** for jumping
+5. **Check Console** for debug messages
+
+#### **2.2 Improve Movement with Physics Materials**
+
+**Apply Materials to Objects:**
+1. **Select Player** in Hierarchy
+2. **In BoxCollider2D**, assign **BouncyMaterial**
+3. **Test movement** and observe bouncy behavior
+4. **Change to IceMaterial** and test sliding
+5. **Change to StickyMaterial** and test friction
+
+**Create Material Tester Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "MaterialTester"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class MaterialTester : MonoBehaviour
+{
+    [Header("Material Testing")]
+    public PhysicsMaterial2D bouncyMaterial;
+    public PhysicsMaterial2D iceMaterial;
+    public PhysicsMaterial2D stickyMaterial;
+    
+    private BoxCollider2D boxCollider;
+    
+    void Start()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+    
+    void Update()
+    {
+        // Switch materials with number keys
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            boxCollider.sharedMaterial = bouncyMaterial;
+            Debug.Log("Switched to Bouncy Material");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            boxCollider.sharedMaterial = iceMaterial;
+            Debug.Log("Switched to Ice Material");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            boxCollider.sharedMaterial = stickyMaterial;
+            Debug.Log("Switched to Sticky Material");
+        }
+    }
+}
+```
+
+**Test Material Effects:**
+1. **Attach MaterialTester script** to Player
+2. **Assign materials** in Inspector
+3. **Test with number keys** (1, 2, 3)
+4. **Observe different** physics behaviors
+
+### Task 3: Advanced Jump Mechanics
+
+#### **3.1 Implement Coyote Time**
+
+**Create Advanced Jump Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "AdvancedJumpController"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class AdvancedJumpController : MonoBehaviour
+{
+    [Header("Jump Settings")]
+    public float jumpForce = 15f;
+    public float jumpTime = 0.2f;
+    public float coyoteTime = 0.1f;
+    public float jumpBufferTime = 0.1f;
+    
+    [Header("Physics Settings")]
+    public float groundCheckDistance = 0.1f;
+    public LayerMask groundLayer = 1;
+    
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private bool wasGrounded;
+    private float coyoteTimeCounter;
+    private float jumpBufferCounter;
+    private float jumpTimeCounter;
+    private bool isJumping;
+    
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
     
     void Update()
     {
         // Check if grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayerMask);
+        CheckGrounded();
         
-        // Handle input
-        HandleMovement();
-        HandleJump();
-    }
-    
-    void HandleMovement()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        
-        // Apply horizontal force
-        Vector2 force = Vector2.right * horizontal * moveForce;
-        rb2D.AddForce(force);
-        
-        // Limit speed
-        if (rb2D.velocity.x > maxSpeed)
-            rb2D.velocity = new Vector2(maxSpeed, rb2D.velocity.y);
-        else if (rb2D.velocity.x < -maxSpeed)
-            rb2D.velocity = new Vector2(-maxSpeed, rb2D.velocity.y);
-    }
-    
-    void HandleJump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // Handle coyote time
+        if (isGrounded)
         {
-            rb2D.AddForce(Vector2.up * jumpForce);
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        
+        // Handle jump buffer
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+        
+        // Jump if conditions are met
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        {
+            Jump();
+            jumpBufferCounter = 0f;
+        }
+        
+        // Variable jump height
+        if (Input.GetKey(KeyCode.Space) && isJumping)
+        {
+            if (jumpTimeCounter > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+        
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
         }
     }
     
-    void OnDrawGizmosSelected()
+    void Jump()
     {
-        // Draw ground check circle
-        if (groundCheck != null)
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        jumpTimeCounter = jumpTime;
+        isJumping = true;
+        coyoteTimeCounter = 0f;
+        
+        Debug.Log("Jump with coyote time!");
+    }
+    
+    void CheckGrounded()
+    {
+        wasGrounded = isGrounded;
+        
+        // Raycast to check for ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
+        isGrounded = hit.collider != null;
+        
+        // Visual debug
+        Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
+    }
+}
+```
+
+**Test Coyote Time:**
+1. **Attach script** to Player
+2. **Configure settings** in Inspector
+3. **Test jumping** at platform edges
+4. **Observe** coyote time behavior
+
+#### **3.2 Implement Jump Buffering**
+
+**Test Jump Buffering:**
+1. **Press Space** before landing on platform
+2. **Observe** jump happens automatically when landing
+3. **Adjust jumpBufferTime** for different feel
+4. **Test with different** timing scenarios
+
+#### **3.3 Implement Variable Jump Height**
+
+**Test Variable Jump:**
+1. **Hold Space** for maximum jump height
+2. **Release Space** early for shorter jump
+3. **Observe** different jump heights
+4. **Adjust jumpTime** for different feel
+
+### Task 4: Collision Detection vs Triggers
+
+#### **4.1 Create Collision Detection System**
+
+**Create Collision Handler Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "CollisionHandler"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class CollisionHandler : MonoBehaviour
+{
+    [Header("Collision Settings")]
+    public LayerMask enemyLayer = 2;
+    public LayerMask collectibleLayer = 4;
+    public LayerMask platformLayer = 1;
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"Collision with: {collision.gameObject.name}");
+        
+        // Check if colliding with enemy
+        if (IsInLayerMask(collision.gameObject.layer, enemyLayer))
         {
-            Gizmos.color = isGrounded ? Color.green : Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            Debug.Log("Hit enemy!");
+            // Handle enemy collision
+        }
+        
+        // Check if colliding with platform
+        if (IsInLayerMask(collision.gameObject.layer, platformLayer))
+        {
+            Debug.Log("Landed on platform!");
+            // Handle platform collision
+        }
+    }
+    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Called every frame while colliding
+        if (IsInLayerMask(collision.gameObject.layer, platformLayer))
+        {
+            // Handle continuous platform contact
+        }
+    }
+    
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log($"Stopped colliding with: {collision.gameObject.name}");
+        
+        if (IsInLayerMask(collision.gameObject.layer, platformLayer))
+        {
+            Debug.Log("Left platform!");
+        }
+    }
+    
+    private bool IsInLayerMask(int layer, LayerMask layerMask)
+    {
+        return layerMask == (layerMask | (1 << layer));
+    }
+}
+```
+
+#### **4.2 Create Trigger Detection System**
+
+**Create Trigger Handler Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "TriggerHandler"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class TriggerHandler : MonoBehaviour
+{
+    [Header("Trigger Settings")]
+    public LayerMask collectibleLayer = 4;
+    public LayerMask checkpointLayer = 8;
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log($"Trigger entered: {other.gameObject.name}");
+        
+        // Check if triggered collectible
+        if (IsInLayerMask(other.gameObject.layer, collectibleLayer))
+        {
+            Debug.Log("Collected item!");
+            // Handle collectible
+            Destroy(other.gameObject);
+        }
+        
+        // Check if triggered checkpoint
+        if (IsInLayerMask(other.gameObject.layer, checkpointLayer))
+        {
+            Debug.Log("Checkpoint reached!");
+            // Handle checkpoint
+        }
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        // Called every frame while in trigger
+        if (IsInLayerMask(other.gameObject.layer, collectibleLayer))
+        {
+            // Handle continuous trigger contact
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log($"Trigger exited: {other.gameObject.name}");
+    }
+    
+    private bool IsInLayerMask(int layer, LayerMask layerMask)
+    {
+        return layerMask == (layerMask | (1 << layer));
+    }
+}
+```
+
+#### **4.3 Test Collision vs Trigger**
+
+**Create Test Objects:**
+1. **Create Enemy** with Collider2D (not trigger)
+2. **Create Collectible** with Collider2D (is trigger)
+3. **Create Checkpoint** with Collider2D (is trigger)
+4. **Attach scripts** to Player
+5. **Test collision** and trigger events
+
+### Task 5: Physics Performance Optimization
+
+#### **5.1 Configure Collision Matrix**
+
+**Set Up Layers:**
+1. **Edit → Project Settings → Tags and Layers**
+2. **Create layers**:
+   - **Default**: 0
+   - **Ground**: 1
+   - **Enemy**: 2
+   - **Player**: 3
+   - **Collectible**: 4
+   - **Checkpoint**: 8
+
+**Configure Collision Matrix:**
+1. **Edit → Project Settings → Physics 2D**
+2. **Click "Layer Collision Matrix"**
+3. **Configure collisions**:
+   - **Player vs Ground**: ✓
+   - **Player vs Enemy**: ✓
+   - **Player vs Collectible**: ✓
+   - **Enemy vs Ground**: ✓
+   - **Enemy vs Enemy**: ✗
+   - **Collectible vs Ground**: ✗
+
+#### **5.2 Optimize Physics Settings**
+
+**Configure Physics 2D Settings:**
+1. **Edit → Project Settings → Physics 2D**
+2. **Optimize settings**:
+   - **Velocity Iterations**: 6 (reduced from 8)
+   - **Position Iterations**: 2 (reduced from 3)
+   - **Velocity Threshold**: 1
+   - **Max Linear Speed**: 1000
+   - **Max Angular Speed**: 1000
+
+**Create Performance Monitor Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "PhysicsPerformanceMonitor"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class PhysicsPerformanceMonitor : MonoBehaviour
+{
+    [Header("Performance Monitoring")]
+    public bool showFPS = true;
+    public bool showPhysicsInfo = true;
+    
+    private float deltaTime = 0.0f;
+    private int frameCount = 0;
+    private float fps;
+    
+    void Update()
+    {
+        // Calculate FPS
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        fps = 1.0f / deltaTime;
+        
+        frameCount++;
+        
+        // Display FPS
+        if (showFPS && frameCount % 60 == 0)
+        {
+            Debug.Log($"FPS: {fps:F1}");
+        }
+        
+        // Display physics info
+        if (showPhysicsInfo && frameCount % 60 == 0)
+        {
+            int rigidbodyCount = FindObjectsOfType<Rigidbody2D>().Length;
+            int colliderCount = FindObjectsOfType<Collider2D>().Length;
+            
+            Debug.Log($"Rigidbodies: {rigidbodyCount}, Colliders: {colliderCount}");
+        }
+    }
+    
+    void OnGUI()
+    {
+        if (showFPS)
+        {
+            GUI.Label(new Rect(10, 10, 100, 20), $"FPS: {fps:F1}");
         }
     }
 }
 ```
 
-### Step 10: Create Hazard with Collision Detection
+#### **5.3 Test Performance**
 
-1. **Create Hazard**:
-   - GameObject → 2D Object → **Sprites** → **Square**
-   - Name: `Hazard`
-   - Position: (-3, -3, 0)
-   - Scale: (1, 1, 1)
-   - Color: Red (#FF0000)
-   - Add Component: **Box Collider 2D**
+**Monitor Performance:**
+1. **Attach PhysicsPerformanceMonitor** to any GameObject
+2. **Run game** and observe FPS
+3. **Check Console** for physics info
+4. **Adjust settings** if performance is poor
 
-2. **Add Hazard Script**:
-   - Create → C# Script → `Hazard2D`
-   - Attach to Hazard
+### Task 6: Advanced Physics Features
+
+#### **6.1 Create Moving Platform**
+
+**Create Moving Platform Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "MovingPlatform"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
 
-public class Hazard2D : MonoBehaviour
+public class MovingPlatform : MonoBehaviour
 {
-    [Header("Effects")]
-    public float pushForce = 500f;
+    [Header("Movement Settings")]
+    public Transform[] waypoints;
+    public float moveSpeed = 2f;
+    public float waitTime = 1f;
     
-    void OnCollisionEnter2D(Collision2D collision)
+    private int currentWaypoint = 0;
+    private float waitCounter = 0f;
+    private bool isWaiting = false;
+    
+    void Start()
     {
-        if (collision.gameObject.name == "BouncingBall2D")
+        if (waypoints.Length == 0)
         {
-            Debug.Log("Player hit hazard!");
-            
-            // Push ball away
-            Rigidbody2D ballRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (ballRb != null)
+            Debug.LogError("No waypoints assigned to MovingPlatform!");
+        }
+    }
+    
+    void Update()
+    {
+        if (waypoints.Length == 0) return;
+        
+        if (isWaiting)
+        {
+            waitCounter += Time.deltaTime;
+            if (waitCounter >= waitTime)
             {
-                Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
-                ballRb.AddForce(pushDirection * pushForce);
+                isWaiting = false;
+                waitCounter = 0f;
+                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+            }
+        }
+        else
+        {
+            // Move towards current waypoint
+            Vector2 direction = (waypoints[currentWaypoint].position - transform.position).normalized;
+            transform.Translate(direction * moveSpeed * Time.deltaTime);
+            
+            // Check if reached waypoint
+            if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) < 0.1f)
+            {
+                isWaiting = true;
+            }
+        }
+    }
+    
+    void OnDrawGizmos()
+    {
+        if (waypoints != null && waypoints.Length > 0)
+        {
+            // Draw waypoint connections
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                if (waypoints[i] != null)
+                {
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawWireSphere(waypoints[i].position, 0.5f);
+                    
+                    if (i < waypoints.Length - 1 && waypoints[i + 1] != null)
+                    {
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
+                    }
+                    else if (i == waypoints.Length - 1 && waypoints[0] != null)
+                    {
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(waypoints[i].position, waypoints[0].position);
+                    }
+                }
             }
         }
     }
 }
 ```
 
-**✅ Checkpoint**: Player can control ball with arrow keys and spacebar, hazard pushes ball away
+**Setup Moving Platform:**
+1. **Create waypoints** (empty GameObjects)
+2. **Position waypoints** at different locations
+3. **Attach MovingPlatform script** to platform
+4. **Assign waypoints** in Inspector
+5. **Test platform movement**
+
+#### **6.2 Create One-Way Platform**
+
+**Create One-Way Platform Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "OneWayPlatform"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+
+public class OneWayPlatform : MonoBehaviour
+{
+    [Header("One-Way Platform Settings")]
+    public float disableTime = 0.5f;
+    
+    private Collider2D platformCollider;
+    private float disableTimer = 0f;
+    
+    void Start()
+    {
+        platformCollider = GetComponent<Collider2D>();
+    }
+    
+    void Update()
+    {
+        // Re-enable collider after disable time
+        if (disableTimer > 0f)
+        {
+            disableTimer -= Time.deltaTime;
+            if (disableTimer <= 0f)
+            {
+                platformCollider.enabled = true;
+            }
+        }
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check if player is above platform
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            float playerBottom = collision.gameObject.transform.position.y - 0.5f;
+            float platformTop = transform.position.y + 0.5f;
+            
+            if (playerBottom > platformTop)
+            {
+                // Player is above platform, allow collision
+                return;
+            }
+            else
+            {
+                // Player is below platform, disable collision temporarily
+                platformCollider.enabled = false;
+                disableTimer = disableTime;
+            }
+        }
+    }
+}
+```
+
+**Test One-Way Platform:**
+1. **Create platform** with OneWayPlatform script
+2. **Test jumping** onto platform from above
+3. **Test jumping** through platform from below
+4. **Observe** one-way behavior
 
 ---
 
-## Part 5: Testing and Optimization
+## ✅ Completion Checklist
 
-### Step 11: Test Physics Interactions
+### **Physics 2D System Setup**
+- [ ] **Configured Physics 2D settings** for optimal 2D gameplay
+- [ ] **Created physics materials** with different properties
+- [ ] **Set up physics objects** with proper components
+- [ ] **Tested basic physics** behavior
 
-**Test Checklist**:
-- [ ] Ball falls and bounces realistically
-- [ ] Ball responds to player input (arrow keys + space)
-- [ ] Moving platform carries the ball
-- [ ] Collectible disappears when touched and adds upward force
-- [ ] Hazard pushes ball away on contact
-- [ ] Ground check works correctly for jumping
+### **Physics-Based Movement**
+- [ ] **Implemented physics-based** player controller
+- [ ] **Applied physics materials** to objects
+- [ ] **Tested material effects** on movement
+- [ ] **Optimized movement** for responsiveness
 
-### Step 12: Fine-tune Physics Settings
+### **Advanced Jump Mechanics**
+- [ ] **Implemented coyote time** for edge jumping
+- [ ] **Added jump buffering** for responsive jumping
+- [ ] **Created variable jump height** system
+- [ ] **Tested advanced jump** mechanics
 
-**Recommended Tweaks**:
-- Adjust `moveForce` in BallController2D for responsive movement
-- Modify `bounciness` in physics materials for desired bounce behavior
-- Change `gravity scale` on Rigidbody2D for different game feel
-- Adjust `maxSpeed` to prevent unrealistic movement
+### **Collision Detection**
+- [ ] **Set up collision detection** system
+- [ ] **Implemented trigger detection** for collectibles
+- [ ] **Configured collision matrix** for performance
+- [ ] **Tested collision vs trigger** events
 
-### Step 13: Visual Polish
+### **Performance Optimization**
+- [ ] **Optimized physics settings** for performance
+- [ ] **Configured collision matrix** to reduce unnecessary collisions
+- [ ] **Monitored performance** with profiling tools
+- [ ] **Tested performance** under load
 
-1. **Add Particle Effects** (Optional):
-   - GameObject → Effects → **Particle System**
-   - Position on collectible pickup location
-   - Trigger via script when collected
-
-2. **Add Sound Effects** (Optional):
-   - Import audio clips
-   - Use `AudioSource.PlayOneShot()` in collision scripts
-
-**✅ Final Checkpoint**: Complete 2D physics game with player control, moving platforms, collectibles, and hazards
+### **Advanced Physics Features**
+- [ ] **Created moving platform** system
+- [ ] **Implemented one-way platform** behavior
+- [ ] **Tested advanced physics** features
+- [ ] **Optimized physics** for gameplay
 
 ---
 
-## Learning Objectives Review
+## 🚨 Troubleshooting
 
-After completing this lab, you should understand:
+### **Common Issues and Solutions**
 
-1. **2D Physics Fundamentals**:
-   - Rigidbody2D vs Rigidbody (3D differences)
-   - Collider2D types and their applications
-   - Physics Materials 2D for surface properties
+#### **Physics not working correctly**
+**Possible causes:**
+- Incorrect physics settings
+- Missing Rigidbody2D components
+- Wrong collider setup
 
-2. **Collision vs Trigger**:
-   - OnCollisionEnter2D for solid object interactions
-   - OnTriggerEnter2D for detection zones
-   - When to use each approach
+**Solutions:**
+1. Check Physics 2D settings in Project Settings
+2. Verify all objects have required components
+3. Ensure colliders are properly configured
+4. Test with simple physics objects first
 
-3. **Force Application**:
-   - AddForce() for physics-based movement
-   - Different ForceMode2D options
-   - Velocity manipulation vs force application
+#### **Jump mechanics feel unresponsive**
+**Possible causes:**
+- Input timing issues
+- Physics settings too slow
+- Jump force too low
 
-4. **Ground Detection**:
-   - Using OverlapCircle for ground checking
-   - LayerMask for selective collision detection
-   - Gizmos for debugging collision areas
+**Solutions:**
+1. Adjust jump force and timing
+2. Implement coyote time and jump buffering
+3. Test with different physics settings
+4. Use FixedUpdate for physics calculations
 
-**Next Steps**: Use these 2D physics concepts in Lesson 4 for player character controller!
+#### **Performance issues**
+**Possible causes:**
+- Too many physics objects
+- Inefficient collision matrix
+- High physics iterations
+
+**Solutions:**
+1. Reduce physics iterations
+2. Optimize collision matrix
+3. Use static colliders where possible
+4. Monitor performance with profiler
+
+#### **Collision detection not working**
+**Possible causes:**
+- Wrong layer setup
+- Collision matrix misconfigured
+- Missing collision events
+
+**Solutions:**
+1. Check layer assignments
+2. Verify collision matrix settings
+3. Ensure collision events are implemented
+4. Test with simple collision scenarios
+
+---
+
+## 📚 Next Steps
+
+### **Immediate Next Steps**
+1. **Complete all tasks** in this lab
+2. **Test your physics system** thoroughly
+3. **Experiment with different** physics materials
+4. **Practice with advanced** jump mechanics
+
+### **Prepare for Next Lesson**
+1. **Review physics concepts** and implementation
+2. **Understand collision detection** vs triggers
+3. **Practice with physics** optimization
+4. **Read Lesson 4 materials** in advance
+
+### **Further Learning**
+1. **Unity Learn tutorials** for additional physics practice
+2. **Unity documentation** for deeper understanding
+3. **Community forums** for questions and help
+4. **Practice projects** to reinforce learning
+
+---
+
+## 💡 Pro Tips
+
+### **Physics Best Practices**
+- **Use appropriate physics materials** for different surfaces
+- **Implement coyote time** for better jump feel
+- **Optimize collision matrix** for performance
+- **Test physics** with different frame rates
+
+### **Performance Tips**
+- **Use static colliders** for immovable objects
+- **Limit physics iterations** for better performance
+- **Monitor performance** regularly with profiler
+- **Optimize collision matrix** to reduce unnecessary collisions
+
+### **Gameplay Tips**
+- **Tune physics values** for responsive gameplay
+- **Test with different** input devices
+- **Implement feedback** for physics interactions
+- **Balance realism** with fun gameplay
+
+---
+
+**🎉 Congratulations!** You've completed the physics lab and learned how to create responsive 2D physics gameplay in Unity. This knowledge will be essential for creating engaging platformer mechanics and interactive game worlds!

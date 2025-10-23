@@ -1,638 +1,1527 @@
-# Lab 5: Create Complete Game with UI System and Build
+# Lab 5: UI & Complete Game - Enhanced Instructions
 
-## Objectives
+## 🎯 Learning Objectives
 
-- Create complete UI system (Menu, HUD, Game Over)
-- Implement game logic and scoring
-- Scene management system
-- Build game to executable file
+- Master Unity's UI System (uGUI) and Canvas setup
+- Create comprehensive menu systems and HUD
+- Implement game state management and scene transitions
+- Build complete game with audio, save system, and deployment
+- Learn professional game development workflows
+
+## 🎮 Playtest Criteria
+
+**Complete when you can:**
+- [ ] Create responsive UI systems with proper scaling
+- [ ] Implement complete menu navigation and game flow
+- [ ] Set up audio system with music and sound effects
+- [ ] Create save/load system for game progress
+- [ ] Build and deploy game for target platform
 
 ---
 
-## Part 1: Setup Game Structure
+## 🚀 Quick Start
 
-### Step 1: Create Multiple Scenes
+### Step 1: Prepare Your Project
 
-1. **File** → **Build Settings**
-2. **Add Open Scenes** (current scene)
-3. **Create new scenes**:
+1. **Open your Unity project** from previous lessons
+2. **Create new scene**: `File → New Scene → 2D`
+3. **Save scene** as "CompleteGameLab"
+4. **Create folder structure**:
+   - `Assets/UI/`
+   - `Assets/Audio/`
+   - `Assets/Scripts/UI/`
+   - `Assets/Scripts/Game/`
 
-   **Main Menu Scene**:
+### Step 2: Import Required Packages
 
-   - File → New Scene
-   - Save As: `MainMenu`
-   - Add to Build Settings
+1. **Window → Package Manager**
+2. **Install packages**:
+   - **TextMeshPro** (if not already installed)
+   - **Input System** (if not already installed)
+   - **Cinemachine** (if not already installed)
 
-   **Game Scene**:
+---
 
-   - Use existing scene with player controller
-   - Save As: `GameScene`
-   - Add to Build Settings
+## 🎯 Lab Tasks
 
-   **Game Over Scene**:
+### Task 1: UI System Setup
 
-   - File → New Scene
-   - Save As: `GameOver`
-   - Add to Build Settings
+#### **1.1 Create Canvas and UI Structure**
 
-### Step 2: Create Scene Manager Script
+**Create Main Canvas:**
+1. **Right-click in Hierarchy** → **UI** → **Canvas**
+2. **Rename** to "MainCanvas"
+3. **Configure Canvas**:
+   - **Render Mode**: Screen Space - Overlay
+   - **UI Scale Mode**: Scale With Screen Size
+   - **Reference Resolution**: 1920 x 1080
+   - **Screen Match Mode**: Match Width Or Height
+   - **Match**: 0.5
 
-1. **Assets/Scripts** → Create → C# Script → `SceneController`
-2. **Code**:
+**Create UI Panels:**
+1. **Right-click MainCanvas** → **UI** → **Panel**
+2. **Rename** to "MainMenuPanel"
+3. **Create more panels**:
+   - **GameplayPanel**
+   - **PauseMenuPanel**
+   - **GameOverPanel**
+   - **SettingsPanel**
+
+#### **1.2 Create Main Menu UI**
+
+**Create Main Menu Elements:**
+1. **Select MainMenuPanel** in Hierarchy
+2. **Add UI elements**:
+   - **Text (TextMeshPro)**: "Game Title"
+   - **Button**: "Play Button"
+   - **Button**: "Settings Button"
+   - **Button**: "Quit Button"
+
+**Configure Main Menu:**
+1. **Select "Game Title"** text
+2. **In Inspector**, configure:
+   - **Text**: "My Awesome Game"
+   - **Font Size**: 48
+   - **Alignment**: Center
+   - **Color**: White
+3. **Position** at top center of screen
+
+**Configure Buttons:**
+1. **Select "Play Button"**
+2. **In Inspector**, configure:
+   - **Text**: "Play"
+   - **Font Size**: 24
+   - **Color**: White
+3. **Position** in center of screen
+4. **Repeat** for other buttons
+
+#### **1.3 Create Gameplay HUD**
+
+**Create HUD Elements:**
+1. **Select GameplayPanel** in Hierarchy
+2. **Add UI elements**:
+   - **Text (TextMeshPro)**: "ScoreText"
+   - **Text (TextMeshPro)**: "LivesText"
+   - **Text (TextMeshPro)**: "TimeText"
+   - **Image**: "HealthBar"
+   - **Image**: "HealthBarFill"
+
+**Configure HUD:**
+1. **Select "ScoreText"**
+2. **In Inspector**, configure:
+   - **Text**: "Score: 0"
+   - **Font Size**: 24
+   - **Color**: White
+3. **Position** at top left
+4. **Repeat** for other HUD elements
+
+**Create Health Bar:**
+1. **Select "HealthBar"** image
+2. **In Inspector**, configure:
+   - **Image Type**: Filled
+   - **Fill Method**: Horizontal
+   - **Fill Amount**: 1
+   - **Color**: Red
+3. **Position** at top center
+
+### Task 2: Menu System Implementation
+
+#### **2.1 Create Menu Manager Script**
+
+**Create Menu Manager:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "MenuManager"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    [Header("Scene Names")]
-    public static string MAIN_MENU = "MainMenu";
-    public static string GAME_SCENE = "GameScene";
-    public static string GAME_OVER = "GameOver";
-
-    [Header("Transition Settings")]
-    public float transitionDelay = 0.1f;
-
-    // Static methods for easy access from anywhere
-    public static void LoadMainMenu()
+    [Header("Menu Panels")]
+    public GameObject mainMenuPanel;
+    public GameObject gameplayPanel;
+    public GameObject pauseMenuPanel;
+    public GameObject gameOverPanel;
+    public GameObject settingsPanel;
+    
+    [Header("UI Elements")]
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI timeText;
+    public Slider healthBar;
+    
+    [Header("Game Settings")]
+    public int startingLives = 3;
+    public float gameTime = 60f;
+    
+    private int currentScore = 0;
+    private int currentLives;
+    private float currentTime;
+    private bool isPaused = false;
+    
+    void Start()
     {
-        SceneManager.LoadScene(MAIN_MENU);
+        currentLives = startingLives;
+        currentTime = gameTime;
+        ShowMainMenu();
     }
-
-    public static void LoadGameScene()
+    
+    void Update()
     {
-        SceneManager.LoadScene(GAME_SCENE);
+        // Handle pause input
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+        
+        // Update game timer
+        if (currentTime > 0 && !isPaused)
+        {
+            currentTime -= Time.deltaTime;
+            UpdateTimeDisplay();
+            
+            if (currentTime <= 0)
+            {
+                GameOver();
+            }
+        }
     }
-
-    public static void LoadGameOver()
+    
+    public void ShowMainMenu()
     {
-        SceneManager.LoadScene(GAME_OVER);
+        HideAllPanels();
+        mainMenuPanel.SetActive(true);
+        Time.timeScale = 1f;
+        isPaused = false;
     }
-
-    public static void RestartGame()
+    
+    public void StartGame()
     {
-        SceneManager.LoadScene(GAME_SCENE);
+        HideAllPanels();
+        gameplayPanel.SetActive(true);
+        currentScore = 0;
+        currentLives = startingLives;
+        currentTime = gameTime;
+        UpdateUI();
+        Time.timeScale = 1f;
+        isPaused = false;
     }
-
-    public static void QuitGame()
+    
+    public void PauseGame()
+    {
+        pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+    
+    public void ResumeGame()
+    {
+        pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+    
+    public void ShowSettings()
+    {
+        HideAllPanels();
+        settingsPanel.SetActive(true);
+    }
+    
+    public void GameOver()
+    {
+        HideAllPanels();
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+    
+    public void QuitGame()
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+        
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
-
-    // Instance methods for UI button assignment
-    public void OnPlayButtonClicked()
+    
+    public void AddScore(int points)
     {
-        Invoke(nameof(DelayedLoadGame), transitionDelay);
+        currentScore += points;
+        UpdateScoreDisplay();
     }
-
-    public void OnRestartButtonClicked()
+    
+    public void LoseLife()
     {
-        Invoke(nameof(DelayedRestartGame), transitionDelay);
+        currentLives--;
+        UpdateLivesDisplay();
+        
+        if (currentLives <= 0)
+        {
+            GameOver();
+        }
     }
-
-    public void OnMainMenuButtonClicked()
+    
+    public void UpdateHealth(float healthPercentage)
     {
-        Invoke(nameof(DelayedLoadMainMenu), transitionDelay);
+        if (healthBar != null)
+        {
+            healthBar.value = healthPercentage;
+        }
     }
-
-    public void OnQuitButtonClicked()
+    
+    void HideAllPanels()
     {
-        Invoke(nameof(DelayedQuitGame), transitionDelay);
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+        if (gameplayPanel != null) gameplayPanel.SetActive(false);
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
     }
-
-    // Delayed loading methods
-    void DelayedLoadGame() { LoadGameScene(); }
-    void DelayedRestartGame() { RestartGame(); }
-    void DelayedLoadMainMenu() { LoadMainMenu(); }
-    void DelayedQuitGame() { QuitGame(); }
+    
+    void UpdateUI()
+    {
+        UpdateScoreDisplay();
+        UpdateLivesDisplay();
+        UpdateTimeDisplay();
+    }
+    
+    void UpdateScoreDisplay()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"Score: {currentScore}";
+        }
+    }
+    
+    void UpdateLivesDisplay()
+    {
+        if (livesText != null)
+        {
+            livesText.text = $"Lives: {currentLives}";
+        }
+    }
+    
+    void UpdateTimeDisplay()
+    {
+        if (timeText != null)
+        {
+            int minutes = Mathf.FloorToInt(currentTime / 60);
+            int seconds = Mathf.FloorToInt(currentTime % 60);
+            timeText.text = $"Time: {minutes:00}:{seconds:00}";
+        }
+    }
 }
 ```
 
-### Step 3: Create Game Manager
+#### **2.2 Create Button Event Handlers**
 
-1. **Create** → C# Script → `GameManager`
-2. **Code**:
+**Create Button Handler Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "ButtonHandler"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class ButtonHandler : MonoBehaviour
 {
-    [Header("Game Settings")]
-    public float gameTime = 60f; // Game duration in seconds
-    public int winScore = 10;
+    [Header("Button References")]
+    public Button playButton;
+    public Button settingsButton;
+    public Button quitButton;
+    public Button resumeButton;
+    public Button mainMenuButton;
+    
+    private MenuManager menuManager;
+    
+    void Start()
+    {
+        menuManager = FindObjectOfType<MenuManager>();
+        SetupButtonEvents();
+    }
+    
+    void SetupButtonEvents()
+    {
+        if (playButton != null)
+        {
+            playButton.onClick.AddListener(() => menuManager.StartGame());
+        }
+        
+        if (settingsButton != null)
+        {
+            settingsButton.onClick.AddListener(() => menuManager.ShowSettings());
+        }
+        
+        if (quitButton != null)
+        {
+            quitButton.onClick.AddListener(() => menuManager.QuitGame());
+        }
+        
+        if (resumeButton != null)
+        {
+            resumeButton.onClick.AddListener(() => menuManager.ResumeGame());
+        }
+        
+        if (mainMenuButton != null)
+        {
+            mainMenuButton.onClick.AddListener(() => menuManager.ShowMainMenu());
+        }
+    }
+}
+```
 
-    [Header("UI References")]
-    public Text scoreText;
-    public Text timeText;
-    public Text gameOverText;
-    public GameObject gameOverPanel;
+#### **2.3 Test Menu System**
 
+**Setup Menu System:**
+1. **Attach MenuManager script** to empty GameObject
+2. **Assign UI panels** in Inspector
+3. **Attach ButtonHandler script** to same GameObject
+4. **Assign buttons** in Inspector
+5. **Test menu navigation** with buttons
+
+### Task 3: Game State Management
+
+#### **3.1 Create Game State Manager**
+
+**Create Game State Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "GameStateManager"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameStateManager : MonoBehaviour
+{
     [Header("Game State")]
-    public bool gameActive = true;
-
-    // Private variables
+    public GameState currentState = GameState.MainMenu;
+    
+    [Header("Game Settings")]
+    public float gameTime = 60f;
+    public int maxLives = 3;
+    public int targetScore = 1000;
+    
+    [Header("Events")]
+    public System.Action<GameState> OnStateChanged;
+    public System.Action<int> OnScoreChanged;
+    public System.Action<int> OnLivesChanged;
+    public System.Action<float> OnTimeChanged;
+    
     private int currentScore = 0;
-    private float remainingTime;
-    private bool gameWon = false;
+    private int currentLives;
+    private float currentTime;
+    private bool isPaused = false;
+    
+    public enum GameState
+    {
+        MainMenu,
+        Playing,
+        Paused,
+        GameOver,
+        Victory
+    }
+    
+    void Start()
+    {
+        currentLives = maxLives;
+        currentTime = gameTime;
+        ChangeState(GameState.MainMenu);
+    }
+    
+    void Update()
+    {
+        if (currentState == GameState.Playing)
+        {
+            UpdateGameTime();
+            CheckWinCondition();
+        }
+        
+        HandleInput();
+    }
+    
+    void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentState == GameState.Playing)
+            {
+                PauseGame();
+            }
+            else if (currentState == GameState.Paused)
+            {
+                ResumeGame();
+            }
+        }
+    }
+    
+    public void ChangeState(GameState newState)
+    {
+        currentState = newState;
+        OnStateChanged?.Invoke(currentState);
+        
+        Debug.Log($"Game state changed to: {currentState}");
+    }
+    
+    public void StartGame()
+    {
+        currentScore = 0;
+        currentLives = maxLives;
+        currentTime = gameTime;
+        isPaused = false;
+        
+        OnScoreChanged?.Invoke(currentScore);
+        OnLivesChanged?.Invoke(currentLives);
+        OnTimeChanged?.Invoke(currentTime);
+        
+        ChangeState(GameState.Playing);
+    }
+    
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        ChangeState(GameState.Paused);
+    }
+    
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        ChangeState(GameState.Playing);
+    }
+    
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        ChangeState(GameState.GameOver);
+    }
+    
+    public void Victory()
+    {
+        Time.timeScale = 0f;
+        ChangeState(GameState.Victory);
+    }
+    
+    public void AddScore(int points)
+    {
+        currentScore += points;
+        OnScoreChanged?.Invoke(currentScore);
+        
+        Debug.Log($"Score added: {points}. Total: {currentScore}");
+    }
+    
+    public void LoseLife()
+    {
+        currentLives--;
+        OnLivesChanged?.Invoke(currentLives);
+        
+        if (currentLives <= 0)
+        {
+            GameOver();
+        }
+        
+        Debug.Log($"Life lost. Remaining: {currentLives}");
+    }
+    
+    void UpdateGameTime()
+    {
+        if (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            OnTimeChanged?.Invoke(currentTime);
+            
+            if (currentTime <= 0)
+            {
+                GameOver();
+            }
+        }
+    }
+    
+    void CheckWinCondition()
+    {
+        if (currentScore >= targetScore)
+        {
+            Victory();
+        }
+    }
+    
+    public int GetScore() => currentScore;
+    public int GetLives() => currentLives;
+    public float GetTime() => currentTime;
+    public bool IsPaused() => isPaused;
+}
+```
 
-    // Static reference for easy access
-    public static GameManager Instance;
+#### **3.2 Create Scene Transition Manager**
 
+**Create Scene Transition Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "SceneTransitionManager"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+
+public class SceneTransitionManager : MonoBehaviour
+{
+    [Header("Transition Settings")]
+    public float fadeTime = 1f;
+    public CanvasGroup fadeCanvasGroup;
+    
+    [Header("Scene Names")]
+    public string mainMenuScene = "MainMenu";
+    public string gameplayScene = "Gameplay";
+    public string settingsScene = "Settings";
+    
+    private bool isTransitioning = false;
+    
+    void Start()
+    {
+        if (fadeCanvasGroup == null)
+        {
+            CreateFadeCanvas();
+        }
+    }
+    
+    public void LoadScene(string sceneName)
+    {
+        if (!isTransitioning)
+        {
+            StartCoroutine(TransitionToScene(sceneName));
+        }
+    }
+    
+    public void LoadMainMenu()
+    {
+        LoadScene(mainMenuScene);
+    }
+    
+    public void LoadGameplay()
+    {
+        LoadScene(gameplayScene);
+    }
+    
+    public void LoadSettings()
+    {
+        LoadScene(settingsScene);
+    }
+    
+    IEnumerator TransitionToScene(string sceneName)
+    {
+        isTransitioning = true;
+        
+        // Fade out
+        yield return StartCoroutine(FadeOut());
+        
+        // Load scene
+        SceneManager.LoadScene(sceneName);
+        
+        // Fade in
+        yield return StartCoroutine(FadeIn());
+        
+        isTransitioning = false;
+    }
+    
+    IEnumerator FadeOut()
+    {
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeTime);
+            yield return null;
+        }
+        
+        fadeCanvasGroup.alpha = 1f;
+    }
+    
+    IEnumerator FadeIn()
+    {
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeTime);
+            yield return null;
+        }
+        
+        fadeCanvasGroup.alpha = 0f;
+    }
+    
+    void CreateFadeCanvas()
+    {
+        // Create fade canvas
+        GameObject fadeCanvas = new GameObject("FadeCanvas");
+        fadeCanvas.AddComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+        fadeCanvas.AddComponent<CanvasGroup>();
+        
+        // Create fade image
+        GameObject fadeImage = new GameObject("FadeImage");
+        fadeImage.transform.SetParent(fadeCanvas.transform);
+        fadeImage.AddComponent<UnityEngine.UI.Image>().color = Color.black;
+        
+        // Set up canvas group
+        fadeCanvasGroup = fadeCanvas.GetComponent<CanvasGroup>();
+        fadeCanvasGroup.alpha = 0f;
+    }
+}
+```
+
+### Task 4: Audio System Implementation
+
+#### **4.1 Create Audio Manager**
+
+**Create Audio Manager Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "AudioManager"
+3. **Replace content** with:
+
+```csharp
+using UnityEngine;
+using System.Collections;
+
+public class AudioManager : MonoBehaviour
+{
+    [Header("Audio Sources")]
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioSource ambientSource;
+    
+    [Header("Audio Clips")]
+    public AudioClip backgroundMusic;
+    public AudioClip jumpSound;
+    public AudioClip collectSound;
+    public AudioClip gameOverSound;
+    public AudioClip victorySound;
+    
+    [Header("Volume Settings")]
+    [Range(0f, 1f)]
+    public float masterVolume = 1f;
+    [Range(0f, 1f)]
+    public float musicVolume = 0.7f;
+    [Range(0f, 1f)]
+    public float sfxVolume = 1f;
+    
+    private static AudioManager instance;
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<AudioManager>();
+            }
+            return instance;
+        }
+    }
+    
     void Awake()
     {
-        // Singleton pattern
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
+    
     void Start()
     {
-        remainingTime = gameTime;
-        UpdateUI();
-
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(false);
-        }
+        SetupAudioSources();
+        PlayBackgroundMusic();
     }
-
-    void Update()
+    
+    void SetupAudioSources()
     {
-        if (!gameActive) return;
-
-        // Update timer
-        remainingTime -= Time.deltaTime;
-
-        if (remainingTime <= 0)
+        if (musicSource == null)
         {
-            EndGame(false); // Time up
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.loop = true;
+            musicSource.volume = musicVolume;
         }
-
-        UpdateUI();
+        
+        if (sfxSource == null)
+        {
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.loop = false;
+            sfxSource.volume = sfxVolume;
+        }
+        
+        if (ambientSource == null)
+        {
+            ambientSource = gameObject.AddComponent<AudioSource>();
+            ambientSource.loop = true;
+            ambientSource.volume = 0.5f;
+        }
     }
-
-    public void AddScore(int points)
+    
+    public void PlayBackgroundMusic()
     {
-        if (!gameActive) return;
-
-        currentScore += points;
-        Debug.Log($"Score added: {points}. Total: {currentScore}");
-
-        // Check win condition
-        if (currentScore >= winScore)
+        if (backgroundMusic != null && musicSource != null)
         {
-            EndGame(true); // Player won
+            musicSource.clip = backgroundMusic;
+            musicSource.Play();
         }
     }
-
-    void EndGame(bool won)
+    
+    public void PlaySFX(AudioClip clip)
     {
-        gameActive = false;
-        gameWon = won;
-
-        // Show game over UI
-        if (gameOverPanel != null)
+        if (clip != null && sfxSource != null)
         {
-            gameOverPanel.SetActive(true);
+            sfxSource.PlayOneShot(clip);
         }
-
-        if (gameOverText != null)
-        {
-            gameOverText.text = won ? "YOU WON!" : "GAME OVER";
-            gameOverText.color = won ? Color.green : Color.red;
-        }
-
-        Debug.Log($"Game ended. Won: {won}, Final Score: {currentScore}");
     }
-
-    void UpdateUI()
+    
+    public void PlayJumpSound()
     {
-        if (scoreText != null)
+        PlaySFX(jumpSound);
+    }
+    
+    public void PlayCollectSound()
+    {
+        PlaySFX(collectSound);
+    }
+    
+    public void PlayGameOverSound()
+    {
+        PlaySFX(gameOverSound);
+    }
+    
+    public void PlayVictorySound()
+    {
+        PlaySFX(victorySound);
+    }
+    
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp01(volume);
+        AudioListener.volume = masterVolume;
+    }
+    
+    public void SetMusicVolume(float volume)
+    {
+        musicVolume = Mathf.Clamp01(volume);
+        if (musicSource != null)
         {
-            scoreText.text = $"Score: {currentScore}/{winScore}";
-        }
-
-        if (timeText != null)
-        {
-            timeText.text = $"Time: {Mathf.Max(0, remainingTime):F1}s";
+            musicSource.volume = musicVolume;
         }
     }
-
-    // Public getters
-    public int GetScore() { return currentScore; }
-    public float GetRemainingTime() { return remainingTime; }
-    public bool IsGameActive() { return gameActive; }
+    
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp01(volume);
+        if (sfxSource != null)
+        {
+            sfxSource.volume = sfxVolume;
+        }
+    }
+    
+    public void StopMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+        }
+    }
+    
+    public void PauseMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Pause();
+        }
+    }
+    
+    public void ResumeMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.UnPause();
+        }
+    }
 }
 ```
 
-**✅ Checkpoint**: Scene management and game manager setup
+#### **4.2 Create Audio Settings UI**
 
----
+**Create Audio Settings Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "AudioSettingsUI"
+3. **Replace content** with:
 
-## Part 2: Main Menu UI
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
 
-### Step 4: Create Main Menu
+public class AudioSettingsUI : MonoBehaviour
+{
+    [Header("Audio Sliders")]
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+    
+    [Header("Audio Buttons")]
+    public Button muteButton;
+    public Button unmuteButton;
+    
+    private AudioManager audioManager;
+    private bool isMuted = false;
+    
+    void Start()
+    {
+        audioManager = AudioManager.Instance;
+        SetupSliders();
+        SetupButtons();
+    }
+    
+    void SetupSliders()
+    {
+        if (masterVolumeSlider != null)
+        {
+            masterVolumeSlider.value = audioManager.masterVolume;
+            masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
+        }
+        
+        if (musicVolumeSlider != null)
+        {
+            musicVolumeSlider.value = audioManager.musicVolume;
+            musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+        }
+        
+        if (sfxVolumeSlider != null)
+        {
+            sfxVolumeSlider.value = audioManager.sfxVolume;
+            sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+        }
+    }
+    
+    void SetupButtons()
+    {
+        if (muteButton != null)
+        {
+            muteButton.onClick.AddListener(MuteAudio);
+        }
+        
+        if (unmuteButton != null)
+        {
+            unmuteButton.onClick.AddListener(UnmuteAudio);
+        }
+    }
+    
+    void OnMasterVolumeChanged(float value)
+    {
+        audioManager.SetMasterVolume(value);
+    }
+    
+    void OnMusicVolumeChanged(float value)
+    {
+        audioManager.SetMusicVolume(value);
+    }
+    
+    void OnSFXVolumeChanged(float value)
+    {
+        audioManager.SetSFXVolume(value);
+    }
+    
+    void MuteAudio()
+    {
+        audioManager.SetMasterVolume(0f);
+        isMuted = true;
+        UpdateMuteButtons();
+    }
+    
+    void UnmuteAudio()
+    {
+        audioManager.SetMasterVolume(1f);
+        isMuted = false;
+        UpdateMuteButtons();
+    }
+    
+    void UpdateMuteButtons()
+    {
+        if (muteButton != null)
+        {
+            muteButton.gameObject.SetActive(!isMuted);
+        }
+        
+        if (unmuteButton != null)
+        {
+            unmuteButton.gameObject.SetActive(isMuted);
+        }
+    }
+}
+```
 
-1. **Open MainMenu scene**
-2. **GameObject** → UI → **Canvas**
-3. **Canvas settings**:
-   - UI Scale Mode: Scale With Screen Size
-   - Reference Resolution: 1920x1080
+### Task 5: Save System Implementation
 
-### Step 5: Add Main Menu Elements
+#### **5.1 Create Save System**
 
-1. **Background Panel**:
+**Create Save System Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "SaveSystem"
+3. **Replace content** with:
 
-   - Right-click Canvas → UI → Panel
-   - Name: `BackgroundPanel`
-   - Color: Dark Blue (#1a237e)
+```csharp
+using UnityEngine;
+using System.IO;
+using System;
 
-2. **Title Text**:
+[System.Serializable]
+public class GameData
+{
+    public int highScore;
+    public int totalScore;
+    public int gamesPlayed;
+    public float musicVolume;
+    public float sfxVolume;
+    public bool firstTimePlaying;
+    public string playerName;
+    
+    public GameData()
+    {
+        highScore = 0;
+        totalScore = 0;
+        gamesPlayed = 0;
+        musicVolume = 0.7f;
+        sfxVolume = 1f;
+        firstTimePlaying = true;
+        playerName = "Player";
+    }
+}
 
-   - Right-click Canvas → UI → Text
-   - Name: `TitleText`
-   - Text: "UNITY GAME"
-   - Font Size: 72
-   - Color: White
-   - Alignment: Center
-   - Position: Top center
+public class SaveSystem : MonoBehaviour
+{
+    [Header("Save Settings")]
+    public string saveFileName = "gamedata.json";
+    public bool autoSave = true;
+    public float autoSaveInterval = 30f;
+    
+    private GameData gameData;
+    private string savePath;
+    private float autoSaveTimer;
+    
+    public static SaveSystem Instance { get; private set; }
+    
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    void Start()
+    {
+        savePath = Path.Combine(Application.persistentDataPath, saveFileName);
+        LoadGame();
+    }
+    
+    void Update()
+    {
+        if (autoSave)
+        {
+            autoSaveTimer += Time.deltaTime;
+            if (autoSaveTimer >= autoSaveInterval)
+            {
+                SaveGame();
+                autoSaveTimer = 0f;
+            }
+        }
+    }
+    
+    public void SaveGame()
+    {
+        try
+        {
+            string jsonData = JsonUtility.ToJson(gameData, true);
+            File.WriteAllText(savePath, jsonData);
+            Debug.Log("Game saved successfully");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save game: {e.Message}");
+        }
+    }
+    
+    public void LoadGame()
+    {
+        try
+        {
+            if (File.Exists(savePath))
+            {
+                string jsonData = File.ReadAllText(savePath);
+                gameData = JsonUtility.FromJson<GameData>(jsonData);
+                Debug.Log("Game loaded successfully");
+            }
+            else
+            {
+                gameData = new GameData();
+                Debug.Log("No save file found, creating new game data");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to load game: {e.Message}");
+            gameData = new GameData();
+        }
+    }
+    
+    public void UpdateHighScore(int score)
+    {
+        if (score > gameData.highScore)
+        {
+            gameData.highScore = score;
+            Debug.Log($"New high score: {score}");
+        }
+    }
+    
+    public void AddToTotalScore(int score)
+    {
+        gameData.totalScore += score;
+    }
+    
+    public void IncrementGamesPlayed()
+    {
+        gameData.gamesPlayed++;
+    }
+    
+    public void SetAudioSettings(float musicVol, float sfxVol)
+    {
+        gameData.musicVolume = musicVol;
+        gameData.sfxVolume = sfxVol;
+    }
+    
+    public void SetPlayerName(string name)
+    {
+        gameData.playerName = name;
+    }
+    
+    public int GetHighScore() => gameData.highScore;
+    public int GetTotalScore() => gameData.totalScore;
+    public int GetGamesPlayed() => gameData.gamesPlayed;
+    public float GetMusicVolume() => gameData.musicVolume;
+    public float GetSFXVolume() => gameData.sfxVolume;
+    public string GetPlayerName() => gameData.playerName;
+    public bool IsFirstTime() => gameData.firstTimePlaying;
+    
+    public void SetFirstTimeFalse()
+    {
+        gameData.firstTimePlaying = false;
+    }
+    
+    public void DeleteSave()
+    {
+        try
+        {
+            if (File.Exists(savePath))
+            {
+                File.Delete(savePath);
+                gameData = new GameData();
+                Debug.Log("Save file deleted");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to delete save: {e.Message}");
+        }
+    }
+}
+```
 
-3. **Play Button**:
+#### **5.2 Create High Score Display**
 
-   - Right-click Canvas → UI → Button
-   - Name: `PlayButton`
-   - Text: "PLAY GAME"
-   - Font Size: 24
-   - Position: Center
+**Create High Score UI Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "HighScoreDisplay"
+3. **Replace content** with:
 
-4. **Quit Button**:
-   - Right-click Canvas → UI → Button
-   - Name: `QuitButton`
-   - Text: "QUIT"
-   - Font Size: 24
-   - Position: Below Play button
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
 
-### Step 6: Setup Button Events
+public class HighScoreDisplay : MonoBehaviour
+{
+    [Header("UI Elements")]
+    public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI gamesPlayedText;
+    public TextMeshProUGUI playerNameText;
+    
+    private SaveSystem saveSystem;
+    
+    void Start()
+    {
+        saveSystem = SaveSystem.Instance;
+        UpdateDisplay();
+    }
+    
+    public void UpdateDisplay()
+    {
+        if (saveSystem != null)
+        {
+            if (highScoreText != null)
+            {
+                highScoreText.text = $"High Score: {saveSystem.GetHighScore()}";
+            }
+            
+            if (totalScoreText != null)
+            {
+                totalScoreText.text = $"Total Score: {saveSystem.GetTotalScore()}";
+            }
+            
+            if (gamesPlayedText != null)
+            {
+                gamesPlayedText.text = $"Games Played: {saveSystem.GetGamesPlayed()}";
+            }
+            
+            if (playerNameText != null)
+            {
+                playerNameText.text = $"Player: {saveSystem.GetPlayerName()}";
+            }
+        }
+    }
+}
+```
 
-1. **Add SceneController** to scene
-2. **Play Button**:
+### Task 6: Build and Deployment
 
-   - On Click() → Add SceneController
-   - Select `OnPlayButtonClicked()`
+#### **6.1 Configure Build Settings**
 
-3. **Quit Button**:
-   - On Click() → Add SceneController
-   - Select `OnQuitButtonClicked()`
+**Set Up Build Settings:**
+1. **File → Build Settings**
+2. **Add Open Scenes** to build
+3. **Select Platform** (PC, Mac & Linux Standalone)
+4. **Click "Player Settings"**
 
-**✅ Checkpoint**: Functional main menu
+**Configure Player Settings:**
+1. **In Player Settings**, configure:
+   - **Company Name**: Your company name
+   - **Product Name**: Your game name
+   - **Version**: 1.0.0
+   - **Icon**: Set game icon
+   - **Resolution and Presentation**: Set default resolution
+   - **Splash Image**: Set splash screen
 
----
+#### **6.2 Optimize for Build**
 
-## Part 3: Game HUD UI
-
-### Step 7: Open Game Scene and Add UI
-
-1. **Open GameScene**
-2. **Add Canvas** (if not already present)
-
-### Step 8: Create Game HUD
-
-1. **Score Display**:
-
-   - Right-click Canvas → UI → Text
-   - Name: `ScoreText`
-   - Text: "Score: 0/10"
-   - Font Size: 24
-   - Position: Top Left
-   - Color: White
-
-2. **Timer Display**:
-
-   - Right-click Canvas → UI → Text
-   - Name: `TimeText`
-   - Text: "Time: 60.0s"
-   - Font Size: 24
-   - Position: Top Right
-   - Color: White
-
-3. **Instructions Panel**:
-
-   - Right-click Canvas → UI → Panel
-   - Name: `InstructionsPanel`
-   - Size: Small, bottom of screen
-   - Background: Semi-transparent
-
-4. **Instructions Text**:
-   - Child of InstructionsPanel
-   - Text: "WASD: Move | Space: Jump | Collect items to score!"
-   - Font Size: 18
-   - Color: Yellow
-
-### Step 9: Create Game Over Panel
-
-1. **Game Over Panel**:
-
-   - Right-click Canvas → UI → Panel
-   - Name: `GameOverPanel`
-   - Size: Full screen
-   - Background: Semi-transparent black
-   - **Initially disabled**
-
-2. **Game Over Text**:
-
-   - Child of GameOverPanel
-   - Name: `GameOverText`
-   - Text: "GAME OVER"
-   - Font Size: 64
-   - Position: Center top
-   - Color: Red
-
-3. **Final Score Text**:
-
-   - Child of GameOverPanel
-   - Text: "Final Score: 0"
-   - Font Size: 32
-   - Position: Below game over text
-
-4. **Restart Button**:
-
-   - Child of GameOverPanel
-   - Text: "RESTART"
-   - On Click → SceneController.OnRestartButtonClicked()
-
-5. **Main Menu Button**:
-   - Child of GameOverPanel
-   - Text: "MAIN MENU"
-   - On Click → SceneController.OnMainMenuButtonClicked()
-
-### Step 10: Setup GameManager
-
-1. **Add GameManager** to scene
-2. **Assign UI references** in Inspector:
-   - scoreText → ScoreText
-   - timeText → TimeText
-   - gameOverText → GameOverText
-   - gameOverPanel → GameOverPanel
-
-**✅ Checkpoint**: Complete game UI system
-
----
-
-## Part 4: Collectible Items and Scoring
-
-### Step 11: Create Collectible Prefab
-
-1. **GameObject** → 2D Object → **Sprites** → **Circle**
-2. Name: `Collectible`
-3. Scale: (0.5, 0.5, 1)
-4. Color: Yellow (#FFFF44)
-5. **Add Components**:
-
-   - **Circle Collider 2D** → Is Trigger = true
-   - Remove **Rigidbody** (no physics needed)
-
-6. **Create Material**:
-
-   - Name: `Mat_Collectible`
-   - Albedo: Gold (#FFD700)
-   - Metallic: 0.8, Smoothness: 0.9
-   - Apply to Collectible
-
-7. **Add Rotation Animation**:
-   - Create → C# Script → `CollectibleRotator`
+**Create Build Optimizer Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "BuildOptimizer"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
 
-public class CollectibleRotator : MonoBehaviour
+public class BuildOptimizer : MonoBehaviour
 {
-    [Header("Rotation Settings")]
-    public Vector3 rotationSpeed = new Vector3(0, 90, 0);
-    public float bobHeight = 0.5f;
-    public float bobSpeed = 2f;
-
-    private Vector3 startPosition;
-
+    [Header("Optimization Settings")]
+    public bool optimizeForBuild = true;
+    public bool disableDebugLogs = true;
+    public bool reduceQuality = true;
+    
     void Start()
     {
-        startPosition = transform.position;
+        if (optimizeForBuild)
+        {
+            OptimizeForBuild();
+        }
     }
-
-    void Update()
+    
+    void OptimizeForBuild()
     {
-        // Rotate
-        transform.Rotate(rotationSpeed * Time.deltaTime);
-
-        // Bob up and down
-        float newY = startPosition.y + Mathf.Sin(Time.time * bobSpeed) * bobHeight;
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        // Disable debug logs in build
+        if (disableDebugLogs)
+        {
+            Debug.unityLogger.logEnabled = false;
+        }
+        
+        // Reduce quality settings
+        if (reduceQuality)
+        {
+            QualitySettings.SetQualityLevel(0); // Fastest
+        }
+        
+        // Optimize rendering
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+        
+        Debug.Log("Build optimizations applied");
+    }
+    
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Save game when paused
+            SaveSystem.Instance?.SaveGame();
+        }
+    }
+    
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            // Save game when focus lost
+            SaveSystem.Instance?.SaveGame();
+        }
     }
 }
 ```
 
-7. **Attach script** to Collectible
+#### **6.3 Create Build Script**
 
-### Step 12: Create Collectible System
-
-1. **Create** → C# Script → `Collectible`
+**Create Build Script:**
+1. **Right-click in Project** → **Create** → **C# Script**
+2. **Name it** "BuildScript"
+3. **Replace content** with:
 
 ```csharp
 using UnityEngine;
+using UnityEditor;
+using System.IO;
 
-public class Collectible : MonoBehaviour
+public class BuildScript
 {
-    [Header("Collectible Settings")]
-    public int pointValue = 1;
-    public AudioClip collectSound;
-
-    [Header("Effects")]
-    public GameObject collectEffect; // Optional particle effect
-
-    void OnTriggerEnter(Collider other)
+    [MenuItem("Build/Build All")]
+    public static void BuildAll()
     {
-        if (other.CompareTag("Player"))
-        {
-            CollectItem();
-        }
+        BuildWindows();
+        BuildMac();
+        BuildLinux();
     }
-
-    void CollectItem()
+    
+    [MenuItem("Build/Build Windows")]
+    public static void BuildWindows()
     {
-        // Add score
-        if (GameManager.Instance != null)
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = GetScenePaths();
+        buildPlayerOptions.locationPathName = "Builds/Windows/MyGame.exe";
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
+        buildPlayerOptions.options = BuildOptions.None;
+        
+        BuildPipeline.BuildPlayer(buildPlayerOptions);
+    }
+    
+    [MenuItem("Build/Build Mac")]
+    public static void BuildMac()
+    {
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = GetScenePaths();
+        buildPlayerOptions.locationPathName = "Builds/Mac/MyGame.app";
+        buildPlayerOptions.target = BuildTarget.StandaloneOSX;
+        buildPlayerOptions.options = BuildOptions.None;
+        
+        BuildPipeline.BuildPlayer(buildPlayerOptions);
+    }
+    
+    [MenuItem("Build/Build Linux")]
+    public static void BuildLinux()
+    {
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = GetScenePaths();
+        buildPlayerOptions.locationPathName = "Builds/Linux/MyGame";
+        buildPlayerOptions.target = BuildTarget.StandaloneLinux64;
+        buildPlayerOptions.options = BuildOptions.None;
+        
+        BuildPipeline.BuildPlayer(buildPlayerOptions);
+    }
+    
+    static string[] GetScenePaths()
+    {
+        string[] scenes = new string[EditorBuildSettings.scenes.Length];
+        for (int i = 0; i < scenes.Length; i++)
         {
-            GameManager.Instance.AddScore(pointValue);
+            scenes[i] = EditorBuildSettings.scenes[i].path;
         }
-
-        // Play sound
-        if (collectSound != null)
-        {
-            AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        }
-
-        // Spawn effect
-        if (collectEffect != null)
-        {
-            Instantiate(collectEffect, transform.position, transform.rotation);
-        }
-
-        Debug.Log($"Collected item worth {pointValue} points!");
-
-        // Destroy this collectible
-        Destroy(gameObject);
+        return scenes;
     }
 }
 ```
 
-8. **Attach script** to Collectible
-9. **Create Prefab**: Drag Collectible to Assets/Prefabs
+#### **6.4 Test Build Process**
 
-### Step 13: Place Collectibles in Scene
-
-1. **Drag prefab** into scene multiple times
-2. **Position** around the level
-3. **Ensure total collectibles ≥ win score**
-
-**✅ Checkpoint**: Working collectible system
+**Test Build:**
+1. **File → Build Settings**
+2. **Click "Build"** to create executable
+3. **Test the build** to ensure it works
+4. **Check performance** and functionality
+5. **Verify all features** work correctly
 
 ---
 
-## Part 5: Build and Deploy
+## ✅ Completion Checklist
 
-### Step 14: Configure Build Settings
+### **UI System Setup**
+- [ ] **Created Canvas and UI structure** with proper scaling
+- [ ] **Implemented main menu** with navigation
+- [ ] **Created gameplay HUD** with score, lives, and health
+- [ ] **Set up UI panels** for different game states
 
-1. **File** → **Build Settings**
-2. **Verify scene order**:
+### **Menu System Implementation**
+- [ ] **Created MenuManager script** for game state management
+- [ ] **Implemented button event handlers** for navigation
+- [ ] **Tested menu navigation** between different screens
+- [ ] **Verified UI responsiveness** on different screen sizes
 
-   - MainMenu (index 0)
-   - GameScene (index 1)
-   - GameOver (index 2)
+### **Game State Management**
+- [ ] **Implemented GameStateManager** for game flow control
+- [ ] **Created scene transition system** with fade effects
+- [ ] **Set up game state events** for UI updates
+- [ ] **Tested complete game flow** from start to finish
 
-3. **Platform Settings**:
-   - Platform: PC, Mac & Linux Standalone
-   - Target Platform: Windows (or according to OS)
-   - Architecture: x86_64
+### **Audio System Implementation**
+- [ ] **Created AudioManager** for centralized audio control
+- [ ] **Implemented audio settings UI** with volume controls
+- [ ] **Set up background music** and sound effects
+- [ ] **Tested audio system** with different volume levels
 
-### Step 15: Player Settings
+### **Save System Implementation**
+- [ ] **Created SaveSystem** for game data persistence
+- [ ] **Implemented high score tracking** and display
+- [ ] **Set up audio settings** persistence
+- [ ] **Tested save/load functionality** across game sessions
 
-1. **Player Settings button**
-2. **Company Name**: Your name
-3. **Product Name**: Unity Game Course
-4. **Icon**: Set custom icon (optional)
-5. **Screen Resolution**:
-   - Default Screen Width: 1280
-   - Default Screen Height: 720
-   - Windowed: Checked
-   - Resizable Window: Checked
-
-### Step 16: Build Game
-
-1. **Build And Run** or **Build**
-2. **Choose build folder**: Create "Build" folder
-3. **Wait for build** to complete
-4. **Test executable**:
-   - Main menu navigation
-   - Game mechanics
-   - UI functionality
-   - Scene transitions
-
-**✅ Final Checkpoint**: Complete built game
+### **Build and Deployment**
+- [ ] **Configured build settings** for target platform
+- [ ] **Optimized game** for build performance
+- [ ] **Created build scripts** for automated building
+- [ ] **Tested final build** and verified functionality
 
 ---
 
-## Expected Results
+## 🚨 Troubleshooting
 
-### Complete Game Features:
+### **Common Issues and Solutions**
 
-- ✅ **Main Menu**: Title, Play, Quit buttons
-- ✅ **Game Scene**: Player movement, collectibles, HUD
-- ✅ **Scoring System**: Points for collecting items
-- ✅ **Timer System**: Game time limit
-- ✅ **Win/Lose Conditions**: Score target or time up
-- ✅ **Game Over Screen**: Results and navigation options
-- ✅ **Scene Management**: Smooth transitions
-- ✅ **Built Executable**: Standalone game file
+#### **UI not displaying correctly**
+**Possible causes:**
+- Canvas settings incorrect
+- UI scaling not configured
+- UI elements not positioned properly
 
-### UI Components:
+**Solutions:**
+1. Check Canvas settings and scaling mode
+2. Verify UI elements are positioned correctly
+3. Test on different screen resolutions
+4. Check UI element hierarchy
 
-- **Canvas with proper scaling**
-- **Responsive UI elements**
-- **Button click events**
-- **Dynamic text updates**
-- **Panel management**
+#### **Menu navigation not working**
+**Possible causes:**
+- Button events not assigned
+- MenuManager not configured
+- UI panels not set up correctly
 
-### Game Flow:
+**Solutions:**
+1. Verify button event assignments
+2. Check MenuManager script configuration
+3. Ensure UI panels are properly set up
+4. Test button functionality individually
 
-```
-Main Menu → Game Scene → Game Over Screen
-     ↑                        ↓
-     ← ← ← ← ← ← ← ← ← ← ← ← ← ←
-```
+#### **Audio not playing**
+**Possible causes:**
+- Audio clips not assigned
+- Audio sources not configured
+- Volume settings too low
+
+**Solutions:**
+1. Check audio clip assignments
+2. Verify audio source configuration
+3. Test volume settings
+4. Check audio system setup
+
+#### **Save system not working**
+**Possible causes:**
+- Save path incorrect
+- JSON serialization issues
+- File permissions problems
+
+**Solutions:**
+1. Verify save path and permissions
+2. Check JSON serialization
+3. Test save/load functionality
+4. Debug save system errors
+
+#### **Build fails or doesn't work**
+**Possible causes:**
+- Missing scenes in build settings
+- Platform-specific issues
+- Optimization problems
+
+**Solutions:**
+1. Check build settings and scene inclusion
+2. Test on target platform
+3. Verify optimization settings
+4. Check for platform-specific issues
 
 ---
 
-## Testing Checklist
+## 📚 Next Steps
 
-### Main Menu:
+### **Immediate Next Steps**
+1. **Complete all tasks** in this lab
+2. **Test your complete game** thoroughly
+3. **Build and deploy** your game
+4. **Share your game** with others for feedback
 
-- [ ] Title displays correctly
-- [ ] Play button loads game scene
-- [ ] Quit button closes application
+### **Further Development**
+1. **Add more features** to your game
+2. **Improve graphics** and animations
+3. **Add more levels** and gameplay
+4. **Implement multiplayer** features
 
-### Game Scene:
-
-- [ ] Player movement works
-- [ ] Collectibles can be gathered
-- [ ] Score updates correctly
-- [ ] Timer counts down
-- [ ] Game ends at time limit or win condition
-
-### Game Over:
-
-- [ ] Shows win/lose message
-- [ ] Displays final score
-- [ ] Restart loads game scene
-- [ ] Main Menu returns to start
-
-### Build:
-
-- [ ] Executable runs independently
-- [ ] All scenes included
-- [ ] No console errors
-- [ ] Proper resolution and settings
+### **Career Development**
+1. **Build a portfolio** with your games
+2. **Share your work** on social media
+3. **Join game development** communities
+4. **Continue learning** advanced Unity features
 
 ---
 
-## Common Build Issues
+## 💡 Pro Tips
 
-### Build Errors:
+### **UI Development Best Practices**
+- **Use consistent styling** across all UI elements
+- **Test on different screen sizes** and resolutions
+- **Implement responsive design** for various devices
+- **Keep UI simple** and intuitive
 
-**Issue**: Scenes not included
-**Fix**: Check Build Settings, add all scenes
+### **Game Development Tips**
+- **Plan your game** before starting development
+- **Test frequently** during development
+- **Get feedback** from other players
+- **Iterate and improve** based on feedback
 
-**Issue**: Missing scripts
-**Fix**: Ensure all scripts compile, check Console
+### **Build and Deployment**
+- **Test builds** on target platforms
+- **Optimize performance** for smooth gameplay
+- **Create multiple builds** for different platforms
+- **Document your build process** for future reference
 
-**Issue**: UI not scaling
-**Fix**: Check Canvas Scaler settings
+---
 
-### Runtime Issues:
-
-**Issue**: Buttons not responding
-**Fix**: Check EventSystem, Button components
-
-**Issue**: Scene transitions failing
-**Fix**: Verify scene names match exactly
-
-**Issue**: UI elements misaligned
-**Fix**: Test different resolutions, adjust anchoring
+**🎉 Congratulations!** You've completed the complete game lab and learned how to build a full-featured Unity game from start to finish. This knowledge will be invaluable for your game development career!

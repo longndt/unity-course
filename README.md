@@ -152,19 +152,17 @@ Note: All lesson folders now use the standardized `example/` structure.
 - **Common Scripts Library**: `extras/common-scripts-library.md` - Reusable code library
 - **Free Assets Resources**: `extras/free-assets-resources.md` - Free asset sources and integration guide
 
-### **Advanced Topics**
+### **Additional Resources**
 - **Design Patterns**: `extras/design-patterns.md` - Common design patterns for game development
 - **Performance Optimization**: `extras/performance-optimization.md` - Advanced optimization techniques
 - **Troubleshooting Guide**: `extras/troubleshooting_guide.md` - Common issues and solutions
-
-### **Additional Resources**
 - **All Extras**: `extras/readme.md` - Complete resource overview
 
 ---
 
 ## Next Steps
 
-- Start with `lesson0-game-development-fundamentals/` to understand game development mindset
+- Start with `lesson0-game-fundamentals/` to understand game development mindset
 - Proceed to `lesson1-unity-basics/` for technical Unity fundamentals
 - Continue through all lessons in sequence
 

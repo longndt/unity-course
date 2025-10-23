@@ -24,26 +24,6 @@ This directory contains supplementary guides and advanced topics that extend bey
 ### **Troubleshooting and Support**
 - `troubleshooting_guide.md` - Common issues and solutions
 
-### **Future Advanced Guides** (To be added)
-- `memory-management-best-practices.md` - Efficient memory usage and garbage collection
-- `profiler-usage-guide.md` - Using Unity Profiler for performance analysis
-- `event-system-architecture.md` - Creating flexible event-driven systems
-- `modular-code-structure.md` - Building maintainable and scalable code
-- `advanced-animation-systems.md` - Complex animation workflows and state machines
-- `custom-shader-basics.md` - Introduction to 2D shader programming
-- `advanced-physics-systems.md` - Complex physics interactions and custom behaviors
-- `custom-editor-tools.md` - Creating custom Unity editor extensions
-- `build-pipeline-automation.md` - Advanced build processes and CI/CD
-- `version-control-best-practices.md` - Git workflows for Unity projects
-- `juice-and-game-feel.md` - Adding polish and satisfying feedback to games
-- `audio-integration-advanced.md` - Advanced audio systems and dynamic music
-- `ui-ux-best-practices.md` - Advanced UI design principles for games
-- `mobile-optimization-guide.md` - Optimizing 2D games for mobile devices
-- `webgl-deployment-guide.md` - Best practices for web deployment
-- `console-porting-considerations.md` - Adapting games for console platforms
-- `analytics-integration.md` - Adding game analytics and telemetry
-- `social-features-implementation.md` - Leaderboards, achievements, and sharing
-- `monetization-strategies.md` - In-app purchases and advertising integration
 
 ---
 
@@ -58,27 +38,12 @@ This directory contains supplementary guides and advanced topics that extend bey
 
 #### **For Performance-Focused Learning:**
 1. performance-optimization.md
-2. memory-management-best-practices.md
-3. profiler-usage-guide.md
-4. mobile-optimization-guide.md
 
 #### **For Advanced Programming:**
 1. design-patterns.md
-2. event-system-architecture.md
-3. modular-code-structure.md
-4. custom-editor-tools.md
 
-#### **For Visual Enhancement:**
-1. juice-and-game-feel.md
-2. advanced-animation-systems.md
-3. custom-shader-basics.md
-4. ui-ux-best-practices.md
-
-#### **For Professional Development:**
-1. version-control-best-practices.md
-2. build-pipeline-automation.md
-3. analytics-integration.md
-4. Platform-Specific Guides
+#### **For Troubleshooting:**
+1. troubleshooting_guide.md
 
 ---
 
@@ -153,4 +118,4 @@ This extras collection will continue to grow with:
 
 ---
 
-*These advanced guides complement the foundational Unity 2D course by providing deeper technical knowledge and professional development practices for serious game developers.*
+*These supplementary materials complement the foundational Unity 2D course by providing additional resources and support for game developers.*
