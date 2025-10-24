@@ -16,36 +16,6 @@
 - Jump physics
 - Animation triggers
 
-### 2. Basic 3D Player Controller
-
-**File**: [Basic3DPlayerController.cs](./common-scripts-library/Basic3DPlayerController.cs)
-
-- WASD movement
-- Mouse look
-- Jump mechanics
-- Ground checking
-
-### 3. Top-Down Player Controller
-
-**File**: [TopDownPlayerController.cs](./common-scripts-library/TopDownPlayerController.cs)
-
-- 4-directional movement
-- Rotation towards movement
-- Smooth movement
-
----
-
-## Camera Systems
-
-### 1. Third Person Camera
-
-**File**: [ThirdPersonCamera.cs](./common-scripts-library/ThirdPersonCamera.cs)
-
-- Follow player smoothly
-- Mouse orbit controls
-- Collision detection
-- Distance adjustment
-
 ### 2. 2D Camera Follow
 
 **File**: [Camera2DFollow.cs](./common-scripts-library/Camera2DFollow.cs)
@@ -66,7 +36,35 @@
 
 ## Game Management
 
-### 1. Scene Manager
+### 1. Health System
+
+**File**: [HealthSystem.cs](./common-scripts-library/HealthSystem.cs)
+
+- Health management
+- Damage and healing
+- Invulnerability frames
+- Visual feedback
+- Event system
+
+### 2. Score Manager
+
+**File**: [ScoreManager.cs](./common-scripts-library/ScoreManager.cs)
+
+- Score tracking
+- High score persistence
+- Score multipliers
+- Event notifications
+
+### 3. Collectible Manager
+
+**File**: [CollectibleManager.cs](./common-scripts-library/CollectibleManager.cs)
+
+- Collectible spawning
+- Collection handling
+- Score integration
+- Visual effects
+
+### 4. Scene Manager
 
 **File**: [SceneTransitionManager.cs](./common-scripts-library/SceneTransitionManager.cs)
 
@@ -74,7 +72,7 @@
 - Fade transitions
 - Progress tracking
 
-### 2. Game State Manager
+### 5. Game State Manager
 
 **File**: [GameStateManager.cs](./common-scripts-library/GameStateManager.cs)
 
@@ -82,7 +80,7 @@
 - State transition logic
 - Event system
 
-### 3. Save/Load System
+### 6. Save/Load System
 
 **File**: [SaveLoadManager.cs](./common-scripts-library/SaveLoadManager.cs)
 
@@ -131,9 +129,9 @@
 - Volume controls
 - Audio mixing
 
-### 2. 3D Spatial Audio
+### 2. Audio Management
 
-**File**: [SpatialAudioSource.cs](./common-scripts-library/SpatialAudioSource.cs)
+**File**: [AudioManager.cs](./common-scripts-library/AudioManager.cs)
 
 - Distance-based volume
 - 3D positioning

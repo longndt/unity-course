@@ -4,6 +4,11 @@
 
 This sample project demonstrates Unity's 2D sprite system, animation workflow, and Animator Controller. It features a complete character animation system with idle, walk, jump, and attack animations.
 
+### **📚 Relationship to Lesson 2 Examples**
+- **Basic Examples**: `lesson2-sprites-animation/example/` - Individual scripts for learning specific concepts
+- **This Sample Project**: Complete integrated system with all concepts working together
+- **Learning Path**: Study individual examples first, then explore this complete implementation
+
 ## 🎮 Project Description
 
 ### **Objective**

@@ -37,9 +37,18 @@ Master Rigidbody2D, colliders, physics materials, layers, and callbacks. Impleme
 
 ---
 
-## ✅ What’s Next
+## ✅ What's Next
 
-Proceed to [Lesson 4: Input & Player Controller](../lesson4-input-player-controller/)
+Proceed to [Lesson 4: Input & Player Controller](../lesson4-input-player-controller/) to learn about responsive player controls and the new Input System.
+
+---
+
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder
+- **Explore Sample Project**: Check out `sample-projects/lesson3-physics-collision/` for complete implementation
+- **Build Your Own**: Create your own physics-based platformer
 
 ---
 

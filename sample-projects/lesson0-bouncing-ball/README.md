@@ -1,8 +1,13 @@
-# Lesson 0: Bouncing Ball Game
+# Lesson 0: Advanced Bouncing Ball Game
 
 ## 🎯 Project Overview
 
-This is a simple physics-based game where players control a paddle to keep a ball bouncing. It demonstrates Unity's basic concepts including GameObjects, Components, Physics, and Collision Detection.
+This is an **enhanced version** of the basic bouncing ball game from Lesson 0. It builds upon the simple example with advanced features including paddle control, game mechanics, and complete game loop. This demonstrates how to evolve a basic concept into a full game.
+
+### **📚 Relationship to Lesson 0 Example**
+- **Basic Example**: `lesson0-game-fundamentals/example/` - Simple `BouncingBall.cs` for learning fundamentals
+- **This Sample Project**: Advanced implementation with `BallController.cs` and `PaddleController.cs` for complete game
+- **Learning Path**: Study the basic example first, then explore this advanced version
 
 ## 🎮 Game Description
 
@@ -14,12 +19,12 @@ Keep the ball bouncing by hitting it with the paddle. The ball gets faster over 
 - **Space**: Launch ball (if it stops moving)
 - **R**: Reset game
 
-### **Features**
-- Physics-based ball movement
-- Collision detection between ball and paddle
-- Progressive difficulty (ball speed increases)
-- Score tracking
-- Game over when ball hits bottom
+### **Enhanced Features** (vs. basic example)
+- **Paddle Control**: Player-controlled paddle with smooth movement
+- **Game Mechanics**: Score system, lives, and game states
+- **Audio System**: Sound effects and music
+- **Visual Effects**: Particle effects and screen shake
+- **Complete Game Loop**: Menu, gameplay, game over, restart
 
 ## 🏗️ Project Structure
 

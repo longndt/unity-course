@@ -676,4 +676,3 @@ void OnDrawGizmos()
 
 ---
 
-**🎉 Congratulations!** You've completed your first Unity lab and learned the fundamentals of Unity development. This foundation will serve you well as you progress through the course!

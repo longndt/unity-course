@@ -1271,3 +1271,9 @@ public class ComboSystem : MonoBehaviour
 
 ### Practice:
 Complete **Lab 04** to create a fully functional 2D character with responsive controls, smooth camera following, and polished game feel effects.
+
+---
+
+## ✅ What's Next
+
+Proceed to [Lesson 5: UI, Gameplay Loop & Build](../lesson5-ui-complete-game/) to learn about complete game development including UI, menus, and build pipeline.

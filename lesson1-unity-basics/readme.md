@@ -58,6 +58,15 @@ Proceed to [Lesson 2: Sprites & Animation](../lesson2-sprites-animation/) to lea
 
 ---
 
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder
+- **Explore Sample Project**: Check out `sample-projects/lesson1-unity-basics/` for complete implementation
+- **Build Your Own**: Create your own scene management system
+
+---
+
 ## Resources & References
 
 - Unity Manual: Getting started

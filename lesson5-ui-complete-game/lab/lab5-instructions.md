@@ -80,7 +80,7 @@
 **Configure Main Menu:**
 1. **Select "Game Title"** text
 2. **In Inspector**, configure:
-   - **Text**: "My Awesome Game"
+   - **Text**: "My Game"
    - **Font Size**: 48
    - **Alignment**: Center
    - **Color**: White
@@ -1524,4 +1524,3 @@ public class BuildScript
 
 ---
 
-**🎉 Congratulations!** You've completed the complete game lab and learned how to build a full-featured Unity game from start to finish. This knowledge will be invaluable for your game development career!

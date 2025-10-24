@@ -2,45 +2,56 @@
 
 ## 🎯 Overview
 
-This directory contains complete sample projects for each lesson, providing working examples that students can study, modify, and learn from. Each project demonstrates the concepts taught in the corresponding lesson.
+This directory contains **complete sample projects** for each lesson, providing working examples that students can study, modify, and learn from. Each project demonstrates the concepts taught in the corresponding lesson.
+
+### **📚 Relationship to Lesson Examples**
+- **Lesson Examples**: Individual scripts and concepts in `lessonX-topic/example/`
+- **Sample Projects**: Complete integrated projects with all concepts working together
+- **Learning Path**: Study individual examples first, then explore complete sample projects
 
 ## 📁 Available Projects
 
 ### **Lesson 0: Game Development Fundamentals**
-- **Project**: `lesson0-bouncing-ball/`
-- **Description**: Simple bouncing ball game demonstrating basic Unity concepts
-- **Features**: Physics, collision detection, basic game loop
-- **Difficulty**: Beginner
+- **Project**: `lesson0-bouncing-ball/` (Advanced version)
+- **Description**: Enhanced bouncing ball game with paddle control and complete game mechanics
+- **Features**: Physics, collision detection, paddle control, game loop, audio, effects
+- **Difficulty**: Beginner-Intermediate
+- **Note**: Builds upon basic example in `lesson0-game-fundamentals/example/`
 
 ### **Lesson 1: Unity Basics**
-- **Project**: `lesson1-fundamentals/`
-- **Description**: Scene management, prefabs, and component system
-- **Features**: Multiple scenes, prefab instantiation, MonoBehaviour lifecycle
+- **Project**: `lesson1-unity-basics/`
+- **Description**: Complete scene management system with prefabs and lifecycle demonstration
+- **Features**: Multiple scenes, prefab instantiation, MonoBehaviour lifecycle, debug tools
 - **Difficulty**: Beginner
+- **Note**: Integrates concepts from `lesson1-unity-basics/example/`
 
 ### **Lesson 2: Sprites & Animation**
-- **Project**: `lesson2-animation/`
-- **Description**: Character animation and sprite management
-- **Features**: Animator Controller, sprite sheets, animation events
+- **Project**: `lesson2-sprites-animation/`
+- **Description**: Complete character animation system with sprite management
+- **Features**: Animator Controller, sprite sheets, animation events, character controller
 - **Difficulty**: Intermediate
+- **Note**: Integrates concepts from `lesson2-sprites-animation/example/`
 
 ### **Lesson 3: Physics & Collision**
-- **Project**: `lesson3-physics/`
-- **Description**: 2D physics platformer with advanced mechanics
-- **Features**: Rigidbody2D, collision detection, jump mechanics, physics materials
+- **Project**: `lesson3-physics-collision/`
+- **Description**: Complete 2D platformer with advanced physics mechanics
+- **Features**: Rigidbody2D, collision detection, jump mechanics, physics materials, moving platforms
 - **Difficulty**: Intermediate
+- **Note**: Integrates concepts from `lesson3-physics-collision/example/`
 
 ### **Lesson 4: Input & Player Controller**
-- **Project**: `lesson4-input/`
-- **Description**: Complete character controller with Input System
-- **Features**: New Input System, camera follow, advanced movement
+- **Project**: `lesson4-input-player-controller/`
+- **Description**: Complete character controller with Input System and camera following
+- **Features**: New Input System, camera follow, advanced movement, input feedback
 - **Difficulty**: Intermediate
+- **Note**: Integrates concepts from `lesson4-input-player-controller/example/`
 
 ### **Lesson 5: UI & Complete Game**
-- **Project**: `lesson5-complete-game/`
-- **Description**: Full 2D game with UI, audio, and build process
-- **Features**: Complete game loop, menus, HUD, save system, build settings
+- **Project**: `lesson5-ui-complete-game/`
+- **Description**: Complete 2D game with full UI system, audio, and build process
+- **Features**: Complete game loop, menus, HUD, save system, build settings, game state management
 - **Difficulty**: Advanced
+- **Note**: Integrates concepts from `lesson5-ui-complete-game/example/`
 
 ## 🚀 How to Use Sample Projects
 

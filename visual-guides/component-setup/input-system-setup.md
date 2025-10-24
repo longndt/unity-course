@@ -440,7 +440,7 @@ void Update()
 1. **Test Input**: Verify all inputs work correctly
 2. **Add More Actions**: Create additional input actions as needed
 3. **Implement UI Input**: Set up UI navigation
-4. **Read Next Guide**: [Component Setup Guide](./inspector-configuration.md)
+4. **Read Next Guide**: [Project Setup Guide](../project-setup/2d-project-setup.md)
 5. **Start Lesson 4**: Begin with Input System lesson
 
 ---
@@ -461,4 +461,3 @@ void Update()
 
 ---
 
-**🎉 Congratulations!** You now have a fully functional Input System setup ready for 2D game development!

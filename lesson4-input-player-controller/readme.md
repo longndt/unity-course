@@ -37,9 +37,18 @@ Use the new Input System to build a responsive 2D controller with keyboard and g
 
 ---
 
-## ✅ What’s Next
+## ✅ What's Next
 
-Proceed to [Lesson 5: UI, Gameplay Loop & Build](../lesson5-ui-complete-game/)
+Proceed to [Lesson 5: UI, Gameplay Loop & Build](../lesson5-ui-complete-game/) to learn about complete game development including UI, menus, and build pipeline.
+
+---
+
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder
+- **Explore Sample Project**: Check out `sample-projects/lesson4-input-player-controller/` for complete implementation
+- **Build Your Own**: Create your own responsive player controller
 
 ---
 

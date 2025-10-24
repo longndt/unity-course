@@ -38,9 +38,18 @@ Learn the 2D asset pipeline, sprite rendering, sorting layers, and build an Anim
 
 ---
 
-## ✅ What’s Next
+## ✅ What's Next
 
-Proceed to [Lesson 3: Physics & Collisions](../lesson3-physics-collision/)
+Proceed to [Lesson 3: Physics & Collision](../lesson3-physics-collision/) to learn about 2D physics and collision detection.
+
+---
+
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder
+- **Explore Sample Project**: Check out `sample-projects/lesson2-sprites-animation/` for complete implementation
+- **Build Your Own**: Create your own animated character
 
 ---
 

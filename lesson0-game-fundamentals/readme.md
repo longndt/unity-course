@@ -55,3 +55,12 @@ Proceed to [Lesson 1: Unity Fundamentals & Setup](../lesson1-unity-basics/) to d
 - Unity Editor Overview
 - Game Development Pipeline
 - Player Experience Design
+
+---
+
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder  
+- **Explore Sample Project**: Check out `sample-projects/lesson0-bouncing-ball/` for complete implementation
+- **Build Your Own**: Create your own bouncing ball game

@@ -4,6 +4,11 @@
 
 This sample project demonstrates Unity's 2D Physics System with advanced mechanics including coyote time, jump buffering, variable jump height, and physics-based interactions. It features a complete 2D platformer with realistic physics.
 
+### **📚 Relationship to Lesson 3 Examples**
+- **Basic Examples**: `lesson3-physics-collision/example/` - Individual physics concepts and scripts
+- **This Sample Project**: Complete platformer with all physics concepts integrated
+- **Learning Path**: Study individual examples first, then explore this complete game
+
 ## 🎮 Project Description
 
 ### **Objective**

@@ -586,4 +586,3 @@ public class AnimationEventHandler : MonoBehaviour
 
 ---
 
-**🎉 Congratulations!** You've completed the animation lab and learned how to create professional-quality 2D animations in Unity. This knowledge will be essential for creating engaging game characters and effects!

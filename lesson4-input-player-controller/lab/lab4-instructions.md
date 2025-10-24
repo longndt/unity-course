@@ -1050,4 +1050,3 @@ public class InputEvent
 
 ---
 
-**🎉 Congratulations!** You've completed the input lab and learned how to create responsive input systems in Unity. This knowledge will be essential for creating engaging player controls and professional game feel!

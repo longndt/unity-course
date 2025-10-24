@@ -37,9 +37,18 @@ Build a vertical slice including menus, HUD, pause/state management, simple save
 
 ---
 
-## ✅ What’s Next
+## ✅ What's Next
 
-You’ve completed the core Unity course. Continue with advanced topics in `extras/`.
+You've completed the core Unity course. Continue with advanced topics in `extras/`.
+
+---
+
+## 🚀 **Next Steps**
+
+- **Study Examples**: Start with `example/` folder to understand concepts
+- **Practice Labs**: Complete exercises in `lab/` folder
+- **Explore Sample Project**: Check out `sample-projects/lesson5-ui-complete-game/` for complete implementation
+- **Build Your Own**: Create your own complete 2D game
 
 ---
 

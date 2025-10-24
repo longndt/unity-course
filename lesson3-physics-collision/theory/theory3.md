@@ -753,3 +753,9 @@ void OnCollisionEnter2D(Collision2D collision)
 
 ### Practice:
 Complete **Lab 03** to build 2D platformer with realistic physics, jump mechanics, and collision detection system.
+
+---
+
+## ✅ What's Next
+
+Proceed to [Lesson 4: Input & Player Controller](../lesson4-input-player-controller/) to learn about responsive player controls and the new Input System.

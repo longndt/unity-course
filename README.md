@@ -37,33 +37,74 @@ This course teaches 2D game development with Unity from the ground up. Perfect f
 
 ---
 
-## Course Structure
+## 📚 Course Structure & Learning Path
 
-### Lesson 0: Game Development Fundamentals & Mindset
-- Bridge from web/mobile to game development
-- Game design basics and player experience
-- Unity Editor overview and game development workflow
-- Simple "Hello World" game example
+### **🎯 Learning Flow Overview**
+```
+Lesson 0 (Fundamentals) → Lesson 1 (Basics) → Lesson 2 (Sprites) → 
+Lesson 3 (Physics) → Lesson 4 (Input) → Lesson 5 (Complete Game)
+```
 
-### Lesson 1: Unity Fundamentals & Project Setup
-- Editor, scenes, prefabs, MonoBehaviour lifecycle
-- Small playable scene; scene switching and debugging tools
+### **📖 Detailed Course Structure**
 
-### Lesson 2: Sprites & Animation
-- Import pipeline, sorting layers, Animator Controller, animation events
-- Character idle/walk/run with direction flip
+#### **Lesson 0: Game Development Fundamentals & Mindset**
+- **🎯 Purpose**: Bridge from web/mobile to game development
+- **📚 Topics**: Game design basics, player experience, Unity Editor overview
+- **🎮 Project**: Simple "Hello World" bouncing ball game
+- **🔗 Path**: `lesson0-game-fundamentals/`
 
-### Lesson 3: Physics & Collisions
-- Rigidbody2D, colliders, materials, layers, FixedUpdate, raycast
-- Platformer jump with coyote time and variable jump
+#### **Lesson 1: Unity Fundamentals & Project Setup**
+- **🎯 Purpose**: Master Unity's core architecture
+- **📚 Topics**: Editor, scenes, prefabs, MonoBehaviour lifecycle
+- **🎮 Project**: Scene management system with prefab spawning
+- **🔗 Path**: `lesson1-unity-basics/`
 
-### Lesson 4: Input & Player Controller
-- Input System actions, PlayerInput, rebinding, camera follow
-- Move/jump/dash with gamepad and keyboard support
+#### **Lesson 2: Sprites & Animation**
+- **🎯 Purpose**: Master 2D visual systems and animation
+- **📚 Topics**: Import pipeline, sorting layers, Animator Controller, animation events
+- **🎮 Project**: Complete character animation system with idle/walk/jump/attack
+- **🔗 Path**: `lesson2-sprites-animation/`
 
-### Lesson 5: UI, Gameplay Loop & Build
-- UGUI/UIToolkit, HUD, menus, pause, save/load, build pipeline
-- Vertical slice from main menu → gameplay → results
+#### **Lesson 3: Physics & Collision**
+- **🎯 Purpose**: Implement responsive physics mechanics
+- **📚 Topics**: Rigidbody2D, colliders, materials, layers, FixedUpdate, raycast
+- **🎮 Project**: 2D platformer with advanced jump mechanics (coyote time, variable jump)
+- **🔗 Path**: `lesson3-physics-collision/`
+
+#### **Lesson 4: Input & Player Controller**
+- **🎯 Purpose**: Create responsive player controls
+- **📚 Topics**: Input System actions, PlayerInput, rebinding, camera follow
+- **🎮 Project**: Advanced character controller with gamepad and keyboard support
+- **🔗 Path**: `lesson4-input-player-controller/`
+
+#### **Lesson 5: UI, Gameplay Loop & Build**
+- **🎯 Purpose**: Complete game development cycle
+- **📚 Topics**: UGUI/UIToolkit, HUD, menus, pause, save/load, build pipeline
+- **🎮 Project**: Complete vertical slice from main menu → gameplay → results
+- **🔗 Path**: `lesson5-ui-complete-game/`
+
+---
+
+## 🗺️ Navigation & Learning Flow
+
+### **📋 How to Use This Course**
+
+#### **🎯 For Complete Beginners:**
+1. **Start Here**: `lesson0-game-fundamentals/` - Learn game development mindset
+2. **Follow Sequence**: Complete lessons 0→1→2→3→4→5 in order
+3. **Study Materials**: Read theory → Study examples → Complete labs
+4. **Build Projects**: Use sample projects as reference and inspiration
+
+#### **🎯 For Experienced Developers:**
+1. **Skip to Basics**: `lesson1-unity-basics/` - Focus on Unity-specific concepts
+2. **Jump Around**: Use lessons as reference for specific topics
+3. **Sample Projects**: Study `sample-projects/` for complete implementations
+4. **Quick Reference**: Use `extras/` for advanced topics and troubleshooting
+
+#### **🎯 Learning Path Options:**
+- **🎮 Project-First**: Start with `sample-projects/` → Study theory → Build your own
+- **📚 Theory-First**: Read `theory/` → Study `example/` → Complete `lab/`
+- **🔧 Problem-Solving**: Use `extras/troubleshooting_guide.md` → Find relevant lesson
 
 ---
 

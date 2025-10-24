@@ -653,3 +653,9 @@ void Update()
 
 ### Practice:
 Complete **Lab 02** to create an animated 2D character with movement controller and multiple animation states.
+
+---
+
+## ✅ What's Next
+
+Proceed to [Lesson 3: Physics & Collision](../lesson3-physics-collision/) to learn about 2D physics and collision detection.

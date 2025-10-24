@@ -514,4 +514,3 @@ Technical Requirements:
 
 ---
 
-**🎉 Congratulations!** You've completed your first Unity lab and created your first game! This foundation will serve you well as you progress through the course.

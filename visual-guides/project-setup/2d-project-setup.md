@@ -31,7 +31,7 @@ After following this guide, you will be able to:
 
 ### 1.4 Wait for Project Creation
 - Unity will create the project and open the editor
-- This may take 2-5 minutes depending on your system
+- This process varies depending on your system
 - **Don't close Unity Hub** during this process
 
 ---
@@ -298,7 +298,7 @@ Create a custom quality preset:
 
 1. **Test Your Setup**: Create a simple 2D sprite and test movement
 2. **Explore Interface**: Get comfortable with Unity Editor
-3. **Read Next Guide**: [Component Setup Guide](../component-setup/inspector-configuration.md)
+3. **Read Next Guide**: [Input System Setup Guide](../component-setup/input-system-setup.md)
 4. **Start Lesson 1**: Begin with Unity fundamentals
 
 ---
@@ -319,4 +319,3 @@ Create a custom quality preset:
 
 ---
 
-**🎉 Congratulations!** You now have a properly configured 2D Unity project ready for game development!

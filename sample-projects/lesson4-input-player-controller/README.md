@@ -4,6 +4,11 @@
 
 This sample project demonstrates Unity's New Input System with advanced player controller features including responsive input handling, camera following, and game feel enhancements. It features a complete input system setup with keyboard, mouse, and gamepad support.
 
+### **📚 Relationship to Lesson 4 Examples**
+- **Basic Examples**: `lesson4-input-player-controller/example/` - Individual input concepts and scripts
+- **This Sample Project**: Complete controller system with all input features integrated
+- **Learning Path**: Study individual examples first, then explore this complete implementation
+
 ## 🎮 Project Description
 
 ### **Objective**

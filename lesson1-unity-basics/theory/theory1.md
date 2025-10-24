@@ -11,42 +11,9 @@
 
 ## 🚀 Quick Start
 
-### Web/Mobile vs Game Development
+### Unity's Component-Based Architecture
 
-#### **Web Development Pattern**
-```javascript
-// Web: Event-driven, state-based
-class WebComponent {
-    constructor() {
-        this.state = {};
-        this.render();
-    }
-
-    handleUserAction() {
-        this.state = newState;
-        this.render(); // Re-render UI
-    }
-}
-```
-
-#### **Mobile Development Pattern**
-```java
-// Android: App lifecycle, touch events
-public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setupUI();
-    }
-
-    public void onButtonClick(View view) {
-        performAction();
-    }
-}
-```
-
-#### **Game Development Pattern**
+#### **GameObject/Component Model**
 ```csharp
 // Unity: Real-time simulation, continuous updates
 public class GameComponent : MonoBehaviour

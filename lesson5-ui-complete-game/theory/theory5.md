@@ -1749,3 +1749,9 @@ public class PerformanceMonitor : MonoBehaviour
 
 ### Practice:
 Complete **Lab 05** to create a fully functional 2D game with complete UI system, audio integration, save/load functionality, and build-ready optimization. This represents the culmination of the entire Unity 2D course!
+
+---
+
+## ✅ What's Next
+
+You've completed the core Unity 2D course! Continue with advanced topics in `extras/` to further enhance your game development skills.

@@ -4,6 +4,11 @@
 
 This sample project demonstrates a complete 2D game with full UI system, game state management, audio integration, save system, and build process. It features a complete game loop from main menu to gameplay to game over.
 
+### **📚 Relationship to Lesson 5 Examples**
+- **Basic Examples**: `lesson5-ui-complete-game/example/` - Individual UI components and scripts
+- **This Sample Project**: Complete game with all UI systems integrated
+- **Learning Path**: Study individual examples first, then explore this complete game
+
 ## 🎮 Project Description
 
 ### **Objective**

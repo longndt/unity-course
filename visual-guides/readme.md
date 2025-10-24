@@ -9,25 +9,12 @@ This directory contains visual guides and screenshots to help students navigate 
 ```
 visual-guides/
 ├── unity-editor-navigation/
-│   ├── interface-overview.md
-│   ├── window-layouts.md
-│   └── keyboard-shortcuts.md
+│   └── interface-overview.md
 ├── project-setup/
-│   ├── new-project-creation.md
-│   ├── project-settings-config.md
 │   └── 2d-project-setup.md
 ├── component-setup/
-│   ├── inspector-configuration.md
-│   ├── physics-2d-setup.md
 │   └── input-system-setup.md
-├── workflow-tutorials/
-│   ├── sprite-import-workflow.md
-│   ├── animation-creation-workflow.md
-│   └── build-process-workflow.md
-└── troubleshooting-visual/
-    ├── common-errors-screenshots.md
-    ├── debug-workflow.md
-    └── performance-profiling.md
+└── readme.md
 ```
 
 ## 🎯 How to Use
@@ -39,12 +26,12 @@ visual-guides/
 
 ## 📚 Integration with Lessons
 
-- **Lesson 0**: Use `unity-editor-navigation/` and `project-setup/`
-- **Lesson 1**: Reference `component-setup/` and `project-settings-config.md`
-- **Lesson 2**: Follow `sprite-import-workflow.md` and `animation-creation-workflow.md`
-- **Lesson 3**: Use `physics-2d-setup.md` and `component-setup/`
-- **Lesson 4**: Reference `input-system-setup.md`
-- **Lesson 5**: Follow `build-process-workflow.md`
+- **Lesson 0**: Use `unity-editor-navigation/interface-overview.md` and `project-setup/2d-project-setup.md`
+- **Lesson 1**: Reference `project-setup/2d-project-setup.md`
+- **Lesson 2**: Follow `project-setup/2d-project-setup.md` for sprite import
+- **Lesson 3**: Use `project-setup/2d-project-setup.md` for physics setup
+- **Lesson 4**: Reference `component-setup/input-system-setup.md`
+- **Lesson 5**: Follow `project-setup/2d-project-setup.md` for build process
 
 ---
 

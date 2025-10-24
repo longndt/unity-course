@@ -920,4 +920,3 @@ public class OneWayPlatform : MonoBehaviour
 
 ---
 
-**🎉 Congratulations!** You've completed the physics lab and learned how to create responsive 2D physics gameplay in Unity. This knowledge will be essential for creating engaging platformer mechanics and interactive game worlds!

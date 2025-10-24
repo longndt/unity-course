@@ -244,10 +244,10 @@ After reading this guide, you will be able to:
 
 ## 📚 Next Steps
 
-1. **Practice Navigation**: Spend 10 minutes exploring the interface
+1. **Practice Navigation**: Explore the interface
 2. **Try Shortcuts**: Use keyboard shortcuts instead of clicking
 3. **Customize Layout**: Create your preferred layout
-4. **Read Next Guide**: [Window Layouts](./window-layouts.md)
+4. **Read Next Guide**: [Project Setup Guide](../project-setup/2d-project-setup.md)
 
 ---
 
